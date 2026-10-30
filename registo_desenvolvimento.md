@@ -38,3 +38,19 @@ Estado no final da sessão
 - Ainda falta implementar e testar as restantes operações CRUD (consultar, editar e eliminar).
 - Ainda falta implementar as associações entre videojogos, géneros e plataformas.
 - Ainda falta implementar a pesquisa, os filtros e os testes automatizados.
+
+ Registo de Desenvolvimento — Aula 2
+
+ Trabalho realizado:
+
+Nesta aula, foi criado o módulo `app/repositorio.py`, responsável pelo acesso à base de dados, separando essa tarefa da lógica de negócio da aplicação.
+
+Foram implementadas validações para garantir que o título dos videojogos não está vazio e que o ano de lançamento se encontra entre 1950 e 2100. A aplicação foi também melhorada para apresentar os jogos guardados, ordenados pelo título, e mostrar mensagens de erro quando os dados introduzidos são inválidos.
+
+Testes realizados:
+
+Foram testados o catálogo vazio, o registo de videojogos e a rejeição de títulos inválidos. Foi também verificada a validação do ano de lançamento.
+
+ Próximos passos:
+
+Melhorar a interface da aplicação, desenvolver funcionalidades para organizar e filtrar os videojogos e continuar a implementar e testar as funcionalidades previstas para o projeto.

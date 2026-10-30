@@ -1,23 +1,24 @@
-from app.database.database import obter_conexao
+from app.repositorio import guardar_jogo, listar_jogos
 
 
 def criar_jogo(titulo, descricao, ano_lancamento):
-    """Regista um videojogo na base de dados."""
+    """Valida os dados e regista um videojogo."""
 
-    conexao = obter_conexao()
+    titulo = titulo.strip()
 
-    try:
-        cursor = conexao.execute(
-            """
-            INSERT INTO JOGO (titulo, descricao, ano_lancamento)
-            VALUES (?, ?, ?)
-            """,
-            (titulo, descricao, ano_lancamento)
-        )
+    if not titulo:
+        raise ValueError("O título do videojogo é obrigatório.")
 
-        conexao.commit()
+    if not isinstance(ano_lancamento, int) or isinstance(ano_lancamento, bool):
+        raise ValueError("O ano de lançamento tem de ser um número inteiro.")
 
-        return cursor.lastrowid
+    if ano_lancamento < 1950 or ano_lancamento > 2100:
+        raise ValueError("O ano de lançamento deve estar entre 1950 e 2100.")
 
-    finally:
-        conexao.close()
+    return guardar_jogo(titulo, descricao, ano_lancamento)
+
+
+def obter_jogos():
+    """Devolve a lista de videojogos registados."""
+
+    return listar_jogos()

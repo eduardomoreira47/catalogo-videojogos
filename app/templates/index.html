@@ -15,14 +15,27 @@
         <section>
             <h2>Registar videojogo</h2>
 
+            {% if erro %}
+                <p role="alert"><strong>Erro:</strong> {{ erro }}</p>
+            {% endif %}
+
             <form action="/jogos" method="post">
                 <label for="titulo">Título:</label>
-                <input type="text" id="titulo" name="titulo" required>
+                <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    value="{{ titulo }}"
+                    required
+                >
 
                 <br><br>
 
                 <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao"></textarea>
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                >{{ descricao }}</textarea>
 
                 <br><br>
 
@@ -33,6 +46,7 @@
                     name="ano_lancamento"
                     min="1950"
                     max="2100"
+                    value="{{ ano_lancamento }}"
                     required
                 >
 
@@ -40,6 +54,29 @@
 
                 <button type="submit">Guardar videojogo</button>
             </form>
+        </section>
+
+        <section>
+            <h2>Jogos do catálogo</h2>
+
+            {% if jogos %}
+                {% for jogo in jogos %}
+                    <article>
+                        <h3>{{ jogo.titulo }}</h3>
+                        <p>
+                            <strong>Descrição:</strong>
+                            {{ jogo.descricao or "Sem descrição." }}
+                        </p>
+                        <p>
+                            <strong>Ano de lançamento:</strong>
+                            {{ jogo.ano_lancamento }}
+                        </p>
+                    </article>
+                    <hr>
+                {% endfor %}
+            {% else %}
+                <p>Ainda não existem videojogos no catálogo.</p>
+            {% endif %}
         </section>
     </main>
 </body>
