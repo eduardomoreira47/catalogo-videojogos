@@ -1,7 +1,8 @@
+
 from app.database.database import obter_conexao
 
 
-def guardar_jogo(titulo, descricao, ano_lancamento):
+def guardar_jogo(titulo, descricao, ano_lancamento, capa=None):
     """Guarda um videojogo na base de dados."""
 
     conexao = obter_conexao()
@@ -9,14 +10,13 @@ def guardar_jogo(titulo, descricao, ano_lancamento):
     try:
         cursor = conexao.execute(
             """
-            INSERT INTO JOGO (titulo, descricao, ano_lancamento)
-            VALUES (?, ?, ?)
+            INSERT INTO JOGO (titulo, descricao, ano_lancamento, capa)
+            VALUES (?, ?, ?, ?)
             """,
-            (titulo, descricao, ano_lancamento)
+            (titulo, descricao, ano_lancamento, capa)
         )
 
         conexao.commit()
-
         return cursor.lastrowid
 
     finally:
@@ -31,7 +31,7 @@ def listar_jogos():
     try:
         cursor = conexao.execute(
             """
-            SELECT id_jogo, titulo, descricao, ano_lancamento
+            SELECT id_jogo, titulo, descricao, ano_lancamento, capa
             FROM JOGO
             ORDER BY titulo ASC
             """
@@ -43,8 +43,57 @@ def listar_jogos():
         conexao.close()
 
 
-def limpar_jogos_de_teste():
-    """Remove os registos de teste identificados no catálogo."""
+def obter_jogo_por_id(id_jogo):
+    """Devolve um videojogo específico através do seu ID."""
+
+    conexao = obter_conexao()
+
+    try:
+        cursor = conexao.execute(
+            """
+            SELECT id_jogo, titulo, descricao, ano_lancamento, capa
+            FROM JOGO
+            WHERE id_jogo = ?
+            """,
+            (id_jogo,)
+        )
+
+        linha = cursor.fetchone()
+
+        return dict(linha) if linha else None
+
+    finally:
+        conexao.close()
+
+
+def atualizar_jogo(id_jogo, titulo, descricao, ano_lancamento, capa=None):
+    """Atualiza os dados de um videojogo existente."""
+
+    conexao = obter_conexao()
+
+    try:
+        cursor = conexao.execute(
+            """
+            UPDATE JOGO
+            SET titulo = ?,
+                descricao = ?,
+                ano_lancamento = ?,
+                capa = ?
+            WHERE id_jogo = ?
+            """,
+            (titulo, descricao, ano_lancamento, capa, id_jogo)
+        )
+
+        conexao.commit()
+
+        return cursor.rowcount > 0
+
+    finally:
+        conexao.close()
+
+
+def eliminar_jogo(id_jogo):
+    """Elimina um videojogo da base de dados."""
 
     conexao = obter_conexao()
 
@@ -52,18 +101,14 @@ def limpar_jogos_de_teste():
         cursor = conexao.execute(
             """
             DELETE FROM JOGO
-            WHERE titulo IN (?, ?, ?)
+            WHERE id_jogo = ?
             """,
-            (
-                "coloca apenas três espaços.",
-                "teste",
-                "três espaços"
-            )
+            (id_jogo,)
         )
 
         conexao.commit()
 
-        return cursor.rowcount
+        return cursor.rowcount > 0
 
     finally:
         conexao.close()

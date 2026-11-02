@@ -1,16 +1,88 @@
-from fastapi import FastAPI, Request, Form
+
+from pathlib import Path
+from uuid import uuid4
+
+from fastapi import FastAPI, Request, Form, File, UploadFile
+from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
 
-from app.services.jogos import criar_jogo, obter_jogos
+from app.services.jogos import (
+    criar_jogo,
+    obter_jogos,
+    obter_jogo,
+    editar_jogo,
+    remover_jogo,
+)
+
 
 app = FastAPI(title="Catálogo de Videojogos")
 
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
+
 templates = Jinja2Templates(directory="app/templates")
+
+PASTA_CAPAS = Path("app/static/capas")
+PASTA_CAPAS.mkdir(parents=True, exist_ok=True)
+
+EXTENSOES_PERMITIDAS = {".png", ".jpg", ".jpeg"}
+TAMANHO_MAXIMO = 5 * 1024 * 1024  # 5 MB
+
+
+async def guardar_capa(ficheiro: UploadFile | None):
+    """Valida e guarda a capa de um videojogo."""
+
+    if not ficheiro or not ficheiro.filename:
+        return None
+
+    extensao = Path(ficheiro.filename).suffix.lower()
+
+    if extensao not in EXTENSOES_PERMITIDAS:
+        raise ValueError("A capa tem de estar no formato PNG, JPG ou JPEG.")
+
+    conteudo = await ficheiro.read(TAMANHO_MAXIMO + 1)
+
+    if not conteudo:
+        raise ValueError("O ficheiro de imagem está vazio.")
+
+    if len(conteudo) > TAMANHO_MAXIMO:
+        raise ValueError("A imagem não pode ultrapassar 5 MB.")
+
+    if extensao == ".png" and not conteudo.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise ValueError("O conteúdo do ficheiro não é uma imagem PNG.")
+
+    if extensao in {".jpg", ".jpeg"} and not conteudo.startswith(b"\xff\xd8\xff"):
+        raise ValueError("O conteúdo do ficheiro não é uma imagem JPG.")
+
+    nome_ficheiro = f"{uuid4().hex}{extensao}"
+    destino = PASTA_CAPAS / nome_ficheiro
+
+    destino.write_bytes(conteudo)
+
+    return f"capas/{nome_ficheiro}"
+
+
+def apagar_capa(caminho_capa):
+    """Apaga uma capa guardada na pasta de capas da aplicação."""
+
+    if not caminho_capa:
+        return
+
+    caminho = Path(caminho_capa)
+
+    if caminho.name != caminho_capa or caminho_capa != str(caminho):
+        return
+
+    ficheiro = (PASTA_CAPAS / caminho.name).resolve()
+
+    if ficheiro.parent == PASTA_CAPAS.resolve():
+        ficheiro.unlink(missing_ok=True)
 
 
 @app.get("/", response_class=HTMLResponse)
 def pagina_inicial(request: Request):
+    """Apresenta a página principal com os videojogos."""
+
     jogos = obter_jogos()
 
     return templates.TemplateResponse(
@@ -21,18 +93,24 @@ def pagina_inicial(request: Request):
             "erro": None,
             "titulo": "",
             "descricao": "",
-            "ano_lancamento": ""
-        }
+            "ano_lancamento": "",
+            "capa": "",
+        },
     )
 
 
 @app.post("/jogos", response_class=HTMLResponse)
-def registar_jogo(
+async def registar_jogo(
     request: Request,
     titulo: str = Form(""),
     descricao: str = Form(""),
-    ano_lancamento: str = Form("")
+    ano_lancamento: str = Form(""),
+    ficheiro_capa: UploadFile | None = File(None),
 ):
+    """Valida e regista um novo videojogo."""
+
+    caminho_capa = None
+
     try:
         titulo = titulo.strip()
 
@@ -42,13 +120,20 @@ def registar_jogo(
         if not ano_lancamento.strip():
             raise ValueError("O ano de lançamento é obrigatório.")
 
-        ano = int(ano_lancamento)
+        try:
+            ano = int(ano_lancamento)
+        except ValueError:
+            raise ValueError(
+                "O ano de lançamento tem de ser um número inteiro."
+            )
 
-        print(f"DEBUG: título recebido = {titulo!r}")
+        caminho_capa = await guardar_capa(ficheiro_capa)
 
-        criar_jogo(titulo, descricao, ano)
+        criar_jogo(titulo, descricao, ano, caminho_capa)
 
     except ValueError as erro:
+        apagar_capa(caminho_capa)
+
         return templates.TemplateResponse(
             request=request,
             name="index.html",
@@ -58,9 +143,135 @@ def registar_jogo(
                 "erro": str(erro),
                 "titulo": titulo,
                 "descricao": descricao,
-                "ano_lancamento": ano_lancamento
-            }
+                "ano_lancamento": ano_lancamento,
+                "capa": "",
+            },
         )
+
+    finally:
+        if ficheiro_capa:
+            await ficheiro_capa.close()
 
     return RedirectResponse(url="/", status_code=303)
 
+
+@app.get("/jogos/{id_jogo}/editar", response_class=HTMLResponse)
+def pagina_editar_jogo(request: Request, id_jogo: int):
+    """Apresenta o formulário para editar um videojogo."""
+
+    jogo = obter_jogo(id_jogo)
+
+    if jogo is None:
+        return HTMLResponse(
+            "Videojogo não encontrado.",
+            status_code=404,
+        )
+
+    return templates.TemplateResponse(
+        request=request,
+        name="editar_jogo.html",
+        context={
+            "jogo": jogo,
+            "erro": None,
+            "titulo": None,
+            "descricao": None,
+            "ano_lancamento": None,
+        },
+    )
+
+
+@app.post("/jogos/{id_jogo}/editar", response_class=HTMLResponse)
+async def guardar_edicao_jogo(
+    request: Request,
+    id_jogo: int,
+    titulo: str = Form(""),
+    descricao: str = Form(""),
+    ano_lancamento: str = Form(""),
+    ficheiro_capa: UploadFile | None = File(None),
+):
+    """Valida e guarda as alterações de um videojogo."""
+
+    jogo = obter_jogo(id_jogo)
+
+    if jogo is None:
+        if ficheiro_capa:
+            await ficheiro_capa.close()
+
+        return HTMLResponse(
+            "Videojogo não encontrado.",
+            status_code=404,
+        )
+
+    nova_capa = None
+
+    try:
+        titulo = titulo.strip()
+
+        if not titulo:
+            raise ValueError("O título do videojogo é obrigatório.")
+
+        if not ano_lancamento.strip():
+            raise ValueError("O ano de lançamento é obrigatório.")
+
+        try:
+            ano = int(ano_lancamento)
+        except ValueError:
+            raise ValueError(
+                "O ano de lançamento tem de ser um número inteiro."
+            )
+
+        if ficheiro_capa and ficheiro_capa.filename:
+            nova_capa = await guardar_capa(ficheiro_capa)
+
+        editar_jogo(
+            id_jogo,
+            titulo,
+            descricao,
+            ano,
+            nova_capa,
+        )
+
+    except ValueError as erro:
+        apagar_capa(nova_capa)
+
+        return templates.TemplateResponse(
+            request=request,
+            name="editar_jogo.html",
+            status_code=400,
+            context={
+                "jogo": jogo,
+                "erro": str(erro),
+                "titulo": titulo,
+                "descricao": descricao,
+                "ano_lancamento": ano_lancamento,
+            },
+        )
+
+    finally:
+        if ficheiro_capa:
+            await ficheiro_capa.close()
+
+    if nova_capa and jogo["capa"]:
+        apagar_capa(jogo["capa"])
+
+    return RedirectResponse(url="/", status_code=303)
+
+
+@app.post("/jogos/{id_jogo}/eliminar")
+def rota_eliminar_jogo(id_jogo: int):
+    """Elimina um videojogo e a respetiva capa, se existir."""
+
+    jogo = obter_jogo(id_jogo)
+
+    if jogo is None:
+        return HTMLResponse(
+            "Videojogo não encontrado.",
+            status_code=404,
+        )
+
+    remover_jogo(id_jogo)
+
+    if jogo["capa"]:
+        apagar_capa(jogo["capa"])
+
+    return RedirectResponse(url="/", status_code=303)

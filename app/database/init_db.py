@@ -44,8 +44,21 @@ def criar_tabelas():
             );
         """)
 
+        # Verifica se a coluna "capa" já existe.
+        colunas = conexao.execute(
+            "PRAGMA table_info(JOGO)"
+        ).fetchall()
+
+        nomes_colunas = [coluna["name"] for coluna in colunas]
+
+        # Só acrescenta a coluna se ainda não existir.
+        if "capa" not in nomes_colunas:
+            conexao.execute(
+                "ALTER TABLE JOGO ADD COLUMN capa TEXT"
+            )
+
         conexao.commit()
-        print("Tabelas criadas com sucesso!")
+        print("Tabelas criadas e verificadas com sucesso!")
 
     finally:
         conexao.close()

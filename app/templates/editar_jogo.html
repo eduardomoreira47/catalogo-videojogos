@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Editar videojogo</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', path='estilo.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>🎮 Editar videojogo</h1>
+        <p>Altera as informações do jogo selecionado.</p>
+    </header>
+
+    <main>
+        <section>
+            {% if erro %}
+                <p role="alert"><strong>Erro:</strong> {{ erro }}</p>
+            {% endif %}
+
+            {% if jogo.capa %}
+                <img
+                    class="capa-jogo"
+                    src="{{ url_for('static', path=jogo.capa) }}"
+                    alt="Capa de {{ jogo.titulo }}"
+                >
+            {% endif %}
+
+            <form
+                action="/jogos/{{ jogo.id_jogo }}/editar"
+                method="post"
+                enctype="multipart/form-data"
+            >
+                <label for="titulo">Título:</label>
+
+                <input
+                    type="text"
+                    id="titulo"
+                    name="titulo"
+                    value="{{ titulo if titulo is not none else jogo.titulo }}"
+                    required
+                >
+
+                <br><br>
+
+                <label for="descricao">Descrição:</label>
+
+                <textarea
+                    id="descricao"
+                    name="descricao"
+                >{{ descricao if descricao is not none else (jogo.descricao or "") }}</textarea>
+
+                <br><br>
+
+                <label for="ano_lancamento">Ano de lançamento:</label>
+
+                <input
+                    type="number"
+                    id="ano_lancamento"
+                    name="ano_lancamento"
+                    min="1950"
+                    max="2100"
+                    value="{{ ano_lancamento if ano_lancamento is not none else jogo.ano_lancamento }}"
+                    required
+                >
+
+                <br><br>
+
+                <label for="ficheiro_capa">Alterar capa:</label>
+
+                <input
+                    type="file"
+                    id="ficheiro_capa"
+                    name="ficheiro_capa"
+                    accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                >
+
+                <p>Se não escolheres uma imagem, a capa atual será mantida.</p>
+
+                <br>
+
+                <button type="submit">Guardar alterações</button>
+
+                <a href="/">Cancelar</a>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

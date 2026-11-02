@@ -1,9 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Catálogo de Videojogos</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
 </head>
 <body>
     <header>
@@ -19,7 +21,7 @@
                 <p role="alert"><strong>Erro:</strong> {{ erro }}</p>
             {% endif %}
 
-            <form action="/jogos" method="post">
+            <form action="/jogos" method="post" enctype="multipart/form-data">
                 <label for="titulo">Título:</label>
                 <input
                     type="text"
@@ -28,15 +30,10 @@
                     value="{{ titulo }}"
                     required
                 >
-
                 <br><br>
 
                 <label for="descricao">Descrição:</label>
-                <textarea
-                    id="descricao"
-                    name="descricao"
-                >{{ descricao }}</textarea>
-
+                <textarea id="descricao" name="descricao">{{ descricao }}</textarea>
                 <br><br>
 
                 <label for="ano_lancamento">Ano de lançamento:</label>
@@ -49,7 +46,18 @@
                     value="{{ ano_lancamento }}"
                     required
                 >
+                <br><br>
 
+                <label for="ficheiro_capa">Capa do videojogo (opcional):</label>
+                <input
+                    type="file"
+                    id="ficheiro_capa"
+                    name="ficheiro_capa"
+                    accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                >
+                <small>
+                    Formatos permitidos: PNG e JPG. Tamanho máximo: 5 MB.
+                </small>
                 <br><br>
 
                 <button type="submit">Guardar videojogo</button>
@@ -60,20 +68,51 @@
             <h2>Jogos do catálogo</h2>
 
             {% if jogos %}
-                {% for jogo in jogos %}
-                    <article>
-                        <h3>{{ jogo.titulo }}</h3>
-                        <p>
-                            <strong>Descrição:</strong>
-                            {{ jogo.descricao or "Sem descrição." }}
-                        </p>
-                        <p>
-                            <strong>Ano de lançamento:</strong>
-                            {{ jogo.ano_lancamento }}
-                        </p>
-                    </article>
-                    <hr>
-                {% endfor %}
+                <div class="catalogo">
+                    {% for jogo in jogos %}
+                        <article class="jogo">
+
+                            {% if jogo.capa %}
+                                <img
+                                    class="capa-jogo"
+                                    src="{{ url_for('static', path=jogo.capa) }}"
+                                    alt="Capa de {{ jogo.titulo }}"
+                                >
+                            {% endif %}
+
+                            <h3>{{ jogo.titulo }}</h3>
+
+                            <p>
+                                <strong>Descrição:</strong>
+                                {{ jogo.descricao or "Sem descrição." }}
+                            </p>
+
+                            <p>
+                                <strong>Ano de lançamento:</strong>
+                                {{ jogo.ano_lancamento }}
+                            </p>
+
+                            <div class="acoes-jogo">
+                                <a href="/jogos/{{ jogo.id_jogo }}/editar">
+                                    <button type="button">
+                                        Editar videojogo
+                                    </button>
+                                </a>
+
+                                <form
+                                    action="/jogos/{{ jogo.id_jogo }}/eliminar"
+                                    method="post"
+                                    onsubmit="return confirm('Tens a certeza de que queres eliminar este videojogo?');"
+                                >
+                                    <button type="submit">
+                                        Eliminar videojogo
+                                    </button>
+                                </form>
+                            </div>
+
+                        </article>
+                    {% endfor %}
+                </div>
             {% else %}
                 <p>Ainda não existem videojogos no catálogo.</p>
             {% endif %}
