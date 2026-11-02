@@ -54,3 +54,20 @@ Foram testados o catálogo vazio, o registo de videojogos e a rejeição de tít
  Próximos passos:
 
 Melhorar a interface da aplicação, desenvolver funcionalidades para organizar e filtrar os videojogos e continuar a implementar e testar as funcionalidades previstas para o projeto.
+
+
+
+ Sessão 3:
+
+Durante esta sessão, continuei o desenvolvimento da aplicação web Catálogo de Videojogos, acrescentando novas funcionalidades e melhorando as que já existiam.
+
+- Adicionei vários videojogos ao catálogo, preenchendo informações como o título, a descrição e o ano de lançamento.
+- Implementei a funcionalidade de carregar capas a partir do computador, permitindo associar uma imagem a cada videojogo.
+- Desenvolvi a funcionalidade de editar videojogos, permitindo alterar as informações dos jogos já registados.
+- Implementei a funcionalidade de eliminar videojogos do catálogo.
+- Acrescentei uma mensagem de confirmação antes de eliminar um jogo, para evitar eliminações acidentais.
+- Atualizei os ficheiros `repositorio.py`, `jogos.py`, `main.py` e `index.html` para integrar as novas funcionalidades.
+- Organizei o código de forma a separar o acesso à base de dados, a lógica de negócio e o funcionamento das páginas da aplicação.
+- Realizei testes manuais para verificar o funcionamento das funcionalidades desenvolvidas.
+
+No final da sessão, a aplicação passou a permitir registar, consultar, editar e eliminar videojogos, bem como adicionar capas aos jogos. Estas alterações contribuíram para tornar o catálogo mais completo e prático de utilizar.
