@@ -10,6 +10,7 @@ from fastapi.templating import Jinja2Templates
 from app.services.jogos import (
     criar_jogo,
     obter_jogos,
+    pesquisar_jogos,
     obter_jogo,
     editar_jogo,
     remover_jogo,
@@ -80,10 +81,25 @@ def apagar_capa(caminho_capa):
 
 
 @app.get("/", response_class=HTMLResponse)
-def pagina_inicial(request: Request):
-    """Apresenta a página principal com os videojogos."""
+def pagina_inicial(
+    request: Request,
+    q: str = "",
+    ano: str = "",
+):
+    """Apresenta os videojogos e permite pesquisar por título e ano."""
 
-    jogos = obter_jogos()
+    ano_filtro = None
+
+    if ano.strip():
+        try:
+            ano_filtro = int(ano)
+        except ValueError:
+            ano_filtro = None
+
+    if ano_filtro is not None and not 1950 <= ano_filtro <= 2100:
+        ano_filtro = None
+
+    jogos = pesquisar_jogos(q, ano_filtro)
 
     return templates.TemplateResponse(
         request=request,
@@ -95,6 +111,8 @@ def pagina_inicial(request: Request):
             "descricao": "",
             "ano_lancamento": "",
             "capa": "",
+            "pesquisa": q,
+            "ano_filtro": ano,
         },
     )
 
@@ -145,6 +163,8 @@ async def registar_jogo(
                 "descricao": descricao,
                 "ano_lancamento": ano_lancamento,
                 "capa": "",
+                "pesquisa": "",
+                "ano_filtro": "",
             },
         )
 

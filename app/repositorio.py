@@ -43,6 +43,34 @@ def listar_jogos():
         conexao.close()
 
 
+def pesquisar_jogos(titulo, ano_lancamento=None):
+    """Pesquisa videojogos pelo título e, opcionalmente, pelo ano."""
+
+    conexao = obter_conexao()
+
+    try:
+        consulta = """
+            SELECT id_jogo, titulo, descricao, ano_lancamento, capa
+            FROM JOGO
+            WHERE titulo LIKE ?
+        """
+
+        parametros = [f"%{titulo.strip()}%"]
+
+        if ano_lancamento is not None:
+            consulta += " AND ano_lancamento = ?"
+            parametros.append(ano_lancamento)
+
+        consulta += " ORDER BY titulo ASC"
+
+        cursor = conexao.execute(consulta, parametros)
+
+        return [dict(linha) for linha in cursor.fetchall()]
+
+    finally:
+        conexao.close()
+
+
 def obter_jogo_por_id(id_jogo):
     """Devolve um videojogo específico através do seu ID."""
 

@@ -67,6 +67,36 @@
         <section>
             <h2>Jogos do catálogo</h2>
 
+            <form action="/" method="get">
+                <label for="pesquisa">Pesquisar por título:</label>
+                <input
+                    type="text"
+                    id="pesquisa"
+                    name="q"
+                    value="{{ pesquisa or '' }}"
+                    placeholder="Escreve o título de um videojogo"
+                >
+
+                <br><br>
+
+                <label for="ano_filtro">Filtrar por ano:</label>
+                <input
+                    type="number"
+                    id="ano_filtro"
+                    name="ano"
+                    min="1950"
+                    max="2100"
+                    value="{{ ano_filtro or '' }}"
+                    placeholder="Ex.: 2023"
+                >
+
+                <br><br>
+
+                <button type="submit">Pesquisar / Filtrar</button>
+
+                <a href="/">Limpar filtros</a>
+            </form>
+
             {% if jogos %}
                 <div class="catalogo">
                     {% for jogo in jogos %}
@@ -114,7 +144,11 @@
                     {% endfor %}
                 </div>
             {% else %}
-                <p>Ainda não existem videojogos no catálogo.</p>
+                {% if pesquisa or ano_filtro %}
+                    <p>Não foram encontrados videojogos com os filtros selecionados.</p>
+                {% else %}
+                    <p>Ainda não existem videojogos no catálogo.</p>
+                {% endif %}
             {% endif %}
         </section>
     </main>

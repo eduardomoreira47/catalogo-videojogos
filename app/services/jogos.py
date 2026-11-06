@@ -5,6 +5,7 @@ from app.repositorio import (
     obter_jogo_por_id,
     atualizar_jogo,
     eliminar_jogo,
+    pesquisar_jogos as pesquisar_jogos_repositorio,
 )
 
 
@@ -37,6 +38,18 @@ def obter_jogos():
     """Devolve a lista de videojogos registados."""
 
     return listar_jogos()
+
+
+def pesquisar_jogos(titulo="", ano_lancamento=None):
+    """Pesquisa videojogos pelo título e opcionalmente pelo ano."""
+
+    if not titulo and ano_lancamento is None:
+        return obter_jogos()
+
+    if not titulo:
+        titulo = ""
+
+    return pesquisar_jogos_repositorio(titulo, ano_lancamento)
 
 
 def obter_jogo(id_jogo):
