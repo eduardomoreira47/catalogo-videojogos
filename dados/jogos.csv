@@ -1,501 +1,101 @@
 ﻿titulo,descricao,ano_lancamento
-Super Mario Bros.,Jogo de plataformas em que Mario atravessa vários mundos para salvar a Princesa Peach.,1985
-Super Mario Bros. 3,Aventura de plataformas em que Mario percorre vários reinos e enfrenta Bowser.,1988
-Super Mario World,Jogo de plataformas em que Mario explora Dinosaur Land com a ajuda de Yoshi.,1990
-Super Mario 64,Aventura de plataformas em 3D em que Mario explora o castelo da Peach.,1996
-New Super Mario Bros.,Jogo de plataformas em que Mario enfrenta Bowser para resgatar Peach.,2006
-New Super Mario Bros. Wii,Jogo de plataformas cooperativo para até quatro jogadores.,2009
-New Super Mario Bros. U,Aventura de plataformas em que Mario e os amigos atravessam vários mundos.,2012
-Super Mario 3D World,Jogo de plataformas em 3D com vários personagens jogáveis.,2013
-Super Mario Maker,"Jogo que permite criar, partilhar e jogar níveis inspirados em Super Mario.",2015
-Super Mario Maker 2,Ferramenta de criação de níveis de plataformas com opções para jogar em conjunto.,2019
-The Legend of Zelda,Aventura de ação em que Link explora Hyrule e procura fragmentos da Triforce.,1986
-Zelda II: The Adventure of Link,Aventura de ação e RPG em que Link enfrenta inimigos para proteger Hyrule.,1987
-The Legend of Zelda: A Link to the Past,Aventura em que Link explora Hyrule e o Mundo das Trevas.,1991
-The Legend of Zelda: Link's Awakening,Aventura em que Link tenta escapar de uma ilha misteriosa.,1993
-The Legend of Zelda: Ocarina of Time,Aventura em 3D em que Link viaja no tempo para impedir Ganondorf.,1998
-The Legend of Zelda: Majora's Mask,Aventura em que Link tenta impedir que a Lua caia sobre Termina.,2000
-The Legend of Zelda: The Wind Waker,Aventura marítima em que Link navega por um vasto oceano.,2002
-The Legend of Zelda: Twilight Princess,Aventura em que Link procura restaurar a luz num reino ameaçado pela escuridão.,2006
-The Legend of Zelda: Skyward Sword,Aventura que explora as origens da Master Sword e da lenda de Zelda.,2011
-The Legend of Zelda: Tears of the Kingdom,Aventura de mundo aberto em que Link explora Hyrule e ilhas no céu.,2023
-Pokémon Red,"RPG em que o jogador captura, treina e combate com criaturas Pokémon.",1996
-Pokémon Blue,RPG de captura e treino de Pokémon na região de Kanto.,1996
-Pokémon Yellow,"Aventura Pokémon inspirada na série animada, com Pikachu como companheiro.",1998
-Pokémon Gold,"RPG Pokémon passado na região de Johto, com novas criaturas para descobrir.",1999
-Pokémon Silver,Aventura de captura e combate Pokémon na região de Johto.,1999
-Pokémon Crystal,Versão melhorada da aventura Pokémon na região de Johto.,2000
-Pokémon Ruby,RPG Pokémon em que o jogador explora a região de Hoenn.,2002
-Pokémon Sapphire,"Aventura Pokémon na região de Hoenn, com exploração e combates por turnos.",2002
-Pokémon Emerald,Versão expandida da aventura Pokémon em Hoenn.,2004
-Pokémon Diamond,RPG Pokémon passado na região de Sinnoh.,2006
-Pokémon Pearl,"Aventura Pokémon em Sinnoh, com captura e evolução de criaturas.",2006
-Pokémon Platinum,Versão melhorada da aventura Pokémon na região de Sinnoh.,2008
-Pokémon Black,RPG Pokémon que apresenta a região de Unova e novas criaturas.,2010
-Pokémon White,"Aventura Pokémon em Unova, com combates e exploração.",2010
-Pokémon X,RPG Pokémon passado na região de Kalos e com Mega Evoluções.,2013
-Pokémon Y,"Aventura Pokémon em Kalos, com novas criaturas e batalhas.",2013
-Pokémon Sun,RPG Pokémon passado nas ilhas tropicais da região de Alola.,2016
-Pokémon Moon,"Aventura Pokémon em Alola, com desafios insulares e novas criaturas.",2016
-Pokémon Sword,"RPG Pokémon passado na região de Galar, com estádios e combates.",2019
-Pokémon Shield,"Aventura Pokémon em Galar, onde o jogador procura tornar-se campeão.",2019
-Pokémon Legends: Arceus,Aventura de ação e RPG que explora uma versão antiga da região de Sinnoh.,2022
-Final Fantasy,RPG de fantasia em que um grupo de heróis procura restaurar o equilíbrio do mundo.,1987
-Final Fantasy II,RPG em que um grupo de jovens enfrenta um império expansionista.,1988
-Final Fantasy III,RPG de fantasia em que os guerreiros da luz procuram salvar o mundo.,1990
-Final Fantasy IV,RPG que acompanha o cavaleiro Cecil numa jornada de redenção.,1991
-Final Fantasy V,RPG de fantasia centrado em cristais e num sistema flexível de profissões.,1992
-Final Fantasy VI,RPG em que um grupo de rebeldes enfrenta um império e um poderoso vilão.,1994
-Final Fantasy VII,RPG em que Cloud e os seus aliados enfrentam a corporação Shinra.,1997
-Final Fantasy VIII,RPG que acompanha estudantes militares envolvidos numa guerra.,1999
-Final Fantasy IX,RPG de fantasia que segue um grupo de personagens numa aventura por Gaia.,2000
-Final Fantasy X,RPG em que Tidus acompanha Yuna numa peregrinação para salvar Spira.,2001
-Final Fantasy XII,"RPG de fantasia passado em Ivalice, marcado por conflitos políticos.",2006
-Final Fantasy XIII,RPG de ficção científica em que um grupo tenta desafiar o seu destino.,2009
-Final Fantasy XV,RPG de ação que acompanha Noctis e os seus companheiros numa viagem.,2016
-Final Fantasy XVI,RPG de ação de fantasia centrado em Clive e nos poderes dos Eikons.,2023
-Resident Evil,Jogo de terror e sobrevivência numa mansão infestada de criaturas.,1996
-Resident Evil 2,Jogo de terror em que Leon e Claire tentam sobreviver a um surto em Raccoon City.,1998
-Resident Evil 3: Nemesis,Aventura de terror em que Jill Valentine tenta escapar de Raccoon City.,1999
-Resident Evil Code: Veronica,Jogo de terror e sobrevivência que acompanha Claire e Chris Redfield.,2000
-Resident Evil 4,Jogo de ação e terror em que Leon procura a filha do presidente.,2005
-Resident Evil 5,Jogo de ação e terror em que Chris e Sheva investigam uma ameaça biológica.,2009
-Resident Evil 6,Jogo de ação e terror com várias campanhas ligadas por uma ameaça global.,2012
-Resident Evil 7: Biohazard,Jogo de terror em primeira pessoa sobre a procura de uma pessoa desaparecida.,2017
-Resident Evil 2 (Remake),Reinterpretação do clássico de terror passado em Raccoon City.,2019
-Resident Evil 3 (Remake),Recriação da fuga de Jill Valentine de Raccoon City.,2020
-Resident Evil Village,Jogo de terror e ação em que Ethan Winters investiga uma aldeia isolada.,2021
-Resident Evil 4 (Remake),Recriação moderna da missão de Leon numa aldeia europeia.,2023
-Street Fighter II,Jogo de luta em que combatentes de vários países disputam um torneio.,1991
-Street Fighter Alpha 2,Jogo de luta que expande a série com novos lutadores e movimentos.,1996
-Street Fighter III: 3rd Strike,Jogo de luta conhecido pelo sistema de parry e elenco de combatentes.,1999
-Street Fighter IV,Jogo de luta que recupera a série com combates em duas dimensões.,2008
-Street Fighter V,Jogo de luta competitivo com personagens clássicas e novas mecânicas.,2016
-Street Fighter 6,"Jogo de luta com modos competitivos, história e criação de personagens.",2023
-Tekken 2,Jogo de luta em que combatentes participam no torneio King of Iron Fist.,1995
-Tekken 3,Jogo de luta que introduz uma nova geração de combatentes.,1997
-Tekken 5,Jogo de luta que continua o conflito da família Mishima.,2004
-Tekken 6,Jogo de luta com combates entre personagens de várias nacionalidades.,2007
-Tekken 7,Jogo de luta que desenvolve o conflito entre Heihachi e Kazuya.,2015
-Tekken 8,Jogo de luta focado no confronto entre Jin Kazama e Kazuya Mishima.,2024
-Mortal Kombat,Jogo de luta conhecido pelos seus combates intensos e movimentos finais.,1992
-Mortal Kombat II,Continuação do jogo de luta com novos combatentes e cenários.,1993
-Mortal Kombat 3,Jogo de luta que amplia o elenco e introduz novas mecânicas.,1995
-Mortal Kombat 4,Primeira entrada principal da série com gráficos tridimensionais.,1997
-Mortal Kombat: Deadly Alliance,Jogo de luta que apresenta novos estilos de combate e personagens.,2002
-Mortal Kombat: Deception,Jogo de luta com modos adicionais e uma história de fantasia sombria.,2004
-Mortal Kombat (2011),Reinício da série que revisita os acontecimentos dos primeiros torneios.,2011
-Mortal Kombat X,Jogo de luta com variações de personagens e combates brutais.,2015
-Mortal Kombat 11,Jogo de luta em que personagens enfrentam uma ameaça que altera o tempo.,2019
-Mortal Kombat 1,Reinício da história de Mortal Kombat num universo recriado.,2023
-Sonic the Hedgehog,Jogo de plataformas em que Sonic corre para derrotar o Dr. Robotnik.,1991
-Sonic the Hedgehog 2,Aventura de plataformas que introduz Tails como companheiro de Sonic.,1992
-Sonic CD,"Jogo de plataformas em que Sonic viaja entre passado, presente e futuro.",1993
-Sonic the Hedgehog 3,Aventura de plataformas em que Sonic e Tails enfrentam Robotnik.,1994
-Sonic & Knuckles,Jogo de plataformas que permite jogar com Sonic ou Knuckles.,1994
-Sonic Adventure,Aventura em 3D com várias personagens e histórias interligadas.,1998
-Sonic Adventure 2,Jogo de ação e plataformas com as equipas Hero e Dark.,2001
-Sonic Heroes,Jogo de plataformas em que equipas de três personagens cooperam.,2003
-Sonic Generations,Aventura que reúne versões clássicas e modernas de Sonic.,2011
-Sonic Mania,Jogo de plataformas inspirado nos clássicos de Sonic em 2D.,2017
-Sonic Frontiers,Aventura de ação em que Sonic explora grandes áreas abertas.,2022
-Metroid,Aventura de ação em que Samus Aran explora um planeta alienígena.,1986
-Super Metroid,Aventura de exploração em que Samus regressa ao planeta Zebes.,1994
-Metroid Fusion,Aventura de ação em que Samus enfrenta uma ameaça parasitária.,2002
-Metroid Prime,Aventura de exploração em primeira pessoa protagonizada por Samus.,2002
-Metroid: Zero Mission,Recriação da primeira aventura de Samus com novas áreas e desafios.,2004
-Metroid Prime 2: Echoes,Aventura em primeira pessoa num planeta dividido entre luz e trevas.,2004
-Metroid Dread,Aventura de ação em que Samus é perseguida por robôs numa instalação alienígena.,2021
-Donkey Kong Country,Jogo de plataformas em que Donkey Kong e Diddy recuperam bananas roubadas.,1994
-Donkey Kong Country 2: Diddy's Kong Quest,Aventura de plataformas em que Diddy e Dixie tentam resgatar Donkey Kong.,1995
-Donkey Kong Country 3: Dixie Kong's Double Trouble!,Jogo de plataformas protagonizado por Dixie e Kiddy Kong.,1996
-Donkey Kong 64,Aventura em 3D em que vários membros da família Kong exploram a ilha.,1999
-Donkey Kong Country Returns,Jogo de plataformas em que Donkey Kong recupera as suas bananas.,2010
-Donkey Kong Country: Tropical Freeze,Aventura de plataformas em que a família Kong enfrenta invasores gelados.,2014
-Call of Duty,Jogo de ação na primeira pessoa que retrata operações militares durante a Segunda Guerra Mundial.,2003
-Call of Duty 2,Jogo de ação na primeira pessoa centrado em várias campanhas da Segunda Guerra Mundial.,2005
-Call of Duty 4: Modern Warfare,Jogo de ação militar que acompanha conflitos modernos em diferentes regiões.,2007
-Call of Duty: World at War,Jogo de ação na primeira pessoa passado nos teatros de guerra do Pacífico e da Europa.,2008
-Call of Duty: Modern Warfare 2,Continuação da campanha de guerra moderna com operações militares internacionais.,2009
-Call of Duty: Black Ops,Jogo de ação que acompanha operações secretas durante a Guerra Fria.,2010
-Call of Duty: Modern Warfare 3,Conclusão da trilogia Modern Warfare com conflitos em várias cidades.,2011
-Call of Duty: Black Ops II,Jogo de ação com duas linhas temporais e escolhas que influenciam a história.,2012
-Call of Duty: Ghosts,Jogo de ação militar sobre uma unidade especial que luta pela sobrevivência.,2013
-Call of Duty: Advanced Warfare,Jogo de ação futurista com equipamento militar avançado e exoesqueletos.,2014
-Call of Duty: Black Ops III,Jogo de ação futurista com soldados cibernéticos e campanha cooperativa.,2015
-Call of Duty: Infinite Warfare,Jogo de ação militar de ficção científica passado parcialmente no espaço.,2016
-Call of Duty: WWII,Jogo de ação que acompanha soldados aliados durante a Segunda Guerra Mundial.,2017
-Call of Duty: Black Ops 4,Jogo de ação focado em modos multijogador e sobrevivência.,2018
-Call of Duty: Modern Warfare (2019),Reinterpretação da série Modern Warfare com uma campanha militar contemporânea.,2019
-Call of Duty: Black Ops Cold War,Jogo de ação e espionagem passado durante a Guerra Fria.,2020
-Call of Duty: Vanguard,Jogo de ação que acompanha diferentes unidades durante a Segunda Guerra Mundial.,2021
-Call of Duty: Modern Warfare II (2022),Jogo de ação militar que acompanha a Task Force 141 em operações globais.,2022
-Call of Duty: Modern Warfare III (2023),Jogo de ação que continua a história da Task Force 141.,2023
-Call of Duty: Black Ops 6,Jogo de ação e espionagem passado no início da década de 1990.,2024
-Battlefield 1942,Jogo de ação militar com batalhas em grande escala durante a Segunda Guerra Mundial.,2002
-Battlefield 2,Jogo de ação militar com combates em equipa em cenários modernos.,2005
-Battlefield: Bad Company,Jogo de ação militar que acompanha uma equipa de soldados numa missão arriscada.,2008
-Battlefield: Bad Company 2,Continuação da aventura militar da companhia B em vários cenários de guerra.,2010
-Battlefield 3,Jogo de ação militar com campanha e batalhas multijogador em grande escala.,2011
-Battlefield 4,Jogo de ação militar sobre um conflito internacional com cenários destrutíveis.,2013
-Battlefield 1,Jogo de ação militar que retrata diferentes frentes da Primeira Guerra Mundial.,2016
-Battlefield V,Jogo de ação militar com histórias e batalhas da Segunda Guerra Mundial.,2018
-Battlefield 2042,Jogo de ação militar futurista centrado em batalhas multijogador de grande escala.,2021
-Battlefield 6,Jogo de ação militar contemporâneo com combates em equipa e cenários destrutíveis.,2025
-Halo: Combat Evolved,Jogo de ação na primeira pessoa em que Master Chief combate forças alienígenas.,2001
-Halo 2,Continuação da saga de ficção científica com Master Chief e o Arbiter.,2004
-Halo 4,Aventura de ação que acompanha Master Chief numa nova ameaça alienígena.,2012
-Halo 5: Guardians,Jogo de ação de ficção científica com duas equipas de Spartans.,2015
-Halo Infinite,Jogo de ação em que Master Chief explora um anel Halo e enfrenta os Banished.,2021
-Gears of War,Jogo de ação na terceira pessoa em que soldados enfrentam a ameaça Locust.,2006
-Gears of War 2,Continuação da luta da humanidade contra os Locust no planeta Sera.,2008
-Gears of War 3,Conclusão da trilogia original com a luta pela sobrevivência da humanidade.,2011
-Gears of War 4,Jogo de ação que apresenta uma nova geração de combatentes no universo Gears.,2016
-Gears 5,Aventura de ação que acompanha Kait Diaz na descoberta das suas origens.,2019
-Assassin's Creed,Aventura de ação em mundo aberto sobre um assassino durante as Cruzadas.,2007
-Assassin's Creed II,Aventura de ação que acompanha Ezio Auditore na Itália do Renascimento.,2009
-Assassin's Creed: Brotherhood,"Continuação da história de Ezio em Roma, com uma irmandade de assassinos.",2010
-Assassin's Creed: Revelations,Aventura que acompanha Ezio em Constantinopla e explora memórias de Altair.,2011
-Assassin's Creed III,Aventura de ação passada durante a Revolução Americana.,2012
-Assassin's Creed IV: Black Flag,Aventura de piratas em mundo aberto nas Caraíbas do século XVIII.,2013
-Assassin's Creed Rogue,Aventura que acompanha um assassino que passa a combater a sua antiga ordem.,2014
-Assassin's Creed Unity,Aventura de ação passada em Paris durante a Revolução Francesa.,2014
-Assassin's Creed Syndicate,Aventura de ação em Londres durante a Revolução Industrial.,2015
-Assassin's Creed Origins,Aventura de ação que explora as origens da Irmandade no Antigo Egito.,2017
-Assassin's Creed Odyssey,RPG de ação passado na Grécia Antiga durante a Guerra do Peloponeso.,2018
-Assassin's Creed Valhalla,RPG de ação em que um guerreiro viking procura estabelecer-se em Inglaterra.,2020
-Assassin's Creed Mirage,Aventura de ação centrada em Basim na cidade de Bagdade.,2023
-Far Cry,Jogo de ação na primeira pessoa passado numa ilha tropical perigosa.,2004
-Far Cry 2,Jogo de ação em mundo aberto passado num país africano em guerra.,2008
-Far Cry 3,Jogo de ação em mundo aberto sobre um jovem preso numa ilha dominada por piratas.,2012
-Far Cry 4,Aventura de ação passada na região montanhosa fictícia de Kyrat.,2014
-Far Cry Primal,Jogo de ação e sobrevivência passado na Idade da Pedra.,2016
-Far Cry 5,Aventura de ação em mundo aberto num condado rural dominado por um culto.,2018
-Far Cry New Dawn,Aventura de ação pós-apocalíptica passada numa versão transformada de Hope County.,2019
-Far Cry 6,Jogo de ação em mundo aberto sobre uma revolução numa ilha das Caraíbas.,2021
-Tomb Raider,Aventura de ação em que Lara Croft explora ruínas e procura artefactos antigos.,1996
-Tomb Raider II,Aventura de Lara Croft em busca da lendária Adaga de Xian.,1997
-Tomb Raider III,Aventura de exploração em que Lara procura fragmentos de um artefacto misterioso.,1998
-Tomb Raider: The Last Revelation,Aventura em que Lara explora túmulos e templos do Antigo Egito.,1999
-Tomb Raider: Legend,Aventura de ação que acompanha Lara na procura de uma relíquia lendária.,2006
-Tomb Raider: Anniversary,Recriação da primeira aventura de Lara Croft.,2007
-Tomb Raider: Underworld,Aventura de exploração em que Lara investiga mitos e ruínas antigas.,2008
-Tomb Raider (2013),Reinício da série que mostra as origens de Lara Croft numa ilha perigosa.,2013
-Rise of the Tomb Raider,Aventura de ação em que Lara procura uma cidade perdida na Sibéria.,2015
-Shadow of the Tomb Raider,Aventura em que Lara explora selvas e túmulos para impedir uma catástrofe.,2018
-Uncharted: Drake's Fortune,Aventura de ação em que Nathan Drake procura um tesouro lendário.,2007
-Uncharted 2: Among Thieves,Aventura de ação que leva Nathan Drake numa busca por uma cidade perdida.,2009
-Uncharted 3: Drake's Deception,Aventura de ação em que Nathan Drake procura uma cidade lendária no deserto.,2011
-Uncharted 4: A Thief's End,Aventura de ação em que Nathan Drake regressa à caça ao tesouro.,2016
-Uncharted: The Lost Legacy,Aventura de ação protagonizada por Chloe Frazer e Nadine Ross.,2017
-Crash Bandicoot,Jogo de plataformas em que Crash tenta impedir os planos do Dr. Neo Cortex.,1996
-Crash Bandicoot 2: Cortex Strikes Back,Aventura de plataformas em que Crash é enganado para recolher cristais.,1997
-Crash Bandicoot: Warped,Jogo de plataformas em que Crash viaja por diferentes épocas.,1998
-Crash Team Racing,Jogo de corridas de karts com personagens do universo Crash Bandicoot.,1999
-Crash Bandicoot: The Wrath of Cortex,Aventura de plataformas em que Crash enfrenta uma nova ameaça.,2001
-Crash Nitro Kart,Jogo de corridas de karts com personagens e pistas da série Crash.,2003
-Crash Bandicoot 4: It's About Time,Jogo de plataformas em que Crash e Coco atravessam dimensões.,2020
-Spyro the Dragon,Jogo de plataformas em 3D em que Spyro liberta dragões presos em cristais.,1998
-Spyro 2: Ripto's Rage!,Aventura de plataformas em que Spyro enfrenta Ripto no mundo de Avalar.,1999
-Spyro: Year of the Dragon,Aventura em que Spyro procura recuperar ovos de dragão roubados.,2000
-Spyro: A Hero's Tail,Jogo de plataformas em que Spyro tenta restaurar a luz no seu mundo.,2004
-Gran Turismo,Simulador de condução com uma grande seleção de carros e circuitos.,1997
-Gran Turismo 2,Simulador de corridas com muitos automóveis e competições.,1999
-Gran Turismo 3: A-Spec,Simulador de condução com carros licenciados e circuitos variados.,2001
-Gran Turismo 4,Simulador de corridas com centenas de veículos e provas.,2004
-Gran Turismo 5,Simulador de condução com competições online e grande variedade de carros.,2010
-Gran Turismo 6,Simulador de corridas com muitos automóveis e pistas internacionais.,2013
-Gran Turismo Sport,Jogo de corridas focado em competição online e condução realista.,2017
-Gran Turismo 7,"Simulador de condução que reúne carros clássicos, modernos e circuitos famosos.",2022
-Forza Motorsport,Simulador de corridas com automóveis licenciados e circuitos reais.,2005
-Forza Motorsport 2,Jogo de corridas com foco em condução realista e personalização de carros.,2007
-Forza Motorsport 3,Simulador de corridas com uma extensa coleção de veículos.,2009
-Forza Motorsport 4,Jogo de corridas com carros de várias épocas e modos competitivos.,2011
-Forza Motorsport 5,Simulador de condução com gráficos melhorados e carros licenciados.,2013
-Forza Motorsport 6,"Jogo de corridas com chuva, noite e grande variedade de circuitos.",2015
-Forza Motorsport 7,Simulador de corridas com centenas de carros e condições dinâmicas.,2017
-Forza Motorsport (2023),Simulador de corridas com pistas detalhadas e progressão de veículos.,2023
-The Elder Scrolls: Arena,RPG de fantasia em mundo aberto em que o jogador percorre Tamriel para salvar o imperador.,1994
-The Elder Scrolls II: Daggerfall,RPG de fantasia com um vasto mundo para explorar e muitas missões.,1996
-The Elder Scrolls III: Morrowind,RPG de mundo aberto passado na ilha de Vvardenfell.,2002
-The Elder Scrolls IV: Oblivion,RPG de fantasia em que o jogador tenta impedir a abertura de portais demoníacos.,2006
-The Elder Scrolls V: Skyrim Special Edition,Edição melhorada do RPG de mundo aberto passado na província de Skyrim.,2016
-The Elder Scrolls Online,RPG online multijogador passado no universo de Tamriel.,2014
-Fallout,RPG pós-apocalíptico em que o jogador explora um mundo devastado por uma guerra nuclear.,1997
-Fallout 2,RPG pós-apocalíptico sobre a missão de encontrar uma solução para uma comunidade sobrevivente.,1998
-Fallout 3,RPG de ação em mundo aberto passado nas ruínas de Washington.,2008
-Fallout: New Vegas,"RPG de ação no deserto de Mojave, marcado por conflitos entre fações.",2010
-Fallout 4,RPG de ação em mundo aberto em que o jogador procura o seu filho numa região devastada.,2015
-Fallout 76,RPG online de sobrevivência passado numa versão pós-apocalíptica da Virgínia Ocidental.,2018
-The Witcher,RPG de fantasia em que Geralt de Rívia enfrenta monstros e intrigas políticas.,2007
-The Witcher 2: Assassins of Kings,RPG de fantasia em que Geralt se envolve em conflitos entre reinos.,2011
-The Witcher 3: Hearts of Stone,Expansão de RPG em que Geralt enfrenta um misterioso homem chamado Gaunter O'Dimm.,2015
-The Witcher 3: Blood and Wine,Expansão de RPG que leva Geralt à região colorida de Toussaint.,2016
-Dragon Age: Origins,RPG de fantasia em que o jogador reúne aliados para enfrentar uma ameaça sombria.,2009
-Dragon Age II,RPG de ação que acompanha a ascensão de Hawke na cidade de Kirkwall.,2011
-Dragon Age: Inquisition,RPG de fantasia em que o jogador lidera a Inquisição para fechar uma fenda no céu.,2014
-Dragon Age: The Veilguard,RPG de fantasia em que o jogador reúne companheiros para enfrentar uma ameaça antiga.,2024
-Mass Effect,RPG de ficção científica em que o comandante Shepard tenta impedir uma ameaça galáctica.,2007
-Mass Effect 2,RPG de ficção científica em que Shepard reúne uma equipa para uma missão perigosa.,2010
-Mass Effect 3,Conclusão da trilogia em que Shepard lidera a resistência contra os Reapers.,2012
-Mass Effect: Andromeda,RPG de ficção científica sobre a exploração de uma nova galáxia.,2017
-Baldur's Gate,"RPG de fantasia baseado em Dungeons & Dragons, passado na Costa da Espada.",1998
-Baldur's Gate II: Shadows of Amn,RPG de fantasia que acompanha uma jornada por Amn e regiões próximas.,2000
-Baldur's Gate 3,RPG de fantasia em que um grupo de aventureiros enfrenta uma ameaça ligada a parasitas.,2023
-Diablo,RPG de ação em que o jogador explora masmorras para enfrentar o Senhor do Terror.,1996
-Diablo II,RPG de ação em que heróis enfrentam demónios e procuram impedir o regresso de Diablo.,2000
-Diablo III,"RPG de ação com exploração de masmorras, recolha de equipamento e combate a demónios.",2012
-Diablo IV,RPG de ação em mundo aberto passado num universo de fantasia sombria.,2023
-World of Warcraft,Jogo de interpretação online em que jogadores exploram Azeroth e participam em missões.,2004
-StarCraft,"Jogo de estratégia em tempo real sobre o conflito entre Terrans, Zerg e Protoss.",1998
-StarCraft II: Wings of Liberty,Jogo de estratégia em tempo real centrado na campanha dos Terrans.,2010
-Warcraft III: Reign of Chaos,Jogo de estratégia em tempo real que acompanha o conflito entre várias raças de fantasia.,2002
-Warcraft III: The Frozen Throne,Expansão de estratégia que continua as histórias de Azeroth.,2003
-Age of Empires,Jogo de estratégia em tempo real sobre o desenvolvimento de civilizações históricas.,1997
-Age of Empires II,Jogo de estratégia em que civilizações medievais constroem impérios e combatem.,1999
-Age of Empires III,Jogo de estratégia sobre a expansão europeia nas Américas.,2005
-Age of Empires IV,Jogo de estratégia em tempo real que retrata conflitos e civilizações medievais.,2021
-Civilization,Jogo de estratégia por turnos em que o jogador desenvolve uma civilização ao longo da história.,1991
-Civilization II,Jogo de estratégia por turnos sobre a evolução de civilizações.,1996
-Civilization III,"Jogo de estratégia em que o jogador gere cidades, diplomacia e guerras.",2001
-Civilization IV,Jogo de estratégia por turnos com desenvolvimento tecnológico e expansão territorial.,2005
-Civilization V,"Jogo de estratégia em que civilizações competem por domínio cultural, científico ou militar.",2010
-Civilization VI,Jogo de estratégia por turnos com cidades que se expandem pelo mapa.,2016
-Civilization VII,Jogo de estratégia por turnos em que o jogador conduz uma civilização através de diferentes eras.,2025
-XCOM: Enemy Unknown,Jogo de estratégia tática em que uma organização defende a Terra de uma invasão alienígena.,2012
-XCOM 2,Jogo de estratégia tática em que a resistência humana luta contra uma ocupação alienígena.,2016
-The Sims,Jogo de simulação de vida em que o jogador cria personagens e gere as suas casas.,2000
-The Sims 2,"Simulador de vida com personagens que crescem, formam famílias e vivem histórias.",2004
-The Sims 3,Simulador de vida com um bairro aberto e muitas possibilidades de personalização.,2009
-The Sims 4,"Jogo de simulação de vida em que se criam personagens, casas e histórias.",2014
-SimCity 2000,Jogo de simulação em que o jogador constrói e administra uma cidade.,1993
-SimCity 4,Simulador de construção de cidades com planeamento urbano e gestão de serviços.,2003
-Cities: Skylines,"Jogo de construção de cidades em que o jogador gere transportes, serviços e bairros.",2015
-Cities: Skylines II,Simulador de cidades com ferramentas de planeamento urbano e gestão.,2023
-RollerCoaster Tycoon,Jogo de simulação em que o jogador constrói e administra um parque de diversões.,1999
-Planet Coaster,Simulador de parques temáticos com ferramentas para construir montanhas-russas.,2016
-Zoo Tycoon,Jogo de simulação em que o jogador constrói e gere um jardim zoológico.,2001
-Planet Zoo,Simulador de gestão de um jardim zoológico com atenção ao bem-estar animal.,2019
-Stardew Valley,Jogo de simulação e RPG em que o jogador recupera uma quinta e convive com habitantes locais.,2016
-Animal Crossing: Wild World,Jogo de simulação social em que o jogador vive numa aldeia habitada por animais.,2005
-Animal Crossing: New Leaf,Jogo de simulação social em que o jogador assume o papel de presidente da aldeia.,2012
-Animal Crossing: New Horizons,Jogo de simulação em que o jogador desenvolve uma ilha deserta.,2020
-Harvest Moon: Back to Nature,Jogo de simulação agrícola em que o jogador gere uma quinta e participa na vida da aldeia.,1999
-Story of Seasons,Jogo de simulação agrícola focado na gestão de uma quinta e nas relações sociais.,2014
-Terraria,"Jogo de aventura e construção em 2D com exploração, criação de objetos e combate.",2011
-Don't Starve,Jogo de sobrevivência em que o jogador recolhe recursos e enfrenta perigos num mundo estranho.,2013
-Don't Starve Together,Jogo de sobrevivência cooperativo em que os jogadores tentam resistir num mundo hostil.,2016
-Subnautica,Jogo de sobrevivência e exploração subaquática num planeta alienígena.,2018
-The Forest,Jogo de sobrevivência em que um sobrevivente procura o filho numa floresta perigosa.,2018
-Sons of the Forest,Jogo de sobrevivência em que o jogador explora uma ilha e enfrenta criaturas misteriosas.,2024
-ARK: Survival Evolved,Jogo de sobrevivência em que os jogadores exploram uma ilha habitada por dinossauros.,2017
-Rust,Jogo multijogador de sobrevivência em que os jogadores recolhem recursos e constroem abrigos.,2018
-Valheim,Jogo de sobrevivência e exploração inspirado na mitologia nórdica.,2021
-No Man's Sky,Aventura de exploração espacial em que o jogador visita planetas e descobre formas de vida.,2016
-Elite Dangerous,Simulador espacial em que o jogador pilota naves e explora uma galáxia aberta.,2014
-Kerbal Space Program,Simulador espacial em que o jogador constrói foguetões e planeia missões.,2015
-Microsoft Flight Simulator,Simulador de voo que permite pilotar aeronaves em cenários baseados no mundo real.,2020
-Euro Truck Simulator 2,Simulador de condução de camiões em que o jogador transporta mercadorias pela Europa.,2012
-American Truck Simulator,Simulador de condução de camiões pelas estradas dos Estados Unidos.,2016
-Farming Simulator 19,Simulador agrícola em que o jogador gere uma quinta e utiliza máquinas agrícolas.,2018
-Farming Simulator 22,"Simulador agrícola com culturas, animais e equipamentos de várias marcas.",2021
-PowerWash Simulator,Jogo de simulação em que o jogador limpa objetos e espaços usando uma máquina de pressão.,2022
-House Flipper,"Jogo de simulação em que o jogador compra, renova e vende casas.",2018
-Overcooked,Jogo cooperativo de cozinha em que os jogadores preparam refeições sob pressão.,2016
-Overcooked! 2,Jogo cooperativo em que equipas de cozinheiros preparam pratos em cozinhas caóticas.,2018
-Moving Out,Jogo cooperativo de física em que os jogadores transportam móveis e objetos.,2020
-Unpacking,Jogo de quebra-cabeças relaxante sobre organizar objetos ao mudar de casa.,2021
-Human: Fall Flat,Jogo de plataformas e física em que personagens tentam resolver desafios de forma cooperativa.,2016
-Gang Beasts,Jogo de luta multijogador com personagens flexíveis em arenas perigosas.,2017
-Fall Guys,Jogo multijogador de obstáculos em que participantes competem em desafios coloridos.,2020
-Among Us,Jogo multijogador de dedução em que a tripulação tenta descobrir os impostores.,2018
-"Papers, Please",Jogo de simulação em que o jogador trabalha no controlo de fronteiras de um país fictício.,2013
-Return of the Obra Dinn,Jogo de investigação em que o jogador procura descobrir o destino da tripulação de um navio.,2018
-The Witness,Jogo de quebra-cabeças em primeira pessoa passado numa ilha cheia de enigmas.,2016
-Portal,Jogo de quebra-cabeças em que o jogador usa uma arma de portais para resolver desafios.,2007
-Portal 2,"Continuação do jogo de quebra-cabeças com portais, humor e modo cooperativo.",2011
-The Talos Principle,Jogo de quebra-cabeças em primeira pessoa com desafios lógicos e questões filosóficas.,2014
-The Talos Principle 2,Continuação de quebra-cabeças em primeira pessoa num mundo de ficção científica.,2023
-FIFA 10,Jogo de futebol com equipas e competições licenciadas e modos para um jogador e multijogador.,2009
-FIFA 11,"Simulador de futebol com clubes, seleções e modos de competição.",2010
-FIFA 12,Jogo de futebol que introduz melhorias na física e no sistema defensivo.,2011
-FIFA 13,Simulador de futebol com equipas reais e vários modos de jogo.,2012
-FIFA 14,"Jogo de futebol com ligas, clubes e competições internacionais.",2013
-FIFA 15,Simulador de futebol com melhorias na apresentação dos jogos e na inteligência dos atletas.,2014
-FIFA 16,Jogo de futebol que inclui pela primeira vez seleções nacionais femininas.,2015
-FIFA 17,Simulador de futebol que introduz o modo de história The Journey.,2016
-FIFA 18,Jogo de futebol com clubes e competições internacionais e continuação de The Journey.,2017
-FIFA 19,Simulador de futebol que inclui a competição UEFA Champions League.,2018
-FIFA 20,Jogo de futebol com modos tradicionais e o novo modo VOLTA.,2019
-FIFA 21,Simulador de futebol com equipas licenciadas e modos de carreira e Ultimate Team.,2020
-FIFA 22,Jogo de futebol com melhorias de animação e vários modos competitivos.,2021
-FIFA 23,"Último jogo da série FIFA da EA Sports, com clubes e seleções de várias competições.",2022
-EA Sports FC 24,Simulador de futebol que dá continuidade à série após a marca FIFA.,2023
-EA Sports FC 25,"Jogo de futebol com clubes, ligas e modos de competição.",2024
-Pro Evolution Soccer 2010,"Simulador de futebol com clubes, seleções e competições.",2009
-Pro Evolution Soccer 2011,Jogo de futebol com controlo de equipa e modos de carreira.,2010
-Pro Evolution Soccer 2012,Simulador de futebol com equipas e competições internacionais.,2011
-Pro Evolution Soccer 2013,Jogo de futebol com modos de carreira e controlo técnico dos jogadores.,2012
-Pro Evolution Soccer 2014,Simulador de futebol com motor gráfico e física renovados.,2013
-eFootball PES 2020,Jogo de futebol com clubes licenciados e modos competitivos.,2019
-NBA 2K11,Simulador de basquetebol com equipas da NBA e desafios históricos.,2010
-NBA 2K12,Jogo de basquetebol que inclui desafios dedicados a grandes estrelas da NBA.,2011
-NBA 2K13,Simulador de basquetebol com equipas e modos de carreira.,2012
-NBA 2K14,Jogo de basquetebol com equipas da NBA e modos multijogador.,2013
-NBA 2K15,Simulador de basquetebol com melhorias na apresentação e nos movimentos.,2014
-NBA 2K16,Jogo de basquetebol que inclui um modo de história dirigido por Spike Lee.,2015
-NBA 2K17,"Simulador de basquetebol com carreira, equipas clássicas e competição online.",2016
-NBA 2K18,Jogo de basquetebol com um espaço social e vários modos de carreira.,2017
-NBA 2K19,Simulador de basquetebol com equipas da NBA e progressão de jogador.,2018
-NBA 2K20,Jogo de basquetebol com modo carreira e competições online.,2019
-NBA 2K21,Simulador de basquetebol com equipas e jogadores da NBA.,2020
-NBA 2K22,Jogo de basquetebol com modos de carreira e competição.,2021
-NBA 2K23,Simulador de basquetebol com desafios históricos e equipas atuais.,2022
-NBA 2K24,Jogo de basquetebol com modos de carreira e competição online.,2023
-NBA 2K25,Simulador de basquetebol com equipas e atletas da NBA.,2024
-Tony Hawk's Pro Skater 2,Jogo de skate em que o jogador executa manobras e completa objetivos em pistas.,2000
-Tony Hawk's Pro Skater 3,"Jogo de skate com pistas variadas, manobras e desafios.",2001
-Tony Hawk's Underground,Jogo de skate com uma história sobre a carreira de um skater.,2003
-Tony Hawk's American Wasteland,Jogo de skate passado numa cidade aberta com desafios e exploração.,2005
-Tony Hawk's Pro Skater 1 + 2,Recriação dos dois primeiros jogos da série com pistas e manobras clássicas.,2020
-WWE SmackDown! Here Comes the Pain,Jogo de luta livre com lutadores e combates inspirados na WWE.,2003
-WWE 2K14,Jogo de luta livre com lutadores e momentos históricos da WWE.,2013
-WWE 2K19,Simulador de wrestling com modos de carreira e combates personalizados.,2018
-WWE 2K23,Jogo de wrestling com lutadores atuais e históricos e vários modos.,2023
-WWE 2K24,"Simulador de wrestling com combates, arenas e desafios históricos.",2024
-Rocket League,Jogo competitivo que combina futebol com carros movidos a foguetes.,2015
-TrackMania Nations Forever,Jogo de corridas em pistas acrobáticas com criação e partilha de circuitos.,2008
-Trackmania,Jogo de corridas arcade com pistas desafiantes e ferramentas de criação.,2020
-Need for Speed: Underground,Jogo de corridas urbanas centrado na personalização de carros.,2003
-Need for Speed: Underground 2,Jogo de corridas em mundo aberto com personalização de veículos.,2004
-Need for Speed: Most Wanted,Jogo de corridas em que o jogador tenta subir na lista dos pilotos procurados.,2005
-Need for Speed: Carbon,Jogo de corridas urbanas com disputas entre equipas e corridas noturnas.,2006
-Need for Speed: ProStreet,Jogo de corridas em eventos organizados e circuitos fechados.,2007
-Need for Speed: Hot Pursuit,Jogo de corridas em que pilotos e polícia disputam perseguições a alta velocidade.,2010
-Need for Speed: Most Wanted (2012),Jogo de corridas em mundo aberto com perseguições policiais.,2012
-Need for Speed Rivals,Jogo de corridas em que pilotos e polícia competem em perseguições.,2013
-Need for Speed (2015),Jogo de corridas urbanas com personalização de carros e eventos noturnos.,2015
-Need for Speed Payback,Jogo de corridas de ação sobre um grupo que procura vingança contra um cartel.,2017
-Need for Speed Heat,Jogo de corridas em mundo aberto com eventos legais de dia e ilegais à noite.,2019
-Burnout 3: Takedown,Jogo de corridas arcade conhecido por colisões e manobras arriscadas.,2004
-Burnout Paradise,Jogo de corridas em mundo aberto com eventos e colisões espetaculares.,2008
-Dirt 3,Jogo de corridas todo-o-terreno com ralis e provas de acrobacias.,2011
-Dirt Rally,Simulador de ralis com condução exigente em diferentes superfícies.,2015
-Dirt Rally 2.0,Simulador de ralis com etapas e veículos de várias épocas.,2019
-F1 2020,"Simulador oficial de Fórmula 1 com equipas, pilotos e circuitos da temporada.",2020
-F1 2021,Jogo oficial de Fórmula 1 com modo história e campeonato.,2021
-F1 22,Simulador oficial de Fórmula 1 com carros e regras da nova geração.,2022
-F1 23,Jogo oficial de Fórmula 1 com equipas e circuitos da temporada.,2023
-F1 24,"Simulador oficial de Fórmula 1 com pilotos, equipas e circuitos.",2024
-Wipeout 2097,Jogo de corridas futuristas com naves antigravidade e pistas de alta velocidade.,1996
-Mario Kart 64,Jogo de corridas de karts com personagens do universo Mario.,1996
-Mario Kart: Double Dash!!,Jogo de corridas de karts em que duas personagens partilham cada veículo.,2003
-Mario Kart DS,Jogo de corridas de karts com pistas clássicas e modos multijogador.,2005
-Mario Kart Wii,"Jogo de corridas de karts com motas, karts e controlos por movimento.",2008
-Mario Kart 7,Jogo de corridas de karts com planadores e condução subaquática.,2011
-Mario Kart 8,Jogo de corridas de karts com pistas antigravidade e personagens variadas.,2014
-Mario Kart Tour,Jogo de corridas de karts para dispositivos móveis com pistas inspiradas em cidades.,2019
-Mario Kart Live: Home Circuit,Jogo de corridas que combina karts físicos com realidade aumentada.,2020
-Wii Fit,"Jogo de exercício físico com atividades de equilíbrio, ioga e treino.",2007
-Wii Fit Plus,Jogo de exercício com novas atividades e ferramentas de acompanhamento.,2009
-Ring Fit Adventure,Jogo de aventura que utiliza exercícios físicos para combater inimigos.,2019
-Just Dance 2014,Jogo de dança em que os jogadores acompanham coreografias de músicas populares.,2013
-Just Dance 2020,Jogo de dança com músicas populares e coreografias para vários jogadores.,2019
-Guitar Hero,Jogo musical em que o jogador acompanha músicas usando um comando em forma de guitarra.,2005
-Guitar Hero III: Legends of Rock,Jogo musical com repertório de rock e desafios de guitarra.,2007
-Rock Band,Jogo musical em que os jogadores formam uma banda com instrumentos de plástico.,2007
-Beat Saber,Jogo de ritmo em realidade virtual em que o jogador corta blocos ao som da música.,2018
-Taiko no Tatsujin: Drum 'n' Fun!,Jogo musical em que o jogador acompanha ritmos usando um tambor virtual.,2018
-Tetris Effect,Versão moderna de Tetris com música e efeitos visuais sincronizados.,2018
-Puyo Puyo Tetris,Jogo de quebra-cabeças que combina as mecânicas de Puyo Puyo e Tetris.,2014
-Lumines,Jogo de quebra-cabeças em que blocos coloridos são organizados ao ritmo da música.,2004
-Peggle,Jogo de quebra-cabeças em que o jogador lança bolas para atingir pinos coloridos.,2007
-Plants vs. Zombies,Jogo de estratégia em que plantas defendem uma casa contra ondas de zombies.,2009
-Plants vs. Zombies 2,Continuação de estratégia em que plantas enfrentam zombies em várias épocas.,2013
-Angry Birds,Jogo de quebra-cabeças em que pássaros são lançados contra estruturas dos porcos.,2009
-Cut the Rope,Jogo de quebra-cabeças em que o jogador corta cordas para alimentar uma criatura.,2010
-Monument Valley,Jogo de quebra-cabeças com arquitetura impossível e ilusões de perspetiva.,2014
-Monument Valley 2,"Continuação de quebra-cabeças sobre arquitetura, perspetiva e exploração.",2017
-Hades,RPG de ação em que Zagreus tenta escapar do submundo grego.,2020
-Hades II,RPG de ação em que Melinoë enfrenta forças ligadas ao Titã do Tempo.,2024
-Hollow Knight,Aventura de ação em 2D num reino subterrâneo habitado por insetos.,2017
-Ori and the Blind Forest,Jogo de plataformas e aventura sobre um espírito que tenta salvar uma floresta.,2015
-Ori and the Will of the Wisps,Continuação da aventura de plataformas de Ori num mundo de fantasia.,2020
-Celeste,Jogo de plataformas desafiante sobre uma jovem que tenta escalar uma montanha.,2018
-Cuphead,Jogo de ação e plataformas inspirado na animação clássica dos anos 1930.,2017
-Shovel Knight,Jogo de plataformas retro em que um cavaleiro procura resgatar uma amiga.,2014
-Dead Cells,Jogo de ação roguelike em que o jogador explora um castelo em constante mudança.,2018
-The Binding of Isaac: Rebirth,Jogo de ação roguelike em que Isaac enfrenta criaturas em masmorras.,2014
-Enter the Gungeon,Jogo de ação roguelike centrado em combates com armas e salas geradas aleatoriamente.,2016
-Slay the Spire,Jogo de estratégia roguelike em que o jogador constrói um baralho para subir uma torre.,2019
-Vampire Survivors,Jogo de ação em que o jogador enfrenta hordas de monstros e melhora as suas capacidades.,2022
-Bastion,RPG de ação em que um jovem explora um mundo destruído para reconstruir o Bastion.,2011
-Transistor,RPG de ação e estratégia sobre uma cantora que utiliza uma arma misteriosa.,2014
-Pyre,Aventura de fantasia em que um grupo de exilados compete em rituais desportivos.,2017
-Disco Elysium,RPG de investigação em que um detetive tenta resolver um homicídio e recuperar a memória.,2019
-Undertale,RPG em que o jogador explora o subsolo e pode escolher entre combater ou dialogar.,2015
-Deltarune,RPG de aventura em que um grupo de jovens explora um mundo misterioso.,2018
-EarthBound,RPG em que um rapaz e os seus amigos enfrentam uma ameaça alienígena.,1994
-Chrono Trigger,RPG em que um grupo viaja através do tempo para impedir uma catástrofe.,1995
-Secret of Mana,RPG de ação e fantasia sobre uma aventura para restaurar o poder da Mana.,1993
-Xenogears,"RPG de ficção científica centrado em conflitos políticos, robôs gigantes e questões filosóficas.",1998
-Xenoblade Chronicles,RPG de mundo aberto em que heróis exploram os corpos de dois titãs gigantes.,2010
-Xenoblade Chronicles 2,RPG de fantasia em que Rex procura uma terra lendária com a ajuda de Pyra.,2017
-Xenoblade Chronicles 3,RPG de aventura sobre dois grupos de soldados que procuram descobrir a verdade do seu mundo.,2022
-Persona 3,RPG em que estudantes enfrentam criaturas durante uma hora escondida do dia.,2006
-Persona 4,RPG de investigação em que estudantes procuram resolver uma série de desaparecimentos.,2008
-Persona 5,RPG em que um grupo de estudantes usa poderes especiais para mudar o coração de adultos corruptos.,2016
-Persona 5 Royal,Edição expandida de Persona 5 com novas personagens e acontecimentos.,2019
-Yakuza 0,Aventura de ação e crime passada no Japão dos anos 1980.,2015
-Yakuza Kiwami,Recriação da primeira aventura de Kazuma Kiryu no mundo do crime japonês.,2016
-Yakuza Kiwami 2,"Recriação da segunda aventura de Kiryu, marcada por conflitos entre clãs.",2017
-Yakuza: Like a Dragon,RPG de ação por turnos sobre Ichiban Kasuga e os seus companheiros.,2020
-Like a Dragon: Infinite Wealth,RPG de aventura que acompanha Ichiban e Kiryu no Japão e no Havai.,2024
-NieR: Automata,RPG de ação em que androides combatem máquinas num mundo pós-apocalíptico.,2017
-NieR Replicant ver.1.22474487139...,Versão melhorada do RPG de ação sobre a procura de uma cura para uma doença misteriosa.,2021
-Bayonetta,Jogo de ação em que uma bruxa enfrenta anjos e forças sobrenaturais.,2009
-Bayonetta 2,Continuação da ação estilizada protagonizada pela bruxa Bayonetta.,2014
-Bayonetta 3,Aventura de ação em que Bayonetta enfrenta ameaças que atravessam diferentes universos.,2022
-Devil May Cry,Jogo de ação em que Dante combate demónios com armas e espadas.,2001
-Devil May Cry 3: Dante's Awakening,Jogo de ação que explora o confronto entre Dante e o seu irmão Vergil.,2005
-Devil May Cry 4,Jogo de ação em que Nero e Dante enfrentam uma ordem religiosa misteriosa.,2008
-DmC: Devil May Cry,Reinterpretação da série de ação protagonizada por Dante.,2013
-Devil May Cry 5,"Jogo de ação em que Dante, Nero e V enfrentam uma invasão demoníaca.",2019
-Darksiders,Aventura de ação em que o Cavaleiro da Guerra procura limpar o seu nome após o apocalipse.,2010
-Darksiders II,Aventura de ação em que a Morte procura salvar a humanidade.,2012
-Darksiders III,Jogo de ação em que a Cavaleira Fúria caça os Sete Pecados Capitais.,2018
-Prince of Persia: The Sands of Time,Aventura de ação em que um príncipe utiliza uma adaga para manipular o tempo.,2003
-Prince of Persia: Warrior Within,Continuação da aventura em que o príncipe tenta escapar ao seu destino.,2004
-Prince of Persia: The Two Thrones,Aventura de ação que conclui a trilogia das Areias do Tempo.,2005
-Prince of Persia (2008),Aventura de plataformas em que um viajante ajuda a restaurar uma terra corrompida.,2008
-Prince of Persia: The Lost Crown,Aventura de ação e plataformas em que Sargon explora o Monte Qaf.,2024
-Okami,Aventura de ação em que a deusa Amaterasu restaura a vida num mundo inspirado no Japão.,2006
-Ōkami HD,Versão em alta definição da aventura protagonizada pela deusa Amaterasu.,2012
-Shadow of the Colossus,Aventura em que um jovem enfrenta enormes colossos para salvar uma rapariga.,2005
-The Last Guardian,Aventura em que um rapaz cria uma ligação com uma criatura gigante chamada Trico.,2016
-Ico,Aventura de quebra-cabeças em que um rapaz tenta escapar de um castelo com uma companheira.,2001
-Journey,Aventura contemplativa em que um viajante atravessa um deserto em direção a uma montanha.,2012
-Abzû,Aventura de exploração subaquática por um oceano cheio de vida.,2016
-Firewatch,Aventura narrativa em que um guarda-florestal investiga acontecimentos numa floresta.,2016
-What Remains of Edith Finch,Aventura narrativa sobre uma família e os mistérios da sua casa.,2017
-Life is Strange,Aventura narrativa em que uma estudante descobre que consegue rebobinar o tempo.,2015
-Life is Strange 2,Aventura narrativa sobre dois irmãos que atravessam os Estados Unidos.,2018
-Life is Strange: True Colors,Aventura narrativa em que Alex investiga um mistério e sente as emoções dos outros.,2021
-Detroit: Become Human,Aventura narrativa sobre androides que começam a desenvolver consciência.,2018
-Heavy Rain,Thriller interativo em que várias personagens procuram um assassino em série.,2010
-Beyond: Two Souls,Aventura narrativa sobre uma jovem ligada a uma entidade sobrenatural.,2013
-Until Dawn,Jogo de terror interativo em que um grupo de amigos enfrenta uma noite perigosa.,2015
-The Quarry,Jogo de terror narrativo em que monitores de um acampamento enfrentam criaturas misteriosas.,2022
-Alien: Isolation,Jogo de terror e sobrevivência em que Amanda Ripley tenta escapar de uma criatura alienígena.,2014
-Outlast,Jogo de terror em primeira pessoa passado num hospital psiquiátrico abandonado.,2013
-Outlast 2,Jogo de terror em primeira pessoa numa comunidade isolada e ameaçadora.,2017
-Amnesia: The Dark Descent,Jogo de terror em que um homem explora um castelo sem memória do seu passado.,2010
-Amnesia: Rebirth,Jogo de terror em que uma exploradora procura sobreviver no deserto argelino.,2020
-SOMA,Jogo de terror e ficção científica sobre consciência humana numa instalação submarina.,2015
-Little Nightmares,Aventura de terror em que uma criança tenta escapar de um navio habitado por criaturas.,2017
-Little Nightmares II,Aventura de terror em que Mono e Six atravessam um mundo distorcido.,2021
-Inside,Jogo de plataformas e quebra-cabeças sobre um rapaz que atravessa um mundo sombrio.,2016
-Limbo,Jogo de plataformas e quebra-cabeças em tons escuros sobre um rapaz à procura da irmã.,2010
-A Plague Tale: Innocence,Aventura narrativa em que dois irmãos tentam sobreviver durante uma epidemia medieval.,2019
-A Plague Tale: Requiem,Continuação da aventura dos irmãos Amicia e Hugo num mundo ameaçado.,2022
-Control,Jogo de ação sobrenatural em que Jesse Faden explora uma agência secreta.,2019
+Grand Theft Auto V,Jogo de ação e aventura em mundo aberto.,2013
+Red Dead Redemption 2,Aventura de ação no Oeste americano.,2018
+God of War (2018),Aventura de ação inspirada na mitologia nórdica.,2018
+God of War Ragnarök,Continuação da aventura de Kratos e Atreus.,2022
+The Last of Us,Aventura de sobrevivência num mundo pós-apocalíptico.,2013
+The Last of Us Part II,Continuação da aventura de sobrevivência.,2020
+Uncharted 2: Among Thieves,Aventura de ação protagonizada por Nathan Drake.,2009
+Uncharted 4: A Thief's End,Aventura de ação e exploração.,2016
+Marvel's Spider-Man,Aventura de ação com o Homem-Aranha.,2018
+Marvel's Spider-Man 2,Continuação da aventura do Homem-Aranha.,2023
+Ghost of Tsushima,Aventura de ação no Japão feudal.,2020
+Horizon Zero Dawn,Aventura num mundo dominado por máquinas.,2017
+Horizon Forbidden West,Continuação da aventura de Aloy.,2022
+Batman: Arkham City,Aventura de ação com Batman.,2011
+Assassin's Creed II,Aventura histórica de ação e furtividade.,2009
+Assassin's Creed IV: Black Flag,Aventura de piratas e exploração.,2013
+Tomb Raider (2013),Aventura de sobrevivência e exploração.,2013
+Resident Evil 4,Jogo de terror e sobrevivência.,2005
+Resident Evil 2 (2019),Remake de um clássico de terror.,2019
+Metal Gear Solid V: The Phantom Pain,Ação tática e furtividade.,2015
+The Witcher 3: Wild Hunt,RPG de fantasia e mundo aberto.,2015
+The Elder Scrolls V: Skyrim,RPG de fantasia e exploração.,2011
+Elden Ring,RPG de ação num mundo de fantasia.,2022
+Dark Souls,RPG de ação conhecido pela sua dificuldade.,2011
+Final Fantasy VII,RPG clássico da série Final Fantasy.,1997
+Final Fantasy X,RPG de aventura e fantasia.,2001
+Final Fantasy XV,RPG de ação e aventura.,2016
+Final Fantasy XVI,RPG de ação num mundo de fantasia.,2023
+Persona 5 Royal,RPG japonês com exploração e combate por turnos.,2019
+Chrono Trigger,RPG clássico de viagens no tempo.,1995
+Dragon Quest XI,RPG japonês de fantasia.,2017
+Diablo IV,RPG de ação e fantasia sombria.,2023
+Baldur's Gate 3,RPG de fantasia baseado em Dungeons & Dragons.,2023
+Pokémon Red,RPG clássico de captura e treino de Pokémon.,1996
+Pokémon Gold,RPG de aventura no universo Pokémon.,1999
+Pokémon Emerald,RPG de aventura no universo Pokémon.,2004
+Pokémon Sword,RPG de aventura no universo Pokémon.,2019
+Pokémon Legends: Arceus,Aventura Pokémon com exploração livre.,2022
+Monster Hunter: World,Aventura de ação e caça a monstros.,2018
+Kingdom Hearts,RPG de ação com personagens da Disney e Final Fantasy.,2002
+Super Mario Bros.,Clássico jogo de plataformas da Nintendo.,1985
+Super Mario Bros. 3,Jogo clássico de plataformas.,1988
+Super Mario World,Jogo de plataformas protagonizado por Mario.,1990
+Super Mario 64,Aventura de plataformas em três dimensões.,1996
+Super Mario Odyssey,Aventura de plataformas em mundo aberto.,2017
+New Super Mario Bros. Wii,Jogo de plataformas para vários jogadores.,2009
+Donkey Kong Country,Jogo clássico de plataformas.,1994
+Crash Bandicoot,Jogo de plataformas e aventura.,1996
+Crash Bandicoot N. Sane Trilogy,Coleção remasterizada de jogos Crash Bandicoot.,2017
+Spyro Reignited Trilogy,Coleção remasterizada de aventuras de Spyro.,2018
+Sonic the Hedgehog,Clássico jogo de plataformas e velocidade.,1991
+Sonic Mania,Aventura de plataformas inspirada nos clássicos Sonic.,2017
+Celeste,Jogo de plataformas e precisão.,2018
+Hollow Knight,Aventura de ação e exploração.,2017
+Ori and the Blind Forest,Aventura de plataformas e exploração.,2015
+Cuphead,Jogo de ação e plataformas com estilo de animação clássico.,2017
+Rayman Legends,Jogo de plataformas e aventura.,2013
+Tetris,Clássico jogo de quebra-cabeças.,1984
+Pac-Man,Clássico jogo de labirintos.,1980
+Minecraft,Jogo de construção e sobrevivência.,2011
+Halo 3,Jogo de tiro na primeira pessoa.,2007
+Halo: Reach,Jogo de tiro de ficção científica.,2010
+DOOM (2016),Jogo de tiro e ação.,2016
+DOOM Eternal,Jogo de tiro e ação frenética.,2020
+Half-Life 2,Jogo de tiro e ficção científica.,2004
+Counter-Strike 2,Jogo competitivo de tiro tático.,2023
+Fortnite,Jogo de sobrevivência e batalha online.,2017
+Call of Duty: Modern Warfare 2 (2009),Jogo de tiro e ação militar.,2009
+Call of Duty: Black Ops,Jogo de tiro e ação militar.,2010
+Overwatch 2,Jogo de tiro competitivo por equipas.,2022
+Mario Kart 8 Deluxe,Jogo de corridas com personagens Nintendo.,2017
+Gran Turismo 7,Simulador de corridas automóveis.,2022
+Forza Horizon 5,Jogo de corridas em mundo aberto.,2021
+Need for Speed: Most Wanted (2005),Jogo de corridas urbanas.,2005
+Burnout Paradise,Jogo de corridas e condução arcade.,2008
+EA Sports FC 24,Simulador de futebol.,2023
+FIFA 14,Simulador de futebol.,2013
+Rocket League,Jogo de futebol com veículos.,2015
+NBA 2K24,Simulador de basquetebol.,2023
+Tony Hawk's Pro Skater 1 + 2,Jogo de skate e desporto.,2020
+Street Fighter 6,Jogo de luta.,2023
+Tekken 3,Clássico jogo de luta.,1997
+Tekken 8,Jogo moderno de luta.,2024
+Mortal Kombat 11,Jogo de luta.,2019
+Super Smash Bros. Ultimate,Jogo de luta com personagens Nintendo.,2018
+The Sims 4,Jogo de simulação de vida.,2014
+Stardew Valley,Jogo de simulação agrícola e aventura.,2016
+Terraria,"Jogo de exploração, construção e sobrevivência.",2011
+Civilization VI,Jogo de estratégia e construção de civilizações.,2016
+Age of Empires II: Definitive Edition,Jogo de estratégia em tempo real.,2019
+StarCraft II,Jogo de estratégia de ficção científica.,2010
+XCOM 2,Jogo de estratégia por turnos.,2016
+Cities: Skylines,Jogo de construção e gestão de cidades.,2015
+Animal Crossing: New Horizons,Jogo de simulação e vida numa ilha.,2020
+Among Us,Jogo social de dedução e trabalho em equipa.,2018
+It Takes Two,Aventura cooperativa para dois jogadores.,2021
+Portal 2,Jogo de quebra-cabeças e ficção científica.,2011
+Left 4 Dead 2,Jogo cooperativo de sobrevivência e ação.,2009
+Red Dead Redemption,Aventura de ação no Oeste americano.,2010
+The Legend of Zelda: Breath of the Wild,Aventura de exploração em mundo aberto.,2017

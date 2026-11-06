@@ -71,3 +71,35 @@ Durante esta sessão, continuei o desenvolvimento da aplicação web Catálogo d
 - Realizei testes manuais para verificar o funcionamento das funcionalidades desenvolvidas.
 
 No final da sessão, a aplicação passou a permitir registar, consultar, editar e eliminar videojogos, bem como adicionar capas aos jogos. Estas alterações contribuíram para tornar o catálogo mais completo e prático de utilizar.
+
+ 06/11/2026 — Importação de videojogos e preparação das capas
+
+ Trabalho realizado
+
+- Importação de 500 videojogos através do ficheiro `dados/jogos.csv`.
+- Verificação da importação: 500 jogos importados, 0 duplicados e 0 registos inválidos.
+- Atualização do programa `importar_jogos.py` para importar jogos e associar capas.
+- Utilização do FetchArt para procurar capas dos videojogos.
+- Criação do programa `criar_lista_fetchart.py` para gerar automaticamente uma lista de títulos a partir do CSV.
+- Teste do FetchArt com os primeiros 5 jogos.
+- Identificação de 11 ficheiros de imagem na pasta `capas_importadas`.
+- Criação de uma lista de jogos sem capa encontrada, através do ficheiro `dados/jogos_fetchart_pendentes.txt`.
+- Preparação da pesquisa automática das restantes capas.
+
+ Resultados
+
+- 500 videojogos adicionados à base de dados através do CSV.
+- 3 jogos adicionais criados através da importação de capas.
+- 3 capas associadas a jogos existentes.
+- 11 ficheiros de imagem identificados na pasta de importação.
+
+ Trabalho por concluir
+
+- Confirmar quantas capas foram efetivamente encontradas na pesquisa em massa do FetchArt.
+- Associar as novas capas aos respetivos jogos.
+- Verificar visualmente as capas no catálogo.
+- Continuar a implementação dos géneros e plataformas.
+
+ Observações
+
+A importação dos jogos foi concluída com sucesso. A associação das restantes capas continuará na próxima aula.

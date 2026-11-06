@@ -1,132 +1,44 @@
 
-import csv
 import re
 import shutil
+import sys
 import unicodedata
 from pathlib import Path
 
 from app.database.database import obter_conexao
 
 
-# Pastas e ficheiros do projeto
 PASTA_PROJETO = Path(__file__).resolve().parent
-PASTA_ORIGEM = PASTA_PROJETO / "capas_importadas"
-PASTA_CAPAS = PASTA_PROJETO / "app" / "static" / "capas"
-FICHEIRO_CSV = PASTA_PROJETO / "dados" / "jogos.csv"
 
-# Extensões de imagem permitidas
+PASTAS_ORIGEM = [
+    PASTA_PROJETO / "capas_fetchart_pendentes",
+    PASTA_PROJETO / "capas_importadas",
+]
+
+PASTA_CAPAS = PASTA_PROJETO / "app" / "static" / "capas"
+
 EXTENSOES_PERMITIDAS = {".png", ".jpg", ".jpeg"}
 
 
 def normalizar_texto(texto):
-    """Normaliza texto para comparar títulos."""
-
     texto = unicodedata.normalize("NFKD", texto)
 
     texto = "".join(
-        caracter
-        for caracter in texto
-        if not unicodedata.combining(caracter)
+        c for c in texto
+        if not unicodedata.combining(c)
     )
 
-    return re.sub(r"\s+", " ", texto).strip().casefold()
-
-
-def obter_jogos_existentes(conexao):
-    """Obtém os jogos existentes, organizados pelo título normalizado."""
-
-    jogos = conexao.execute(
-        "SELECT id_jogo, titulo, capa FROM JOGO"
-    ).fetchall()
-
-    return {
-        normalizar_texto(jogo["titulo"]): jogo
-        for jogo in jogos
-    }
-
-
-def importar_jogos_csv(conexao):
-    """Importa títulos, descrições e anos a partir do CSV."""
-
-    if not FICHEIRO_CSV.is_file():
-        print(f"Ficheiro CSV não encontrado: {FICHEIRO_CSV}")
-        return
-
-    importados = 0
-    duplicados = 0
-    invalidos = 0
-
-    jogos_existentes = obter_jogos_existentes(conexao)
-
-    with open(
-        FICHEIRO_CSV,
-        mode="r",
-        encoding="utf-8-sig",
-        newline=""
-    ) as ficheiro:
-
-        leitor = csv.DictReader(ficheiro)
-
-        campos = {"titulo", "descricao", "ano_lancamento"}
-
-        if not campos.issubset(leitor.fieldnames or []):
-            print("O CSV não contém as colunas necessárias.")
-            return
-
-        for linha in leitor:
-            titulo = (linha["titulo"] or "").strip()
-            descricao = (linha["descricao"] or "").strip()
-
-            try:
-                ano = int(linha["ano_lancamento"])
-            except (ValueError, TypeError):
-                invalidos += 1
-                continue
-
-            if not titulo or not 1950 <= ano <= 2100:
-                invalidos += 1
-                continue
-
-            chave = normalizar_texto(titulo)
-
-            if chave in jogos_existentes:
-                duplicados += 1
-                continue
-
-            cursor = conexao.execute(
-                """
-                INSERT INTO JOGO (
-                    titulo,
-                    descricao,
-                    ano_lancamento,
-                    capa
-                )
-                VALUES (?, ?, ?, NULL)
-                """,
-                (titulo, descricao, ano)
-            )
-
-            jogos_existentes[chave] = {
-                "id_jogo": cursor.lastrowid,
-                "titulo": titulo,
-                "capa": None
-            }
-
-            importados += 1
-
-    print("\n--- Importação do CSV ---")
-    print(f"Jogos importados: {importados}")
-    print(f"Jogos repetidos ignorados: {duplicados}")
-    print(f"Registos inválidos ignorados: {invalidos}")
+    return "".join(
+        c for c in texto.casefold()
+        if c.isalnum()
+    )
 
 
 def extrair_titulo(nome_ficheiro):
-    """Extrai o título a partir do nome do ficheiro da capa."""
-
     titulo = Path(nome_ficheiro).stem
 
-    # Remove a informação da plataforma, por exemplo [Windows].
-    titulo = re.sub(r"\s+\[[^\]]+\]", "", titulo)
+    # Remove a plataforma, por exemplo [Windows].
+    titulo = re.sub(r"\s*\[[^\]]+\]", "", titulo)
 
     # Remove os detalhes técnicos da imagem.
     titulo = re.split(
@@ -136,134 +48,163 @@ def extrair_titulo(nome_ficheiro):
         flags=re.IGNORECASE
     )[0]
 
-    # Remove sufixos conhecidos.
-    titulo = re.sub(
-        r"\s+-\s+fan-made box$",
-        "",
-        titulo,
-        flags=re.IGNORECASE
-    )
-
     return titulo.strip()
 
 
-def obter_destino_capa(ficheiro):
-    """Escolhe um nome de destino sem substituir capas existentes."""
+def obter_imagens():
+    imagens = {}
 
+    for pasta in PASTAS_ORIGEM:
+        if not pasta.is_dir():
+            print(f"[AVISO] Pasta não encontrada: {pasta.name}")
+            continue
+
+        for ficheiro in sorted(pasta.iterdir()):
+            if not ficheiro.is_file():
+                continue
+
+            if ficheiro.suffix.lower() not in EXTENSOES_PERMITIDAS:
+                continue
+
+            titulo = extrair_titulo(ficheiro.name)
+            chave = normalizar_texto(titulo)
+
+            imagens.setdefault(chave, []).append(ficheiro)
+
+    return imagens
+
+
+def encontrar_capa(titulo, imagens):
+    chave = normalizar_texto(titulo)
+    return imagens.get(chave, [])
+
+
+def preparar_associacoes(conexao, imagens):
+    jogos = conexao.execute(
+        """
+        SELECT id_jogo, titulo, capa
+        FROM JOGO
+        ORDER BY titulo
+        """
+    ).fetchall()
+
+    associacoes = []
+    sem_capa = []
+
+    for jogo in jogos:
+        jogo_id = jogo["id_jogo"]
+        titulo = jogo["titulo"]
+        capa_atual = jogo["capa"]
+
+        # Nunca alterar jogos que já têm capa.
+        if capa_atual:
+            continue
+
+        correspondencias = encontrar_capa(titulo, imagens)
+
+        if correspondencias:
+            ficheiro = correspondencias[0]
+            associacoes.append((jogo_id, titulo, ficheiro))
+
+            if len(correspondencias) > 1:
+                print(
+                    f"[VÁRIAS IMAGENS] {titulo} "
+                    f"({len(correspondencias)} opções)"
+                )
+        else:
+            sem_capa.append(titulo)
+
+    return associacoes, sem_capa
+
+
+def obter_destino_seguro(ficheiro):
     destino = PASTA_CAPAS / ficheiro.name
+
+    if not destino.exists():
+        return destino
 
     contador = 1
 
-    while destino.exists():
-        nome = (
-            f"{ficheiro.stem}_importado_{contador}"
-            f"{ficheiro.suffix.lower()}"
+    while True:
+        novo_nome = (
+            f"{ficheiro.stem}_fetchart_{contador}"
+            f"{ficheiro.suffix}"
         )
-        destino = PASTA_CAPAS / nome
+
+        destino = PASTA_CAPAS / novo_nome
+
+        if not destino.exists():
+            return destino
+
         contador += 1
 
-    return destino
 
+def importar():
+    aplicar = "--aplicar" in sys.argv
 
-def importar_capas(conexao):
-    """Importa capas e associa-as aos jogos existentes."""
+    conexao = obter_conexao()
 
-    if not PASTA_ORIGEM.is_dir():
-        print(f"\nPasta de capas não encontrada: {PASTA_ORIGEM}")
-        return
+    try:
+        imagens = obter_imagens()
 
-    PASTA_CAPAS.mkdir(parents=True, exist_ok=True)
+        associacoes, sem_capa = preparar_associacoes(
+            conexao,
+            imagens
+        )
 
-    importados = 0
-    atualizados = 0
-    ignorados = 0
+        total_imagens = sum(
+            len(lista) for lista in imagens.values()
+        )
 
-    jogos_existentes = obter_jogos_existentes(conexao)
+        print("\n--- SIMULAÇÃO DA IMPORTAÇÃO ---")
+        print(f"Imagens disponíveis: {total_imagens}")
+        print(f"Capas que podem ser associadas: {len(associacoes)}")
 
-    ficheiros = sorted(PASTA_ORIGEM.iterdir())
+        for jogo_id, titulo, ficheiro in associacoes:
+            print(f"[CAPA] {titulo}")
+            print(f"       {ficheiro.name}")
 
-    for ficheiro in ficheiros:
+        print(f"\nJogos sem correspondência exata: {len(sem_capa)}")
 
-        if not ficheiro.is_file():
-            continue
+        for titulo in sem_capa:
+            print(f"[EM FALTA] {titulo}")
 
-        if ficheiro.suffix.lower() not in EXTENSOES_PERMITIDAS:
-            print(f"Ignorado (formato não permitido): {ficheiro.name}")
-            ignorados += 1
-            continue
+        if not aplicar:
+            print("\nSIMULAÇÃO TERMINADA.")
+            print("Nada foi copiado nem alterado.")
+            print("Se estiver tudo correto, executa:")
+            print("python importar_jogos.py --aplicar")
+            return
 
-        titulo = extrair_titulo(ficheiro.name)
+        PASTA_CAPAS.mkdir(parents=True, exist_ok=True)
 
-        if not titulo:
-            print(f"Ignorado (sem título): {ficheiro.name}")
-            ignorados += 1
-            continue
+        total_importadas = 0
 
-        chave = normalizar_texto(titulo)
+        for jogo_id, titulo, ficheiro in associacoes:
+            destino = obter_destino_seguro(ficheiro)
 
-        destino = obter_destino_capa(ficheiro)
-        caminho_relativo = f"capas/{destino.name}"
+            shutil.copy2(ficheiro, destino)
 
-        shutil.copy2(ficheiro, destino)
-
-        jogo_existente = jogos_existentes.get(chave)
-
-        if jogo_existente:
+            caminho_relativo = f"capas/{destino.name}"
 
             conexao.execute(
                 """
                 UPDATE JOGO
                 SET capa = ?
                 WHERE id_jogo = ?
+                AND (capa IS NULL OR TRIM(capa) = '')
                 """,
-                (caminho_relativo, jogo_existente["id_jogo"])
+                (caminho_relativo, jogo_id)
             )
 
-            atualizados += 1
-            print(f"Capa associada: {jogo_existente['titulo']}")
-
-        else:
-
-            cursor = conexao.execute(
-                """
-                INSERT INTO JOGO (
-                    titulo,
-                    descricao,
-                    ano_lancamento,
-                    capa
-                )
-                VALUES (?, NULL, NULL, ?)
-                """,
-                (titulo, caminho_relativo)
-            )
-
-            jogos_existentes[chave] = {
-                "id_jogo": cursor.lastrowid,
-                "titulo": titulo,
-                "capa": caminho_relativo
-            }
-
-            importados += 1
-            print(f"Jogo criado através da capa: {titulo}")
-
-    print("\n--- Importação das capas ---")
-    print(f"Jogos criados: {importados}")
-    print(f"Capas associadas: {atualizados}")
-    print(f"Ficheiros ignorados: {ignorados}")
-
-
-def importar_jogos():
-    """Executa a importação dos dados e das capas."""
-
-    conexao = obter_conexao()
-
-    try:
-        importar_jogos_csv(conexao)
-        importar_capas(conexao)
+            total_importadas += 1
 
         conexao.commit()
 
-        print("\nImportação concluída com sucesso!")
+        print("\n--- IMPORTAÇÃO CONCLUÍDA ---")
+        print(f"Capas associadas: {total_importadas}")
+        print(f"Jogos ainda sem capa: {len(sem_capa)}")
+        print("Nenhum jogo novo foi criado.")
 
     except Exception:
         conexao.rollback()
@@ -274,4 +215,4 @@ def importar_jogos():
 
 
 if __name__ == "__main__":
-    importar_jogos()
+    importar()
