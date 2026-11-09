@@ -4,153 +4,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Videojogos</title>
+    <title>Início | Game Catalog</title>
     <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
 </head>
 <body>
-    <header>
-        <h1>🎮 Catálogo de Videojogos</h1>
-        <p>O teu espaço para descobrir e organizar videojogos.</p>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 GAME<span>CATALOG</span></a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+                <a href="/estatisticas">Estatísticas</a>
+            </nav>
+        </div>
     </header>
 
     <main>
-        <section>
-            <h2>Registar videojogo</h2>
 
-            {% if erro %}
-                <p role="alert"><strong>Erro:</strong> {{ erro }}</p>
-            {% endif %}
+        <!-- APRESENTAÇÃO INICIAL -->
 
-            <form action="/jogos" method="post" enctype="multipart/form-data">
-                <label for="titulo">Título:</label>
-                <input
-                    type="text"
-                    id="titulo"
-                    name="titulo"
-                    value="{{ titulo }}"
-                    required
-                >
-                <br><br>
+        <section class="destaque">
+            <div class="destaque-conteudo">
+                <span class="etiqueta">BEM-VINDO AO GAME CATALOG</span>
 
-                <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao">{{ descricao }}</textarea>
-                <br><br>
+                <h1>O teu universo de <span>videojogos</span></h1>
 
-                <label for="ano_lancamento">Ano de lançamento:</label>
-                <input
-                    type="number"
-                    id="ano_lancamento"
-                    name="ano_lancamento"
-                    min="1950"
-                    max="2100"
-                    value="{{ ano_lancamento }}"
-                    required
-                >
-                <br><br>
+                <p>
+                    Descobre, organiza e gere a tua coleção de videojogos
+                    num único lugar. Explora o catálogo e encontra os teus
+                    jogos favoritos.
+                </p>
 
-                <label for="ficheiro_capa">Capa do videojogo (opcional):</label>
-                <input
-                    type="file"
-                    id="ficheiro_capa"
-                    name="ficheiro_capa"
-                    accept=".png,.jpg,.jpeg,image/png,image/jpeg"
-                >
-                <small>
-                    Formatos permitidos: PNG e JPG. Tamanho máximo: 5 MB.
-                </small>
-                <br><br>
+                <div class="destaque-botoes">
+                    <a href="/jogos" class="botao botao-principal">
+                        Explorar jogos
+                    </a>
 
-                <button type="submit">Guardar videojogo</button>
-            </form>
-        </section>
-
-        <section>
-            <h2>Jogos do catálogo</h2>
-
-            <form action="/" method="get">
-                <label for="pesquisa">Pesquisar por título:</label>
-                <input
-                    type="text"
-                    id="pesquisa"
-                    name="q"
-                    value="{{ pesquisa or '' }}"
-                    placeholder="Escreve o título de um videojogo"
-                >
-
-                <br><br>
-
-                <label for="ano_filtro">Filtrar por ano:</label>
-                <input
-                    type="number"
-                    id="ano_filtro"
-                    name="ano"
-                    min="1950"
-                    max="2100"
-                    value="{{ ano_filtro or '' }}"
-                    placeholder="Ex.: 2023"
-                >
-
-                <br><br>
-
-                <button type="submit">Pesquisar / Filtrar</button>
-
-                <a href="/">Limpar filtros</a>
-            </form>
-
-            {% if jogos %}
-                <div class="catalogo">
-                    {% for jogo in jogos %}
-                        <article class="jogo">
-
-                            {% if jogo.capa %}
-                                <img
-                                    class="capa-jogo"
-                                    src="{{ url_for('static', path=jogo.capa) }}"
-                                    alt="Capa de {{ jogo.titulo }}"
-                                >
-                            {% endif %}
-
-                            <h3>{{ jogo.titulo }}</h3>
-
-                            <p>
-                                <strong>Descrição:</strong>
-                                {{ jogo.descricao or "Sem descrição." }}
-                            </p>
-
-                            <p>
-                                <strong>Ano de lançamento:</strong>
-                                {{ jogo.ano_lancamento }}
-                            </p>
-
-                            <div class="acoes-jogo">
-                                <a href="/jogos/{{ jogo.id_jogo }}/editar">
-                                    <button type="button">
-                                        Editar videojogo
-                                    </button>
-                                </a>
-
-                                <form
-                                    action="/jogos/{{ jogo.id_jogo }}/eliminar"
-                                    method="post"
-                                    onsubmit="return confirm('Tens a certeza de que queres eliminar este videojogo?');"
-                                >
-                                    <button type="submit">
-                                        Eliminar videojogo
-                                    </button>
-                                </form>
-                            </div>
-
-                        </article>
-                    {% endfor %}
+                    <a href="/adicionar" class="botao botao-secundario">
+                        Adicionar videojogo
+                    </a>
                 </div>
-            {% else %}
-                {% if pesquisa or ano_filtro %}
-                    <p>Não foram encontrados videojogos com os filtros selecionados.</p>
-                {% else %}
-                    <p>Ainda não existem videojogos no catálogo.</p>
-                {% endif %}
-            {% endif %}
+            </div>
+
+            <div class="destaque-icon">
+                🎮
+            </div>
         </section>
+
+
+        <!-- RESUMO DAS ESTATÍSTICAS -->
+
+        <section class="secao">
+
+            <div class="titulo-secao">
+                <h2>O teu catálogo em números</h2>
+                <p>Conhece alguns dados da tua coleção de videojogos.</p>
+            </div>
+
+            <div class="catalogo">
+
+                <article class="jogo">
+                    <div class="capa-sem-imagem">
+                        🎮
+                        <span>Coleção</span>
+                    </div>
+
+                    <div class="jogo-conteudo">
+                        <h3>Total de videojogos</h3>
+
+                        <p class="estatistica-numero">
+                            {{ estatisticas.total }}
+                        </p>
+
+                        <p class="descricao">
+                            Jogos atualmente registados no catálogo.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="jogo">
+                    <div class="capa-sem-imagem">
+                        📅
+                        <span>História</span>
+                    </div>
+
+                    <div class="jogo-conteudo">
+                        <h3>Jogo mais antigo</h3>
+
+                        <p class="estatistica-numero">
+                            {{ estatisticas.ano_mais_antigo if estatisticas.ano_mais_antigo else "—" }}
+                        </p>
+
+                        <p class="descricao">
+                            Ano de lançamento do jogo mais antigo.
+                        </p>
+                    </div>
+                </article>
+
+                <article class="jogo">
+                    <div class="capa-sem-imagem">
+                        🚀
+                        <span>Atualidade</span>
+                    </div>
+
+                    <div class="jogo-conteudo">
+                        <h3>Jogo mais recente</h3>
+
+                        <p class="estatistica-numero">
+                            {{ estatisticas.ano_mais_recente if estatisticas.ano_mais_recente else "—" }}
+                        </p>
+
+                        <p class="descricao">
+                            Ano de lançamento do jogo mais recente.
+                        </p>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="estatisticas-voltar">
+                <a href="/estatisticas" class="botao botao-principal">
+                    Ver todas as estatísticas
+                </a>
+            </div>
+
+        </section>
+
+
+        <!-- FUNCIONALIDADES DO CATÁLOGO -->
+
+        <section class="secao">
+
+            <div class="titulo-secao">
+                <h2>O que podes fazer?</h2>
+                <p>Explora as funcionalidades do teu catálogo.</p>
+            </div>
+
+            <div class="catalogo">
+
+                <article class="jogo">
+                    <div class="capa-sem-imagem">
+                        🎮
+                        <span>Biblioteca</span>
+                    </div>
+
+                    <div class="jogo-conteudo">
+                        <h3>Todos os jogos</h3>
+
+                        <p class="descricao">
+                            Consulta os videojogos existentes no catálogo
+                            e conhece as respetivas informações.
+                        </p>
+
+                        <a href="/jogos" class="botao botao-principal">
+                            Ver catálogo
+                        </a>
+                    </div>
+                </article>
+
+                <article class="jogo">
+                    <div class="capa-sem-imagem">
+                        🔎
+                        <span>Pesquisa</span>
+                    </div>
+
+                    <div class="jogo-conteudo">
+                        <h3>Filtrar jogos</h3>
+
+                        <p class="descricao">
+                            Pesquisa videojogos pelo título ou encontra
+                            jogos através do ano de lançamento.
+                        </p>
+
+                        <a href="/filtrar" class="botao botao-principal">
+                            Pesquisar
+                        </a>
+                    </div>
+                </article>
+
+                <article class="jogo">
+                    <div class="capa-sem-imagem">
+                        ➕
+                        <span>Registo</span>
+                    </div>
+
+                    <div class="jogo-conteudo">
+                        <h3>Adicionar jogo</h3>
+
+                        <p class="descricao">
+                            Regista novos videojogos, acrescenta
+                            descrições e carrega as respetivas capas.
+                        </p>
+
+                        <a href="/adicionar" class="botao botao-principal">
+                            Adicionar
+                        </a>
+                    </div>
+                </article>
+
+            </div>
+
+        </section>
+
     </main>
+
+    <footer>
+        <p>🎮 Game Catalog | Catálogo de Videojogos</p>
+    </footer>
+
 </body>
 </html>

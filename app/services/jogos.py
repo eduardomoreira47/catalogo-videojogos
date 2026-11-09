@@ -5,7 +5,9 @@ from app.repositorio import (
     obter_jogo_por_id,
     atualizar_jogo,
     eliminar_jogo,
+    obter_generos,
     pesquisar_jogos as pesquisar_jogos_repositorio,
+    obter_estatisticas_jogos as obter_estatisticas_repositorio,
 )
 
 
@@ -26,12 +28,41 @@ def validar_dados_jogo(titulo, ano_lancamento):
     return titulo
 
 
-def criar_jogo(titulo, descricao, ano_lancamento, capa=None):
+def obter_lista_generos():
+    """Devolve todos os géneros disponíveis."""
+
+    return obter_generos()
+
+
+def criar_jogo(
+    titulo,
+    descricao,
+    ano_lancamento,
+    capa=None,
+    genero_id=None,
+):
     """Valida os dados e regista um videojogo."""
 
     titulo = validar_dados_jogo(titulo, ano_lancamento)
 
-    return guardar_jogo(titulo, descricao, ano_lancamento, capa)
+    if genero_id is not None:
+        try:
+            genero_id = int(genero_id)
+        except (ValueError, TypeError):
+            raise ValueError("O género selecionado é inválido.")
+
+        generos = obter_generos()
+
+        if not any(genero["id_genero"] == genero_id for genero in generos):
+            raise ValueError("O género selecionado não existe.")
+
+    return guardar_jogo(
+        titulo,
+        descricao,
+        ano_lancamento,
+        capa,
+        genero_id,
+    )
 
 
 def obter_jogos():
@@ -40,16 +71,14 @@ def obter_jogos():
     return listar_jogos()
 
 
-def pesquisar_jogos(titulo="", ano_lancamento=None):
-    """Pesquisa videojogos pelo título e opcionalmente pelo ano."""
+def pesquisar_jogos(titulo="", ano_lancamento=None, genero_id=None):
+    """Pesquisa videojogos pelo título, ano e género."""
 
-    if not titulo and ano_lancamento is None:
-        return obter_jogos()
-
-    if not titulo:
-        titulo = ""
-
-    return pesquisar_jogos_repositorio(titulo, ano_lancamento)
+    return pesquisar_jogos_repositorio(
+        titulo,
+        ano_lancamento,
+        genero_id,
+    )
 
 
 def obter_jogo(id_jogo):
@@ -58,7 +87,20 @@ def obter_jogo(id_jogo):
     return obter_jogo_por_id(id_jogo)
 
 
-def editar_jogo(id_jogo, titulo, descricao, ano_lancamento, capa=None):
+def obter_estatisticas():
+    """Devolve as estatísticas gerais do catálogo."""
+
+    return obter_estatisticas_repositorio()
+
+
+def editar_jogo(
+    id_jogo,
+    titulo,
+    descricao,
+    ano_lancamento,
+    capa=None,
+    genero_id=None,
+):
     """Valida os dados e atualiza um videojogo existente."""
 
     titulo = validar_dados_jogo(titulo, ano_lancamento)
@@ -71,12 +113,24 @@ def editar_jogo(id_jogo, titulo, descricao, ano_lancamento, capa=None):
     if capa is None:
         capa = jogo["capa"]
 
+    if genero_id is not None:
+        try:
+            genero_id = int(genero_id)
+        except (ValueError, TypeError):
+            raise ValueError("O género selecionado é inválido.")
+
+        generos = obter_generos()
+
+        if not any(genero["id_genero"] == genero_id for genero in generos):
+            raise ValueError("O género selecionado não existe.")
+
     return atualizar_jogo(
         id_jogo,
         titulo,
         descricao,
         ano_lancamento,
-        capa
+        capa,
+        genero_id,
     )
 
 

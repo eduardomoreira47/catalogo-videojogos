@@ -71,6 +71,23 @@
 
                 <br><br>
 
+                <label for="genero_id">Género:</label>
+
+                <select id="genero_id" name="genero_id">
+                    <option value="">Sem género</option>
+
+                    {% for genero in generos %}
+                        <option
+                            value="{{ genero.id_genero }}"
+                            {% if (genero_id if genero_id is defined else jogo.genero_id)|string == genero.id_genero|string %}selected{% endif %}
+                        >
+                            {{ genero.nome }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <br><br>
+
                 <label for="ficheiro_capa">Alterar capa:</label>
 
                 <input
@@ -86,7 +103,7 @@
 
                 <button type="submit">Guardar alterações</button>
 
-                <a href="/">Cancelar</a>
+                <a href="/jogos">Cancelar</a>
             </form>
         </section>
     </main>

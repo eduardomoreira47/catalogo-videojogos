@@ -1,11 +1,14 @@
 
 from pathlib import Path
 from uuid import uuid4
+from contextlib import asynccontextmanager
 
 from fastapi import FastAPI, Request, Form, File, UploadFile
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
+
+from app.database.init_db import criar_tabelas
 
 from app.services.jogos import (
     criar_jogo,
@@ -14,10 +17,22 @@ from app.services.jogos import (
     obter_jogo,
     editar_jogo,
     remover_jogo,
+    obter_estatisticas,
+    obter_lista_generos,
 )
 
 
-app = FastAPI(title="Catálogo de Videojogos")
+@asynccontextmanager
+async def ciclo_vida(app: FastAPI):
+    """Prepara a base de dados quando a aplicação inicia."""
+    criar_tabelas()
+    yield
+
+
+app = FastAPI(
+    title="Catálogo de Videojogos",
+    lifespan=ciclo_vida,
+)
 
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
@@ -80,15 +95,72 @@ def apagar_capa(caminho_capa):
         ficheiro.unlink(missing_ok=True)
 
 
+# ==========================================
+# PÁGINA INICIAL
+# ==========================================
+
 @app.get("/", response_class=HTMLResponse)
-def pagina_inicial(
+def pagina_inicial(request: Request):
+    """Apresenta a página inicial e o resumo das estatísticas."""
+
+    return templates.TemplateResponse(
+        request=request,
+        name="index.html",
+        context={
+            "estatisticas": obter_estatisticas(),
+        },
+    )
+
+
+# ==========================================
+# PÁGINA DE ESTATÍSTICAS
+# ==========================================
+
+@app.get("/estatisticas", response_class=HTMLResponse)
+def pagina_estatisticas(request: Request):
+    """Apresenta as estatísticas do catálogo."""
+
+    return templates.TemplateResponse(
+        request=request,
+        name="estatisticas.html",
+        context={
+            "estatisticas": obter_estatisticas(),
+        },
+    )
+
+
+# ==========================================
+# PÁGINA COM TODOS OS JOGOS
+# ==========================================
+
+@app.get("/jogos", response_class=HTMLResponse)
+def pagina_jogos(request: Request):
+    """Apresenta todos os videojogos do catálogo."""
+
+    return templates.TemplateResponse(
+        request=request,
+        name="jogos.html",
+        context={
+            "jogos": obter_jogos(),
+        },
+    )
+
+
+# ==========================================
+# PÁGINA DE PESQUISA E FILTROS
+# ==========================================
+
+@app.get("/filtrar", response_class=HTMLResponse)
+def pagina_filtrar(
     request: Request,
     q: str = "",
     ano: str = "",
+    genero_id: str = "",
 ):
-    """Apresenta os videojogos e permite pesquisar por título e ano."""
+    """Pesquisa videojogos por título, ano e género."""
 
     ano_filtro = None
+    genero_filtro = None
 
     if ano.strip():
         try:
@@ -99,20 +171,49 @@ def pagina_inicial(
     if ano_filtro is not None and not 1950 <= ano_filtro <= 2100:
         ano_filtro = None
 
-    jogos = pesquisar_jogos(q, ano_filtro)
+    if genero_id.strip():
+        try:
+            genero_filtro = int(genero_id)
+        except ValueError:
+            genero_filtro = None
+
+    jogos = pesquisar_jogos(
+        q,
+        ano_filtro,
+        genero_filtro,
+    )
 
     return templates.TemplateResponse(
         request=request,
-        name="index.html",
+        name="filtrar.html",
         context={
             "jogos": jogos,
+            "pesquisa": q,
+            "ano_filtro": ano,
+            "generos": obter_lista_generos(),
+            "genero_filtro": genero_id,
+        },
+    )
+
+
+# ==========================================
+# PÁGINA PARA ADICIONAR JOGOS
+# ==========================================
+
+@app.get("/adicionar", response_class=HTMLResponse)
+def pagina_adicionar(request: Request):
+    """Apresenta o formulário para registar um videojogo."""
+
+    return templates.TemplateResponse(
+        request=request,
+        name="adicionar.html",
+        context={
             "erro": None,
             "titulo": "",
             "descricao": "",
             "ano_lancamento": "",
-            "capa": "",
-            "pesquisa": q,
-            "ano_filtro": ano,
+            "generos": obter_lista_generos(),
+            "genero_id": "",
         },
     )
 
@@ -123,6 +224,7 @@ async def registar_jogo(
     titulo: str = Form(""),
     descricao: str = Form(""),
     ano_lancamento: str = Form(""),
+    genero_id: str = Form(""),
     ficheiro_capa: UploadFile | None = File(None),
 ):
     """Valida e regista um novo videojogo."""
@@ -145,26 +247,32 @@ async def registar_jogo(
                 "O ano de lançamento tem de ser um número inteiro."
             )
 
+        genero_selecionado = int(genero_id) if genero_id.strip() else None
+
         caminho_capa = await guardar_capa(ficheiro_capa)
 
-        criar_jogo(titulo, descricao, ano, caminho_capa)
+        criar_jogo(
+            titulo,
+            descricao,
+            ano,
+            caminho_capa,
+            genero_selecionado,
+        )
 
     except ValueError as erro:
         apagar_capa(caminho_capa)
 
         return templates.TemplateResponse(
             request=request,
-            name="index.html",
+            name="adicionar.html",
             status_code=400,
             context={
-                "jogos": obter_jogos(),
                 "erro": str(erro),
                 "titulo": titulo,
                 "descricao": descricao,
                 "ano_lancamento": ano_lancamento,
-                "capa": "",
-                "pesquisa": "",
-                "ano_filtro": "",
+                "generos": obter_lista_generos(),
+                "genero_id": genero_id,
             },
         )
 
@@ -172,8 +280,12 @@ async def registar_jogo(
         if ficheiro_capa:
             await ficheiro_capa.close()
 
-    return RedirectResponse(url="/", status_code=303)
+    return RedirectResponse(url="/jogos", status_code=303)
 
+
+# ==========================================
+# EDITAR JOGOS
+# ==========================================
 
 @app.get("/jogos/{id_jogo}/editar", response_class=HTMLResponse)
 def pagina_editar_jogo(request: Request, id_jogo: int):
@@ -196,6 +308,7 @@ def pagina_editar_jogo(request: Request, id_jogo: int):
             "titulo": None,
             "descricao": None,
             "ano_lancamento": None,
+            "generos": obter_lista_generos(),
         },
     )
 
@@ -207,6 +320,7 @@ async def guardar_edicao_jogo(
     titulo: str = Form(""),
     descricao: str = Form(""),
     ano_lancamento: str = Form(""),
+    genero_id: str = Form(""),
     ficheiro_capa: UploadFile | None = File(None),
 ):
     """Valida e guarda as alterações de um videojogo."""
@@ -240,6 +354,8 @@ async def guardar_edicao_jogo(
                 "O ano de lançamento tem de ser um número inteiro."
             )
 
+        genero_selecionado = int(genero_id) if genero_id.strip() else None
+
         if ficheiro_capa and ficheiro_capa.filename:
             nova_capa = await guardar_capa(ficheiro_capa)
 
@@ -249,6 +365,7 @@ async def guardar_edicao_jogo(
             descricao,
             ano,
             nova_capa,
+            genero_selecionado,
         )
 
     except ValueError as erro:
@@ -264,6 +381,8 @@ async def guardar_edicao_jogo(
                 "titulo": titulo,
                 "descricao": descricao,
                 "ano_lancamento": ano_lancamento,
+                "generos": obter_lista_generos(),
+                "genero_id": genero_id,
             },
         )
 
@@ -274,8 +393,12 @@ async def guardar_edicao_jogo(
     if nova_capa and jogo["capa"]:
         apagar_capa(jogo["capa"])
 
-    return RedirectResponse(url="/", status_code=303)
+    return RedirectResponse(url="/jogos", status_code=303)
 
+
+# ==========================================
+# ELIMINAR JOGOS
+# ==========================================
 
 @app.post("/jogos/{id_jogo}/eliminar")
 def rota_eliminar_jogo(id_jogo: int):
@@ -294,4 +417,4 @@ def rota_eliminar_jogo(id_jogo: int):
     if jogo["capa"]:
         apagar_capa(jogo["capa"])
 
-    return RedirectResponse(url="/", status_code=303)
+    return RedirectResponse(url="/jogos", status_code=303)

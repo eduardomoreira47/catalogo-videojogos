@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filtrar Jogos | Game Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 GAME<span>CATALOG</span></a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao">
+            <div class="titulo-secao">
+                <h2>Pesquisar e filtrar videojogos</h2>
+                <p>Encontra rapidamente o videojogo que procuras.</p>
+            </div>
+
+            <form action="/filtrar" method="get" class="formulario-filtros">
+
+                <div class="campo">
+                    <label for="pesquisa">Pesquisar por título:</label>
+                    <input
+                        type="text"
+                        id="pesquisa"
+                        name="q"
+                        value="{{ pesquisa or '' }}"
+                        placeholder="Ex.: Minecraft"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="ano_filtro">Filtrar por ano:</label>
+                    <input
+                        type="number"
+                        id="ano_filtro"
+                        name="ano"
+                        min="1950"
+                        max="2100"
+                        value="{{ ano_filtro or '' }}"
+                        placeholder="Ex.: 2023"
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="genero_id">Filtrar por género:</label>
+                    <select id="genero_id" name="genero_id">
+                        <option value="">Todos os géneros</option>
+
+                        {% for genero in generos %}
+                            <option
+                                value="{{ genero.id_genero }}"
+                                {% if genero_filtro|string == genero.id_genero|string %}selected{% endif %}
+                            >
+                                {{ genero.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="botoes-filtro">
+                    <button type="submit" class="botao botao-principal">
+                        Pesquisar
+                    </button>
+
+                    <a href="/filtrar" class="botao botao-secundario">
+                        Limpar filtros
+                    </a>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="secao">
+            <div class="titulo-secao">
+                <h2>Resultados da pesquisa</h2>
+                <p>Videojogos correspondentes aos filtros selecionados.</p>
+            </div>
+
+            {% if jogos %}
+                <div class="catalogo">
+                    {% for jogo in jogos %}
+                        <article class="jogo">
+
+                            {% if jogo.capa %}
+                                <img
+                                    class="capa-jogo"
+                                    src="{{ url_for('static', path=jogo.capa) }}"
+                                    alt="Capa de {{ jogo.titulo }}"
+                                >
+                            {% else %}
+                                <div class="capa-sem-imagem">
+                                    🎮
+                                    <span>Sem capa</span>
+                                </div>
+                            {% endif %}
+
+                            <div class="jogo-conteudo">
+                                <h3>{{ jogo.titulo }}</h3>
+
+                                <p class="descricao">
+                                    {{ jogo.descricao or "Sem descrição." }}
+                                </p>
+
+                                <span class="ano-jogo">
+                                    Ano: {{ jogo.ano_lancamento }}
+                                </span>
+
+                                <p class="genero-jogo">
+                                    Género: {{ jogo.generos or "Sem género" }}
+                                </p>
+
+                                <div class="acoes-jogo">
+                                    <a
+                                        href="/jogos/{{ jogo.id_jogo }}/editar"
+                                        class="botao botao-editar"
+                                    >
+                                        Editar
+                                    </a>
+
+                                    <form
+                                        action="/jogos/{{ jogo.id_jogo }}/eliminar"
+                                        method="post"
+                                        onsubmit="return confirm('Tens a certeza de que queres eliminar este videojogo?');"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="botao botao-eliminar"
+                                        >
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </article>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <p class="sem-resultados">
+                    Não foram encontrados videojogos com os filtros selecionados.
+                </p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>🎮 Game Catalog | Catálogo de Videojogos</p>
+    </footer>
+
+</body>
+</html>

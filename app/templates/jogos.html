@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos os Jogos | Game Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 GAME<span>CATALOG</span></a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao">
+            <div class="titulo-secao">
+                <h2>Todos os videojogos</h2>
+                <p>Explora e gere os videojogos da tua coleção.</p>
+            </div>
+
+            {% if jogos %}
+                <div class="catalogo">
+                    {% for jogo in jogos %}
+                        <article class="jogo">
+
+                            {% if jogo.capa %}
+                                <img
+                                    class="capa-jogo"
+                                    src="{{ url_for('static', path=jogo.capa) }}"
+                                    alt="Capa de {{ jogo.titulo }}"
+                                >
+                            {% else %}
+                                <div class="capa-sem-imagem">
+                                    🎮
+                                    <span>Sem capa</span>
+                                </div>
+                            {% endif %}
+
+                            <div class="jogo-conteudo">
+                                <h3>{{ jogo.titulo }}</h3>
+
+                                <p class="descricao">
+                                    {{ jogo.descricao or "Sem descrição." }}
+                                </p>
+
+                                <span class="ano-jogo">
+                                    Ano: {{ jogo.ano_lancamento }}
+                                </span>
+
+                                <p class="genero-jogo">
+                                    Género:
+                                    {{ jogo.generos or "Sem género" }}
+                                </p>
+
+                                <div class="acoes-jogo">
+                                    <a
+                                        href="/jogos/{{ jogo.id_jogo }}/editar"
+                                        class="botao botao-editar"
+                                    >
+                                        Editar
+                                    </a>
+
+                                    <form
+                                        action="/jogos/{{ jogo.id_jogo }}/eliminar"
+                                        method="post"
+                                        onsubmit="return confirm('Tens a certeza de que queres eliminar este videojogo?');"
+                                    >
+                                        <button
+                                            type="submit"
+                                            class="botao botao-eliminar"
+                                        >
+                                            Eliminar
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </article>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <p class="sem-resultados">
+                    Ainda não existem videojogos no catálogo.
+                </p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>🎮 Game Catalog | Catálogo de Videojogos</p>
+    </footer>
+
+</body>
+</html>

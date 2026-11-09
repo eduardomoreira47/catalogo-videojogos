@@ -103,3 +103,47 @@ No final da sessão, a aplicação passou a permitir registar, consultar, editar
  Observações
 
 A importação dos jogos foi concluída com sucesso. A associação das restantes capas continuará na próxima aula.
+
+ Registo de Desenvolvimento — 06/11/2026
+
+ Gestão e organização do catálogo
+- Foi realizada uma limpeza da base de dados, reduzindo o catálogo para 100 videojogos.
+- Foi criada uma cópia de segurança da base de dados antes das alterações.
+- Foi confirmada a existência de 100 registos na tabela de jogos.
+
+ Pesquisa e associação de capas
+- Foi utilizada a ferramenta FetchArt para procurar capas dos jogos sem imagem.
+- Foram analisadas diferentes versões e edições das capas encontradas.
+- Foram associadas 21 novas imagens aos jogos que ainda não tinham capa.
+- As imagens foram copiadas para a pasta `app/static/capas/`.
+- Foi criado o ficheiro `associar_21_capas.py` para automatizar a associação das imagens.
+- As imagens originais foram preservadas.
+
+ Verificação final
+Foi executado o script `verificar_capas.py`, tendo sido obtido o seguinte resultado:
+
+| Verificação | Resultado |
+|---|---:|
+| Total de jogos | 100 |
+| Jogos com capa existente | 100 |
+| Jogos sem capa | 0 |
+| Capas associadas mas não encontradas | 0 |
+
+##Estado atual
+- Catálogo com 100 videojogos.
+- Todos os jogos têm uma capa associada.
+- Não foram detetadas referências a capas inexistentes.
+- Foi mantida uma cópia de segurança da base de dados.
+
+**Nota:** Algumas capas correspondem a versões ou edições diferentes dos títulos registados, conforme decisão tomada durante o desenvolvimento.
+
+
+ 09/11/2026 – Melhorias e novas funcionalidades do catálogo
+
+- Reorganização da aplicação em páginas independentes: Início, Todos os Jogos, Filtrar Jogos e Adicionar Jogo.
+- Implementação de uma página de estatísticas com o número total de jogos, anos de lançamento e distribuição por décadas.
+- Implementação do sistema de géneros, permitindo associar géneros aos jogos e filtrar o catálogo por género.
+- Atualização dos formulários de adicionar e editar jogos.
+- Melhorias no menu de navegação e no design visual da aplicação, com um tema escuro e elementos modernos.
+- Atualização dos ficheiros de código e dos templates para suportar as novas funcionalidades.
+- Preparação das alterações para atualização do repositório no GitHub.

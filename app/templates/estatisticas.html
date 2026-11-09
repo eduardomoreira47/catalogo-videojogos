@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Estatísticas | Catálogo de Videojogos</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
+</head>
+
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 Game Catalog</a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+                <a href="/estatisticas">Estatísticas</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="secao">
+
+        <h1 class="titulo-secao">Estatísticas do catálogo</h1>
+
+        <p class="descricao">
+            Consulta os números e a distribuição dos videojogos
+            existentes na tua coleção.
+        </p>
+
+        <div class="estatisticas-grelha">
+
+            <div class="estatistica-cartao">
+                <span class="estatistica-icone">🎮</span>
+                <h2>Total de jogos</h2>
+                <p class="estatistica-numero">
+                    {{ estatisticas.total }}
+                </p>
+                <span>Videojogos registados</span>
+            </div>
+
+            <div class="estatistica-cartao">
+                <span class="estatistica-icone">📅</span>
+                <h2>Mais antigo</h2>
+                <p class="estatistica-numero">
+                    {{ estatisticas.ano_mais_antigo if estatisticas.ano_mais_antigo else "—" }}
+                </p>
+                <span>Ano de lançamento</span>
+            </div>
+
+            <div class="estatistica-cartao">
+                <span class="estatistica-icone">🚀</span>
+                <h2>Mais recente</h2>
+                <p class="estatistica-numero">
+                    {{ estatisticas.ano_mais_recente if estatisticas.ano_mais_recente else "—" }}
+                </p>
+                <span>Ano de lançamento</span>
+            </div>
+
+        </div>
+
+        <section class="estatisticas-decadas">
+
+            <h2>Jogos por década</h2>
+
+            <p class="descricao">
+                Distribuição dos videojogos de acordo com o ano de lançamento.
+            </p>
+
+            {% if estatisticas.jogos_por_decada %}
+
+                {% for item in estatisticas.jogos_por_decada %}
+
+                    <div class="decada-item">
+
+                        <div class="decada-informacao">
+                            <strong>{{ item.decada }}s</strong>
+
+                            <span>
+                                {{ item.quantidade }}
+                                {% if item.quantidade == 1 %}
+                                    jogo
+                                {% else %}
+                                    jogos
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        <progress
+                            class="barra-progresso"
+                            value="{{ item.quantidade }}"
+                            max="{{ estatisticas.total }}"
+                        ></progress>
+
+                    </div>
+
+                {% endfor %}
+
+            {% else %}
+
+                <p>Ainda não existem jogos registados.</p>
+
+            {% endif %}
+
+        </section>
+
+        <div class="estatisticas-voltar">
+            <a href="/jogos" class="botao botao-principal">
+                Explorar jogos
+            </a>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>Catálogo de Videojogos | UFCD 5425</p>
+    </footer>
+
+</body>
+</html>

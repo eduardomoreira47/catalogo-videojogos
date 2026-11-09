@@ -1,3 +1,4 @@
+
 from app.database.database import obter_conexao
 
 
@@ -44,20 +45,44 @@ def criar_tabelas():
             );
         """)
 
-        # Verifica se a coluna "capa" já existe.
+        # Verifica se a coluna capa já existe.
         colunas = conexao.execute(
             "PRAGMA table_info(JOGO)"
         ).fetchall()
 
         nomes_colunas = [coluna["name"] for coluna in colunas]
 
-        # Só acrescenta a coluna se ainda não existir.
+        # Acrescenta a coluna capa apenas se ainda não existir.
         if "capa" not in nomes_colunas:
             conexao.execute(
                 "ALTER TABLE JOGO ADD COLUMN capa TEXT"
             )
 
+        # Lista inicial de géneros.
+        generos = [
+            "Ação",
+            "Aventura",
+            "RPG",
+            "Desporto",
+            "Corridas",
+            "Estratégia",
+            "Simulação",
+            "Terror",
+            "Plataformas",
+            "Luta",
+            "Puzzle",
+            "Mundo Aberto"
+        ]
+
+        # Insere os géneros sem criar duplicados.
+        for genero in generos:
+            conexao.execute(
+                "INSERT OR IGNORE INTO GENERO (nome) VALUES (?)",
+                (genero,)
+            )
+
         conexao.commit()
+
         print("Tabelas criadas e verificadas com sucesso!")
 
     finally:

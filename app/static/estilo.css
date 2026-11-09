@@ -1,179 +1,542 @@
-/* Configuração geral */
+
+/* ==============================
+   CONFIGURAÇÕES GERAIS
+================================= */
+
 * {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f2f4f7;
-    color: #333;
+    background: #0b0e17;
+    color: #f1f3f9;
     line-height: 1.6;
 }
 
-/* Cabeçalho */
-header {
-    background-color: #202c3c;
-    color: white;
-    text-align: center;
-    padding: 30px 20px;
+a {
+    text-decoration: none;
+    color: inherit;
 }
 
-header h1 {
-    margin: 0;
-    font-size: 2rem;
-}
-
-header p {
-    margin-top: 10px;
-    margin-bottom: 0;
-}
-
-/* Conteúdo principal */
 main {
     width: 90%;
-    max-width: 1100px;
-    margin: 30px auto;
+    max-width: 1250px;
+    margin: 35px auto;
 }
 
-/* Secções */
-section {
-    background-color: white;
-    margin-bottom: 25px;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+/* ==============================
+   MENU SUPERIOR
+================================= */
+
+.topo {
+    background: #111624;
+    border-bottom: 1px solid #252d40;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
-section h2 {
-    margin-top: 0;
-    color: #202c3c;
+.topo-conteudo {
+    max-width: 1350px;
+    width: 90%;
+    min-height: 75px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
 }
 
-/* Formulário */
-form label {
-    display: block;
-    margin-bottom: 6px;
+.logo {
+    font-size: 1.5rem;
     font-weight: bold;
+    color: white;
+    white-space: nowrap;
 }
 
-form input,
-form textarea {
+.logo span {
+    color: #a855f7;
+    margin-left: 5px;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.menu a {
+    color: #c5cad8;
+    font-size: 0.95rem;
+    transition: 0.2s;
+}
+
+.menu a:hover {
+    color: #a855f7;
+}
+
+/* ==============================
+   DESTAQUE INICIAL
+================================= */
+
+.destaque {
+    background:
+        radial-gradient(circle at 85% 40%, rgba(124, 58, 237, 0.25), transparent 35%),
+        linear-gradient(135deg, #171c30, #111624);
+    border: 1px solid #30304d;
+    border-radius: 18px;
+    padding: 55px;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    overflow: hidden;
+}
+
+.destaque-conteudo {
+    max-width: 650px;
+}
+
+.etiqueta {
+    display: inline-block;
+    color: #c084fc;
+    font-size: 0.78rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+.destaque h1 {
+    font-size: clamp(2rem, 4vw, 3.3rem);
+    line-height: 1.15;
+    margin: 10px 0 15px;
+}
+
+.destaque h1 span {
+    color: #a855f7;
+}
+
+.destaque p {
+    color: #b5bdd0;
+    font-size: 1.05rem;
+}
+
+.destaque-icon {
+    font-size: clamp(5rem, 12vw, 9rem);
+    filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.5));
+}
+
+.destaque-botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+/* ==============================
+   BOTÕES
+================================= */
+
+.botao {
+    display: inline-block;
+    padding: 11px 19px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s;
+}
+
+.botao-principal {
+    background: #9333ea;
+    color: white;
+}
+
+.botao-principal:hover {
+    background: #a855f7;
+    transform: translateY(-2px);
+}
+
+.botao-secundario {
+    background: #252b40;
+    color: white;
+    border: 1px solid #414966;
+}
+
+.botao-secundario:hover {
+    background: #343d59;
+}
+
+.botao-editar {
+    background: #2563eb;
+    color: white;
+}
+
+.botao-editar:hover {
+    background: #3b82f6;
+}
+
+.botao-eliminar {
+    background: #991b1b;
+    color: white;
+}
+
+.botao-eliminar:hover {
+    background: #dc2626;
+}
+
+/* ==============================
+   SECÇÕES
+================================= */
+
+.secao {
+    background: #141a29;
+    border: 1px solid #293149;
+    border-radius: 15px;
+    padding: 30px;
+    margin-top: 30px;
+    scroll-margin-top: 95px;
+}
+
+.titulo-secao {
+    margin-bottom: 25px;
+}
+
+.titulo-secao h2 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: white;
+}
+
+.titulo-secao p {
+    color: #aab3c7;
+    margin-top: 5px;
+}
+
+/* ==============================
+   FORMULÁRIOS
+================================= */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    min-width: 0;
+}
+
+.campo label {
+    font-weight: bold;
+    color: #e2e5ef;
+}
+
+.campo input,
+.campo textarea {
     width: 100%;
-    padding: 11px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    padding: 12px;
+    background: #0c1120;
+    border: 1px solid #38415a;
+    border-radius: 8px;
+    color: white;
     font-family: inherit;
     font-size: 1rem;
 }
 
-form textarea {
-    min-height: 100px;
+.campo textarea {
+    min-height: 110px;
     resize: vertical;
 }
 
-form input:focus,
-form textarea:focus {
+.campo input:focus,
+.campo textarea:focus {
     outline: none;
-    border-color: #2878d0;
-    box-shadow: 0 0 4px rgba(40, 120, 208, 0.3);
+    border-color: #a855f7;
+    box-shadow: 0 0 7px rgba(168, 85, 247, 0.3);
 }
 
-form small {
-    display: block;
-    margin-top: 5px;
-    color: #666;
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: #778199;
 }
 
-/* Botão */
-button {
-    background-color: #2878d0;
+.campo input[type="file"] {
+    padding: 9px;
+}
+
+.campo input[type="file"]::file-selector-button {
+    background: #34304f;
     color: white;
     border: none;
-    padding: 12px 20px;
-    border-radius: 6px;
-    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 5px;
+    margin-right: 12px;
     cursor: pointer;
-    transition: background-color 0.2s;
 }
 
-button:hover {
-    background-color: #1b5fa8;
+.campo small {
+    color: #929bb0;
+    font-size: 0.85rem;
 }
 
-/* Mensagens de erro */
-[role="alert"] {
-    background-color: #ffe8e8;
-    color: #a32020;
-    border: 1px solid #e5a0a0;
-    border-radius: 6px;
-    padding: 12px;
+.formulario-filtros {
+    display: grid;
+    grid-template-columns: 2fr 1fr auto;
+    align-items: end;
+    gap: 18px;
 }
 
-/* Grelha do catálogo */
+.botoes-filtro {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.formulario-adicionar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 750px;
+}
+
+/* ==============================
+   CATÁLOGO DE JOGOS
+================================= */
+
 .catalogo {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 22px;
 }
 
-/* Cartão de cada videojogo */
 .jogo {
-    padding: 15px;
-    border-radius: 10px;
-    background-color: white;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background: #1b2234;
+    border: 1px solid #303a54;
+    border-radius: 12px;
     overflow: hidden;
+    transition: 0.25s;
+    min-width: 0;
 }
 
-.jogo h3 {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    color: #202c3c;
+.jogo:hover {
+    transform: translateY(-5px);
+    border-color: #a855f7;
+    box-shadow: 0 5px 22px rgba(124, 58, 237, 0.2);
 }
 
-.jogo p {
-    margin: 8px 0;
-    overflow-wrap: anywhere;
-}
-
-/* Capa do videojogo */
 .capa-jogo {
     display: block;
     width: 100%;
     height: 280px;
     object-fit: contain;
-    background-color: #f2f4f7;
-    border-radius: 6px;
-    margin-bottom: 12px;
+    background: #0c1120;
 }
 
-/* Separação visual entre jogos */
-.jogo + .jogo {
-    margin-top: 5px;
+.capa-sem-imagem {
+    height: 280px;
+    background: #0c1120;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: #929bb0;
+    font-size: 3rem;
 }
 
-/* Adaptação a ecrãs pequenos */
+.capa-sem-imagem span {
+    font-size: 0.85rem;
+}
+
+.jogo-conteudo {
+    padding: 16px;
+}
+
+.jogo h3 {
+    color: #e9d5ff;
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    overflow-wrap: anywhere;
+}
+
+.jogo .descricao {
+    color: #aab3c7;
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+.ano-jogo {
+    display: inline-block;
+    color: #c084fc;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin: 8px 0 15px;
+}
+
+.acoes-jogo {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.acoes-jogo form {
+    margin: 0;
+}
+
+.acoes-jogo .botao {
+    font-size: 0.85rem;
+    padding: 9px 12px;
+}
+
+/* ==============================
+   MENSAGENS
+================================= */
+
+[role="alert"] {
+    background: #3a1724;
+    color: #fecaca;
+    border: 1px solid #9f354d;
+    border-radius: 8px;
+    padding: 14px;
+}
+
+.sem-resultados {
+    color: #aab3c7;
+    padding: 15px 0;
+}
+
+/* ==============================
+   RODAPÉ
+================================= */
+
+footer {
+    background: #111624;
+    border-top: 1px solid #293149;
+    text-align: center;
+    padding: 22px;
+    margin-top: 45px;
+    color: #929bb0;
+}
+
+/* ==============================
+   ADAPTAÇÃO A TELEMÓVEIS
+================================= */
+
+@media (max-width: 850px) {
+    .topo-conteudo {
+        flex-direction: column;
+        justify-content: center;
+        padding: 16px 0;
+    }
+
+    .menu {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .destaque {
+        padding: 35px 25px;
+    }
+
+    .formulario-filtros {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .botoes-filtro {
+        grid-column: 1 / -1;
+    }
+}
+
 @media (max-width: 600px) {
     main {
         width: 94%;
-        margin: 15px auto;
+        margin: 18px auto;
     }
 
-    section {
-        padding: 16px;
+    .destaque {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 20px;
     }
 
-    header h1 {
-        font-size: 1.6rem;
+    .destaque-icon {
+        align-self: center;
+        font-size: 5rem;
     }
 
+    .destaque-botoes {
+        flex-direction: column;
+    }
+
+    .destaque-botoes .botao {
+        width: 100%;
+    }
+
+    .secao {
+        padding: 20px 15px;
+    }
+
+    .formulario-filtros {
+        grid-template-columns: 1fr;
+    }
+
+    .botoes-filtro {
+        grid-column: auto;
+        flex-direction: column;
+    }
+
+    .botoes-filtro .botao {
+        width: 100%;
+    }
+
+    .catalogo {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .capa-jogo,
+    .capa-sem-imagem {
+        height: 190px;
+    }
+
+    .jogo-conteudo {
+        padding: 11px;
+    }
+
+    .jogo h3 {
+        font-size: 0.95rem;
+    }
+
+    .acoes-jogo {
+        flex-direction: column;
+    }
+
+    .acoes-jogo .botao {
+        width: 100%;
+    }
+
+    .menu {
+        gap: 10px 15px;
+    }
+
+    .menu a {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 380px) {
     .catalogo {
         grid-template-columns: 1fr;
     }
 
-    .capa-jogo {
-        height: 320px;
+    .capa-jogo,
+    .capa-sem-imagem {
+        height: 300px;
     }
 }

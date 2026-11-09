@@ -1,0 +1,127 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Jogo | Game Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 GAME<span>CATALOG</span></a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao">
+            <div class="titulo-secao">
+                <h2>Adicionar videojogo</h2>
+                <p>Acrescenta um novo videojogo à tua coleção.</p>
+            </div>
+
+            {% if erro %}
+                <p role="alert">
+                    <strong>Erro:</strong> {{ erro }}
+                </p>
+            {% endif %}
+
+            <form
+                action="/jogos"
+                method="post"
+                enctype="multipart/form-data"
+                class="formulario-adicionar"
+            >
+
+                <div class="campo">
+                    <label for="titulo">Título:</label>
+                    <input
+                        type="text"
+                        id="titulo"
+                        name="titulo"
+                        value="{{ titulo or '' }}"
+                        placeholder="Nome do videojogo"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="descricao">Descrição:</label>
+                    <textarea
+                        id="descricao"
+                        name="descricao"
+                        placeholder="Escreve uma descrição do videojogo..."
+                    >{{ descricao or '' }}</textarea>
+                </div>
+
+                <div class="campo">
+                    <label for="ano_lancamento">Ano de lançamento:</label>
+                    <input
+                        type="number"
+                        id="ano_lancamento"
+                        name="ano_lancamento"
+                        min="1950"
+                        max="2100"
+                        value="{{ ano_lancamento or '' }}"
+                        placeholder="Ex.: 2023"
+                        required
+                    >
+                </div>
+
+                <div class="campo">
+                    <label for="genero_id">Género:</label>
+                    <select id="genero_id" name="genero_id">
+                        <option value="">Sem género</option>
+
+                        {% for genero in generos %}
+                            <option
+                                value="{{ genero.id_genero }}"
+                                {% if genero_id|string == genero.id_genero|string %}selected{% endif %}
+                            >
+                                {{ genero.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="campo">
+                    <label for="ficheiro_capa">
+                        Capa do videojogo (opcional):
+                    </label>
+
+                    <input
+                        type="file"
+                        id="ficheiro_capa"
+                        name="ficheiro_capa"
+                        accept=".png,.jpg,.jpeg,image/png,image/jpeg"
+                    >
+
+                    <small>
+                        Formatos permitidos: PNG e JPG.
+                        Tamanho máximo: 5 MB.
+                    </small>
+                </div>
+
+                <button type="submit" class="botao botao-principal">
+                    Guardar videojogo
+                </button>
+
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>🎮 Game Catalog | Catálogo de Videojogos</p>
+    </footer>
+
+</body>
+</html>
