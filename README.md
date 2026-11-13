@@ -1,4 +1,3 @@
-
 # 🎮 Game Catalog — Catálogo de Videojogos
 
 ## 📌 Sobre o projeto
