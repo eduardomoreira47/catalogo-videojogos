@@ -1,25 +1,23 @@
-# catalogo-videojogos
-# 🎮 Catálogo de Videojogos
+
+# 🎮 Game Catalog — Catálogo de Videojogos
 
 ## 📌 Sobre o projeto
 
-O **Catálogo de Videojogos** é uma aplicação web desenvolvida no âmbito de um projeto de formação, com o objetivo de gerir, organizar e consultar informações sobre videojogos num único local.
+O **Game Catalog — Catálogo de Videojogos** é uma aplicação web desenvolvida no âmbito de um projeto de formação, com o objetivo de gerir, organizar e consultar informações sobre videojogos num único local.
 
-A aplicação permitirá organizar os jogos por género, plataforma e ano de lançamento, facilitando a pesquisa e a consulta das informações de cada videojogo.
+A aplicação permite criar e gerir uma coleção de videojogos, consultar os seus detalhes, organizar os jogos por género e acompanhar os títulos favoritos.
 
 ## 🎯 Objetivos
 
 - Organizar informações sobre videojogos.
 - Permitir adicionar, consultar, editar e eliminar videojogos.
 - Associar vários géneros a um videojogo.
-- Associar várias plataformas a um videojogo.
-- Pesquisar jogos pelo título.
-- Filtrar os resultados por género, plataforma e ano de lançamento.
+- Pesquisar e filtrar jogos.
+- Consultar estatísticas do catálogo.
+- Gerir uma lista de videojogos favoritos.
 - Utilizar uma base de dados relacional para guardar a informação.
 
 ## 🛠️ Tecnologias utilizadas
-
-O projeto será desenvolvido com as seguintes tecnologias:
 
 - **Python** — linguagem de programação principal.
 - **FastAPI** — desenvolvimento da aplicação web.
@@ -30,48 +28,106 @@ O projeto será desenvolvido com as seguintes tecnologias:
 - **Pytest** — realização de testes.
 - **Git e GitHub** — controlo de versões e alojamento do código-fonte.
 
-## ⚙️ Funcionalidades previstas
+## ⚙️ Funcionalidades implementadas
 
-A aplicação deverá permitir:
-
-1. Registar novos videojogos.
-2. Consultar os videojogos existentes.
-3. Editar as informações dos videojogos.
-4. Eliminar videojogos do catálogo.
-5. Pesquisar videojogos pelo título.
-6. Filtrar videojogos por género, plataforma e ano de lançamento.
-7. Gerir os géneros e as plataformas associados aos videojogos.
+1. **Página inicial** — apresentação e acesso às principais áreas da aplicação.
+2. **Gestão de videojogos** — adicionar, consultar, editar e eliminar jogos.
+3. **Capas dos videojogos** — carregamento e apresentação de imagens.
+4. **Pesquisa e filtros** — pesquisa por título e filtragem por ano e género.
+5. **Gestão de géneros** — associação de géneros aos videojogos.
+6. **Estatísticas** — consulta do número total de jogos e distribuição por décadas.
+7. **Sistema de favoritos** — adicionar e retirar jogos dos favoritos.
+8. **Página de favoritos** — consulta dos videojogos favoritos.
+9. **Página de detalhes** — apresentação individual da informação de cada videojogo.
+10. **Ordenação** — organização por título (A-Z e Z-A) e por ano de lançamento.
 
 ## 🗄️ Base de dados
 
-Será utilizada a base de dados **SQLite** para guardar as informações do catálogo.
+É utilizada a base de dados **SQLite** para guardar as informações do catálogo.
 
-O modelo de dados será organizado em três entidades principais:
+O modelo de dados inclui as seguintes entidades e tabelas:
 
-- **Jogo** — contém as informações de cada videojogo, como título, descrição e ano de lançamento.
-- **Género** — identifica os géneros dos videojogos.
-- **Plataforma** — identifica as plataformas em que os videojogos estão disponíveis.
+- **JOGO** — informações dos videojogos.
+- **GENERO** — géneros dos videojogos.
+- **PLATAFORMA** — plataformas associadas aos videojogos.
+- **JOGO_GENERO** — associação entre videojogos e géneros.
+- **JOGO_PLATAFORMA** — associação entre videojogos e plataformas.
+- **JOGO_FAVORITO** — registo dos videojogos favoritos.
 
-Um videojogo poderá estar associado a vários géneros e plataformas.
+Um videojogo pode estar associado a vários géneros e plataformas.
 
 ## 🏗️ Organização do projeto
 
-A aplicação será desenvolvida com uma estrutura organizada por responsabilidades, separando a interface, a lógica de negócio e o acesso aos dados.
+A aplicação está organizada por responsabilidades, separando a interface, a lógica de negócio e o acesso aos dados.
 
-A estrutura será definida e desenvolvida progressivamente ao longo do projeto.
+Principais elementos:
+
+- `app/main.py` — rotas e funcionamento principal da aplicação.
+- `app/repositorio.py` — operações de acesso à base de dados.
+- `app/services/jogos.py` — lógica de negócio e validações.
+- `app/database/` — configuração e inicialização da base de dados.
+- `app/templates/` — páginas HTML da aplicação.
+- `app/static/` — ficheiros CSS e capas dos videojogos.
+- `registo_desenvolvimento.md` — histórico do desenvolvimento do projeto.
+
+## 🚀 Instalação e execução
+
+### 1. Clonar o repositório
+
+```bash
+git clone https://github.com/eduardomoreira47/catalogo-videojogos.git
+```
+
+### 2. Entrar na pasta do projeto
+
+```bash
+cd catalogo-videojogos
+```
+
+### 3. Criar um ambiente virtual
+
+```bash
+python -m venv .venv
+```
+
+### 4. Ativar o ambiente virtual
+
+No Windows, utilizando Git Bash:
+
+```bash
+source .venv/Scripts/activate
+```
+
+### 5. Instalar as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 6. Iniciar a aplicação
+
+```bash
+python -m uvicorn app.main:app --reload
+```
+
+### 7. Abrir no navegador
+
+Aceder ao endereço:
+
+http://127.0.0.1:8000
 
 ## 🚧 Estado do projeto
 
 **Em desenvolvimento.**
 
-Nesta fase inicial, o ambiente de desenvolvimento está configurado e a aplicação FastAPI já consegue ser executada localmente. As restantes funcionalidades serão implementadas progressivamente.
+A aplicação já disponibiliza várias funcionalidades de gestão e consulta de videojogos. Continuam previstas melhorias e novas funcionalidades.
 
 ## 🎓 Contexto de desenvolvimento
 
-Projeto desenvolvido no âmbito das UFCD 5425 e 10790, com o objetivo de aplicar conhecimentos de programação, bases de dados, desenvolvimento web, testes e controlo de versões.
+Projeto desenvolvido no âmbito das **UFCD 5425 e 10790**, com o objetivo de aplicar conhecimentos de programação, bases de dados, desenvolvimento web, testes e controlo de versões.
 
 ## 👨‍💻 Repositório
 
-O código-fonte do projeto está disponível no GitHub:
+O código-fonte está disponível no GitHub:
 
 [Catálogo de Videojogos — Repositório GitHub](https://github.com/eduardomoreira47/catalogo-videojogos)
