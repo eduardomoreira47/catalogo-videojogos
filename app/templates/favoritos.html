@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favoritos | Game Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 GAME<span>CATALOG</span></a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+                <a href="/favoritos">❤️ Favoritos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao">
+            <div class="titulo-secao">
+                <h2>❤️ Os meus jogos favoritos</h2>
+                <p>Aqui encontras os videojogos que escolheste como favoritos.</p>
+            </div>
+
+            {% if jogos %}
+                <div class="catalogo">
+                    {% for jogo in jogos %}
+                        <article class="jogo">
+
+                            {% if jogo.capa %}
+                                <img
+                                    class="capa-jogo"
+                                    src="{{ url_for('static', path=jogo.capa) }}"
+                                    alt="Capa de {{ jogo.titulo }}"
+                                >
+                            {% else %}
+                                <div class="capa-sem-imagem">
+                                    🎮
+                                    <span>Sem capa</span>
+                                </div>
+                            {% endif %}
+
+                            <div class="jogo-conteudo">
+                                <h3>{{ jogo.titulo }}</h3>
+
+                                <p class="genero-jogo">❤️ Jogo favorito</p>
+
+                                <p class="descricao">
+                                    {{ jogo.descricao or "Sem descrição." }}
+                                </p>
+
+                                <span class="ano-jogo">
+                                    Ano: {{ jogo.ano_lancamento }}
+                                </span>
+
+                                <p class="genero-jogo">
+                                    Género:
+                                    {{ jogo.generos or "Sem género" }}
+                                </p>
+
+                                <div class="acoes-jogo">
+
+                                    <form
+                                        action="/jogos/{{ jogo.id_jogo }}/retirar-favorito"
+                                        method="post"
+                                    >
+                                        <input type="hidden" name="origem" value="favoritos">
+                                        <button type="submit" class="botao">
+                                            ❤️ Retirar dos favoritos
+                                        </button>
+                                    </form>
+
+                                    <a
+                                        href="/jogos/{{ jogo.id_jogo }}/editar"
+                                        class="botao botao-editar"
+                                    >
+                                        Editar
+                                    </a>
+
+                                </div>
+                            </div>
+
+                        </article>
+                    {% endfor %}
+                </div>
+
+            {% else %}
+                <p class="sem-resultados">
+                    Ainda não tens jogos favoritos.
+                    Vai ao catálogo e escolhe os teus videojogos preferidos!
+                </p>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        <p>🎮 Game Catalog | Catálogo de Videojogos</p>
+    </footer>
+
+</body>
+</html>

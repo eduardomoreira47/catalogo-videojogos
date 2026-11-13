@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ jogo.titulo }} | Game Catalog</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='estilo.css') }}">
+</head>
+<body>
+
+    <header class="topo">
+        <div class="topo-conteudo">
+            <a href="/" class="logo">🎮 GAME<span>CATALOG</span></a>
+
+            <nav class="menu">
+                <a href="/">Início</a>
+                <a href="/jogos">Todos os jogos</a>
+                <a href="/filtrar">Filtrar jogos</a>
+                <a href="/adicionar">Adicionar jogo</a>
+                <a href="/favoritos">❤️ Favoritos</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="secao">
+            <div class="titulo-secao">
+                <h2>Detalhes do videojogo</h2>
+                <p>Consulta toda a informação deste videojogo.</p>
+            </div>
+
+            <article class="jogo">
+
+                {% if jogo.capa %}
+                    <img
+                        class="capa-jogo"
+                        src="{{ url_for('static', path=jogo.capa) }}"
+                        alt="Capa de {{ jogo.titulo }}"
+                    >
+                {% else %}
+                    <div class="capa-sem-imagem">
+                        🎮
+                        <span>Sem capa</span>
+                    </div>
+                {% endif %}
+
+                <div class="jogo-conteudo">
+                    <h3>{{ jogo.titulo }}</h3>
+
+                    {% if jogo.favorito %}
+                        <p class="genero-jogo">❤️ Jogo favorito</p>
+                    {% endif %}
+
+                    <h4>Descrição</h4>
+                    <p class="descricao">
+                        {{ jogo.descricao or "Sem descrição disponível." }}
+                    </p>
+
+                    <p class="ano-jogo">
+                        <strong>Ano de lançamento:</strong>
+                        {{ jogo.ano_lancamento }}
+                    </p>
+
+                    <p class="genero-jogo">
+                        <strong>Género:</strong>
+                        {{ jogo.generos or "Sem género associado" }}
+                    </p>
+
+                    <div class="acoes-jogo">
+                        <a
+                            href="/jogos/{{ jogo.id_jogo }}/editar"
+                            class="botao botao-editar"
+                        >
+                            Editar videojogo
+                        </a>
+
+                        <a href="/jogos" class="botao">
+                            Voltar ao catálogo
+                        </a>
+                    </div>
+                </div>
+
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>🎮 Game Catalog | Catálogo de Videojogos</p>
+    </footer>
+
+</body>
+</html>

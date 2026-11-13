@@ -43,9 +43,15 @@ def criar_tabelas():
                 FOREIGN KEY (id_plataforma) REFERENCES PLATAFORMA(id_plataforma)
                     ON DELETE CASCADE
             );
+
+            CREATE TABLE IF NOT EXISTS JOGO_FAVORITO (
+                id_jogo INTEGER PRIMARY KEY,
+                FOREIGN KEY (id_jogo) REFERENCES JOGO(id_jogo)
+                    ON DELETE CASCADE
+            );
         """)
 
-        # Verifica se a coluna capa já existe.
+        # Verifica as colunas existentes na tabela JOGO.
         colunas = conexao.execute(
             "PRAGMA table_info(JOGO)"
         ).fetchall()

@@ -19,6 +19,9 @@ from app.services.jogos import (
     remover_jogo,
     obter_estatisticas,
     obter_lista_generos,
+    adicionar_favorito,
+    remover_favorito,
+    obter_favoritos,
 )
 
 
@@ -134,16 +137,120 @@ def pagina_estatisticas(request: Request):
 # ==========================================
 
 @app.get("/jogos", response_class=HTMLResponse)
-def pagina_jogos(request: Request):
-    """Apresenta todos os videojogos do catálogo."""
+def pagina_jogos(
+    request: Request,
+    ordenar: str = "titulo_az",
+):
+    """Apresenta todos os videojogos com a ordenação escolhida."""
+
+    opcoes_ordenacao = {
+        "titulo_az",
+        "titulo_za",
+        "ano_antigo",
+        "ano_recente",
+    }
+
+    if ordenar not in opcoes_ordenacao:
+        ordenar = "titulo_az"
 
     return templates.TemplateResponse(
         request=request,
         name="jogos.html",
         context={
-            "jogos": obter_jogos(),
+            "jogos": obter_jogos(ordenar),
+            "ordenar": ordenar,
         },
     )
+
+
+# ==========================================
+# PÁGINA DE DETALHES DE UM JOGO
+# ==========================================
+
+@app.get("/jogos/{id_jogo}", response_class=HTMLResponse)
+def pagina_detalhes_jogo(request: Request, id_jogo: int):
+    """Apresenta os detalhes de um videojogo."""
+
+    jogo = obter_jogo(id_jogo)
+
+    if jogo is None:
+        return HTMLResponse(
+            "Videojogo não encontrado.",
+            status_code=404,
+        )
+
+    return templates.TemplateResponse(
+        request=request,
+        name="detalhes_jogo.html",
+        context={
+            "jogo": jogo,
+        },
+    )
+
+
+# ==========================================
+# PÁGINA DE FAVORITOS
+# ==========================================
+
+@app.get("/favoritos", response_class=HTMLResponse)
+def pagina_favoritos(request: Request):
+    """Apresenta todos os videojogos favoritos."""
+
+    return templates.TemplateResponse(
+        request=request,
+        name="favoritos.html",
+        context={
+            "jogos": obter_favoritos(),
+        },
+    )
+
+
+# ==========================================
+# ADICIONAR AOS FAVORITOS
+# ==========================================
+
+@app.post("/jogos/{id_jogo}/favorito")
+def rota_adicionar_favorito(
+    id_jogo: int,
+    origem: str = Form("jogos"),
+):
+    """Adiciona um videojogo à lista de favoritos."""
+
+    try:
+        adicionar_favorito(id_jogo)
+    except ValueError:
+        return HTMLResponse(
+            "Videojogo não encontrado.",
+            status_code=404,
+        )
+
+    destino = "/favoritos" if origem == "favoritos" else "/jogos"
+
+    return RedirectResponse(url=destino, status_code=303)
+
+
+# ==========================================
+# RETIRAR DOS FAVORITOS
+# ==========================================
+
+@app.post("/jogos/{id_jogo}/retirar-favorito")
+def rota_remover_favorito(
+    id_jogo: int,
+    origem: str = Form("favoritos"),
+):
+    """Retira um videojogo da lista de favoritos."""
+
+    try:
+        remover_favorito(id_jogo)
+    except ValueError:
+        return HTMLResponse(
+            "Videojogo não encontrado.",
+            status_code=404,
+        )
+
+    destino = "/favoritos" if origem == "favoritos" else "/jogos"
+
+    return RedirectResponse(url=destino, status_code=303)
 
 
 # ==========================================

@@ -18,6 +18,7 @@
                 <a href="/jogos">Todos os jogos</a>
                 <a href="/filtrar">Filtrar jogos</a>
                 <a href="/adicionar">Adicionar jogo</a>
+                <a href="/favoritos">❤️ Favoritos</a>
             </nav>
         </div>
     </header>
@@ -28,6 +29,39 @@
                 <h2>Todos os videojogos</h2>
                 <p>Explora e gere os videojogos da tua coleção.</p>
             </div>
+
+            <!-- MENU DE ORDENAÇÃO -->
+            <form action="/jogos" method="get" class="filtros">
+                <div>
+                    <label for="ordenar">Ordenar videojogos por:</label>
+
+                    <select name="ordenar" id="ordenar">
+                        <option value="titulo_az"
+                            {% if ordenar == "titulo_az" %}selected{% endif %}>
+                            Título (A-Z)
+                        </option>
+
+                        <option value="titulo_za"
+                            {% if ordenar == "titulo_za" %}selected{% endif %}>
+                            Título (Z-A)
+                        </option>
+
+                        <option value="ano_antigo"
+                            {% if ordenar == "ano_antigo" %}selected{% endif %}>
+                            Ano de lançamento (mais antigo)
+                        </option>
+
+                        <option value="ano_recente"
+                            {% if ordenar == "ano_recente" %}selected{% endif %}>
+                            Ano de lançamento (mais recente)
+                        </option>
+                    </select>
+                </div>
+
+                <button type="submit" class="botao">
+                    Ordenar
+                </button>
+            </form>
 
             {% if jogos %}
                 <div class="catalogo">
@@ -50,6 +84,10 @@
                             <div class="jogo-conteudo">
                                 <h3>{{ jogo.titulo }}</h3>
 
+                                {% if jogo.favorito %}
+                                    <p class="genero-jogo">❤️ Jogo favorito</p>
+                                {% endif %}
+
                                 <p class="descricao">
                                     {{ jogo.descricao or "Sem descrição." }}
                                 </p>
@@ -64,6 +102,36 @@
                                 </p>
 
                                 <div class="acoes-jogo">
+
+                                    <a
+                                        href="/jogos/{{ jogo.id_jogo }}"
+                                        class="botao"
+                                    >
+                                        Ver detalhes
+                                    </a>
+
+                                    {% if jogo.favorito %}
+                                        <form
+                                            action="/jogos/{{ jogo.id_jogo }}/retirar-favorito"
+                                            method="post"
+                                        >
+                                            <input type="hidden" name="origem" value="jogos">
+                                            <button type="submit" class="botao">
+                                                ❤️ Retirar dos favoritos
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <form
+                                            action="/jogos/{{ jogo.id_jogo }}/favorito"
+                                            method="post"
+                                        >
+                                            <input type="hidden" name="origem" value="jogos">
+                                            <button type="submit" class="botao">
+                                                ♡ Adicionar aos favoritos
+                                            </button>
+                                        </form>
+                                    {% endif %}
+
                                     <a
                                         href="/jogos/{{ jogo.id_jogo }}/editar"
                                         class="botao botao-editar"

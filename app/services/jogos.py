@@ -8,6 +8,10 @@ from app.repositorio import (
     obter_generos,
     pesquisar_jogos as pesquisar_jogos_repositorio,
     obter_estatisticas_jogos as obter_estatisticas_repositorio,
+    adicionar_favorito as adicionar_favorito_repositorio,
+    remover_favorito as remover_favorito_repositorio,
+    verificar_favorito as verificar_favorito_repositorio,
+    listar_favoritos as listar_favoritos_repositorio,
 )
 
 
@@ -65,10 +69,10 @@ def criar_jogo(
     )
 
 
-def obter_jogos():
-    """Devolve a lista de videojogos registados."""
+def obter_jogos(ordenar_por="titulo_az"):
+    """Devolve a lista de videojogos com a ordenação escolhida."""
 
-    return listar_jogos()
+    return listar_jogos(ordenar_por)
 
 
 def pesquisar_jogos(titulo="", ano_lancamento=None, genero_id=None):
@@ -143,3 +147,37 @@ def remover_jogo(id_jogo):
         raise ValueError("O videojogo que pretendes eliminar não existe.")
 
     return eliminar_jogo(id_jogo)
+
+
+def adicionar_favorito(id_jogo):
+    """Adiciona um videojogo aos favoritos."""
+
+    jogo = obter_jogo_por_id(id_jogo)
+
+    if jogo is None:
+        raise ValueError("O videojogo não existe.")
+
+    adicionar_favorito_repositorio(id_jogo)
+
+
+def remover_favorito(id_jogo):
+    """Remove um videojogo dos favoritos."""
+
+    jogo = obter_jogo_por_id(id_jogo)
+
+    if jogo is None:
+        raise ValueError("O videojogo não existe.")
+
+    remover_favorito_repositorio(id_jogo)
+
+
+def verificar_favorito(id_jogo):
+    """Verifica se um videojogo é favorito."""
+
+    return verificar_favorito_repositorio(id_jogo)
+
+
+def obter_favoritos():
+    """Devolve todos os videojogos favoritos."""
+
+    return listar_favoritos_repositorio()

@@ -60,14 +60,23 @@ def guardar_jogo(
         conexao.close()
 
 
-def listar_jogos():
-    """Devolve os videojogos e os respetivos géneros."""
+def listar_jogos(ordenar_por="titulo_az"):
+    """Devolve os videojogos ordenados, com géneros e estado de favorito."""
 
     conexao = obter_conexao()
 
     try:
-        cursor = conexao.execute(
-            """
+        ordenacoes = {
+            "titulo_az": "JOGO.titulo ASC",
+            "titulo_za": "JOGO.titulo DESC",
+            "ano_antigo": "JOGO.ano_lancamento ASC, JOGO.titulo ASC",
+            "ano_recente": "JOGO.ano_lancamento DESC, JOGO.titulo ASC",
+        }
+
+        # Se receber uma opção inválida, utiliza título A-Z.
+        ordem = ordenacoes.get(ordenar_por, "JOGO.titulo ASC")
+
+        consulta = f"""
             SELECT
                 JOGO.id_jogo,
                 JOGO.titulo,
@@ -85,11 +94,17 @@ def listar_jogos():
                     SELECT MIN(id_genero)
                     FROM JOGO_GENERO
                     WHERE JOGO_GENERO.id_jogo = JOGO.id_jogo
-                ) AS genero_id
+                ) AS genero_id,
+                EXISTS (
+                    SELECT 1
+                    FROM JOGO_FAVORITO
+                    WHERE JOGO_FAVORITO.id_jogo = JOGO.id_jogo
+                ) AS favorito
             FROM JOGO
-            ORDER BY JOGO.titulo ASC
-            """
-        )
+            ORDER BY {ordem}
+        """
+
+        cursor = conexao.execute(consulta)
 
         return [dict(linha) for linha in cursor.fetchall()]
 
@@ -125,7 +140,12 @@ def pesquisar_jogos(
                     SELECT MIN(id_genero)
                     FROM JOGO_GENERO
                     WHERE JOGO_GENERO.id_jogo = JOGO.id_jogo
-                ) AS genero_id
+                ) AS genero_id,
+                EXISTS (
+                    SELECT 1
+                    FROM JOGO_FAVORITO
+                    WHERE JOGO_FAVORITO.id_jogo = JOGO.id_jogo
+                ) AS favorito
             FROM JOGO
             WHERE JOGO.titulo LIKE ?
         """
@@ -182,7 +202,12 @@ def obter_jogo_por_id(id_jogo):
                     SELECT MIN(id_genero)
                     FROM JOGO_GENERO
                     WHERE JOGO_GENERO.id_jogo = JOGO.id_jogo
-                ) AS genero_id
+                ) AS genero_id,
+                EXISTS (
+                    SELECT 1
+                    FROM JOGO_FAVORITO
+                    WHERE JOGO_FAVORITO.id_jogo = JOGO.id_jogo
+                ) AS favorito
             FROM JOGO
             WHERE JOGO.id_jogo = ?
             """,
@@ -265,6 +290,102 @@ def eliminar_jogo(id_jogo):
         conexao.commit()
 
         return cursor.rowcount > 0
+
+    finally:
+        conexao.close()
+
+
+def adicionar_favorito(id_jogo):
+    """Marca um videojogo como favorito."""
+
+    conexao = obter_conexao()
+
+    try:
+        conexao.execute(
+            """
+            INSERT OR IGNORE INTO JOGO_FAVORITO (id_jogo)
+            VALUES (?)
+            """,
+            (id_jogo,)
+        )
+
+        conexao.commit()
+
+    finally:
+        conexao.close()
+
+
+def remover_favorito(id_jogo):
+    """Retira um videojogo dos favoritos."""
+
+    conexao = obter_conexao()
+
+    try:
+        conexao.execute(
+            """
+            DELETE FROM JOGO_FAVORITO
+            WHERE id_jogo = ?
+            """,
+            (id_jogo,)
+        )
+
+        conexao.commit()
+
+    finally:
+        conexao.close()
+
+
+def verificar_favorito(id_jogo):
+    """Verifica se um videojogo está marcado como favorito."""
+
+    conexao = obter_conexao()
+
+    try:
+        cursor = conexao.execute(
+            """
+            SELECT 1
+            FROM JOGO_FAVORITO
+            WHERE id_jogo = ?
+            """,
+            (id_jogo,)
+        )
+
+        return cursor.fetchone() is not None
+
+    finally:
+        conexao.close()
+
+
+def listar_favoritos():
+    """Devolve todos os videojogos marcados como favoritos."""
+
+    conexao = obter_conexao()
+
+    try:
+        cursor = conexao.execute(
+            """
+            SELECT
+                JOGO.id_jogo,
+                JOGO.titulo,
+                JOGO.descricao,
+                JOGO.ano_lancamento,
+                JOGO.capa,
+                (
+                    SELECT GROUP_CONCAT(GENERO.nome, ', ')
+                    FROM JOGO_GENERO
+                    INNER JOIN GENERO
+                        ON JOGO_GENERO.id_genero = GENERO.id_genero
+                    WHERE JOGO_GENERO.id_jogo = JOGO.id_jogo
+                ) AS generos,
+                1 AS favorito
+            FROM JOGO
+            INNER JOIN JOGO_FAVORITO
+                ON JOGO.id_jogo = JOGO_FAVORITO.id_jogo
+            ORDER BY JOGO.titulo ASC
+            """
+        )
+
+        return [dict(linha) for linha in cursor.fetchall()]
 
     finally:
         conexao.close()

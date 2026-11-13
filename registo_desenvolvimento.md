@@ -147,3 +147,35 @@ Foi executado o script `verificar_capas.py`, tendo sido obtido o seguinte result
 - Melhorias no menu de navegação e no design visual da aplicação, com um tema escuro e elementos modernos.
 - Atualização dos ficheiros de código e dos templates para suportar as novas funcionalidades.
 - Preparação das alterações para atualização do repositório no GitHub.
+
+
+ 13/11/2026 — Desenvolvimento de novas funcionalidades
+
+Nesta sessão foi iniciado o desenvolvimento do sistema de favoritos e foram implementadas várias melhorias no catálogo de videojogos.
+
+**1. Sistema de favoritos**
+- Criação da tabela `JOGO_FAVORITO` na base de dados SQLite.
+- Implementação das funcionalidades para adicionar e retirar videojogos dos favoritos.
+- Criação de uma página independente para apresentar os jogos favoritos.
+- Identificação visual dos jogos favoritos no catálogo.
+
+**2. Página de detalhes dos videojogos**
+- Criação de uma página individual para cada videojogo.
+- Apresentação da capa, título, descrição, ano de lançamento e géneros.
+- Identificação do estado de favorito.
+- Disponibilização de acesso à edição do videojogo e regresso ao catálogo.
+
+**3. Ordenação dos videojogos**
+- Implementação da ordenação por título (A-Z).
+- Implementação da ordenação por título (Z-A).
+- Ordenação por ano de lançamento, do mais antigo para o mais recente.
+- Ordenação por ano de lançamento, do mais recente para o mais antigo.
+- Criação de um menu de seleção na página Todos os jogos.
+
+**4. Verificação das funcionalidades**
+- Verificação do funcionamento das funcionalidades implementadas.
+- Confirmação da manutenção das funcionalidades de consulta, edição, eliminação e gestão de capas.
+
+**Resultado:**
+
+O catálogo de videojogos passou a disponibilizar novas funcionalidades que permitem organizar melhor a coleção, consultar informação detalhada sobre cada jogo e gerir uma lista de videojogos favoritos.
