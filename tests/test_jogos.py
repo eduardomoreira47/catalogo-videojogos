@@ -26,14 +26,50 @@ def preparar_base_dados(tmp_path, monkeypatch):
 
     conexao = obter_conexao_teste()
 
-    conexao.execute("""
+    conexao.executescript("""
         CREATE TABLE JOGO (
             id_jogo INTEGER PRIMARY KEY,
             titulo TEXT NOT NULL,
             descricao TEXT,
             ano_lancamento INTEGER,
             capa TEXT
-        )
+        );
+
+        CREATE TABLE GENERO (
+            id_genero INTEGER PRIMARY KEY,
+            nome TEXT NOT NULL UNIQUE
+        );
+
+        CREATE TABLE PLATAFORMA (
+            id_plataforma INTEGER PRIMARY KEY,
+            nome TEXT NOT NULL UNIQUE
+        );
+
+        CREATE TABLE JOGO_GENERO (
+            id_jogo INTEGER NOT NULL,
+            id_genero INTEGER NOT NULL,
+            PRIMARY KEY (id_jogo, id_genero),
+            FOREIGN KEY (id_jogo) REFERENCES JOGO(id_jogo)
+                ON DELETE CASCADE,
+            FOREIGN KEY (id_genero) REFERENCES GENERO(id_genero)
+                ON DELETE CASCADE
+        );
+
+        CREATE TABLE JOGO_PLATAFORMA (
+            id_jogo INTEGER NOT NULL,
+            id_plataforma INTEGER NOT NULL,
+            PRIMARY KEY (id_jogo, id_plataforma),
+            FOREIGN KEY (id_jogo) REFERENCES JOGO(id_jogo)
+                ON DELETE CASCADE,
+            FOREIGN KEY (id_plataforma) REFERENCES PLATAFORMA(id_plataforma)
+                ON DELETE CASCADE
+        );
+
+        CREATE TABLE JOGO_FAVORITO (
+            id_jogo INTEGER PRIMARY KEY,
+            FOREIGN KEY (id_jogo) REFERENCES JOGO(id_jogo)
+                ON DELETE CASCADE
+        );
     """)
 
     conexao.commit()
