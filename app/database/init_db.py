@@ -64,7 +64,7 @@ def criar_tabelas():
                 "ALTER TABLE JOGO ADD COLUMN capa TEXT"
             )
 
-        # Lista inicial de géneros.
+        # Lista de géneros.
         generos = [
             "Ação",
             "Aventura",
@@ -80,11 +80,65 @@ def criar_tabelas():
             "Mundo Aberto"
         ]
 
-        # Insere os géneros sem criar duplicados.
         for genero in generos:
             conexao.execute(
                 "INSERT OR IGNORE INTO GENERO (nome) VALUES (?)",
                 (genero,)
+            )
+
+        # Atualiza o nome da primeira PlayStation, se necessário.
+        conexao.execute("""
+            UPDATE PLATAFORMA
+            SET nome = 'PlayStation (PS1)'
+            WHERE nome = 'PlayStation'
+              AND NOT EXISTS (
+                  SELECT 1 FROM PLATAFORMA
+                  WHERE nome = 'PlayStation (PS1)'
+              )
+        """)
+
+        # Lista de plataformas.
+        plataformas = [
+            "PC",
+            "macOS",
+            "Linux",
+            "PlayStation (PS1)",
+            "PlayStation 2",
+            "PlayStation 3",
+            "PlayStation 4",
+            "PlayStation 5",
+            "PSP",
+            "PS Vita",
+            "Xbox",
+            "Xbox 360",
+            "Xbox One",
+            "Xbox Series X/S",
+            "Nintendo Entertainment System (NES)",
+            "Super Nintendo (SNES)",
+            "Nintendo 64",
+            "Nintendo GameCube",
+            "Nintendo Wii",
+            "Nintendo Wii U",
+            "Nintendo Switch",
+            "Game Boy",
+            "Game Boy Color",
+            "Game Boy Advance",
+            "Nintendo DS",
+            "Nintendo 3DS",
+            "Android",
+            "iOS",
+            "Arcade",
+            "Sega Mega Drive (Genesis)",
+            "Sega Master System",
+            "Sega Game Gear",
+            "Sega Saturn",
+            "Sega Dreamcast"
+        ]
+
+        for plataforma in plataformas:
+            conexao.execute(
+                "INSERT OR IGNORE INTO PLATAFORMA (nome) VALUES (?)",
+                (plataforma,)
             )
 
         conexao.commit()

@@ -6,6 +6,7 @@ from app.repositorio import (
     atualizar_jogo,
     eliminar_jogo,
     obter_generos,
+    obter_plataformas,
     pesquisar_jogos as pesquisar_jogos_repositorio,
     obter_estatisticas_jogos as obter_estatisticas_repositorio,
     adicionar_favorito as adicionar_favorito_repositorio,
@@ -36,6 +37,12 @@ def obter_lista_generos():
     """Devolve todos os géneros disponíveis."""
 
     return obter_generos()
+
+
+def obter_lista_plataformas():
+    """Devolve todas as plataformas disponíveis."""
+
+    return obter_plataformas()
 
 
 def criar_jogo(
@@ -75,13 +82,19 @@ def obter_jogos(ordenar_por="titulo_az"):
     return listar_jogos(ordenar_por)
 
 
-def pesquisar_jogos(titulo="", ano_lancamento=None, genero_id=None):
-    """Pesquisa videojogos pelo título, ano e género."""
+def pesquisar_jogos(
+    titulo="",
+    ano_lancamento=None,
+    genero_id=None,
+    plataforma_id=None,
+):
+    """Pesquisa videojogos pelo título, ano, género e plataforma."""
 
     return pesquisar_jogos_repositorio(
         titulo,
         ano_lancamento,
         genero_id,
+        plataforma_id,
     )
 
 

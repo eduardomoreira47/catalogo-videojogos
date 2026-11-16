@@ -71,6 +71,22 @@
                     </select>
                 </div>
 
+                <div class="campo">
+                    <label for="plataforma_id">Filtrar por plataforma:</label>
+                    <select id="plataforma_id" name="plataforma_id">
+                        <option value="">Todas as plataformas</option>
+
+                        {% for plataforma in plataformas %}
+                            <option
+                                value="{{ plataforma.id_plataforma }}"
+                                {% if plataforma_filtro|string == plataforma.id_plataforma|string %}selected{% endif %}
+                            >
+                                {{ plataforma.nome }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
                 <div class="botoes-filtro">
                     <button type="submit" class="botao botao-principal">
                         Pesquisar

@@ -22,6 +22,26 @@ def obter_generos():
         conexao.close()
 
 
+def obter_plataformas():
+    """Devolve todas as plataformas disponíveis."""
+
+    conexao = obter_conexao()
+
+    try:
+        cursor = conexao.execute(
+            """
+            SELECT id_plataforma, nome
+            FROM PLATAFORMA
+            ORDER BY nome ASC
+            """
+        )
+
+        return [dict(linha) for linha in cursor.fetchall()]
+
+    finally:
+        conexao.close()
+
+
 def guardar_jogo(
     titulo,
     descricao,
@@ -73,7 +93,6 @@ def listar_jogos(ordenar_por="titulo_az"):
             "ano_recente": "JOGO.ano_lancamento DESC, JOGO.titulo ASC",
         }
 
-        # Se receber uma opção inválida, utiliza título A-Z.
         ordem = ordenacoes.get(ordenar_por, "JOGO.titulo ASC")
 
         consulta = f"""
@@ -116,8 +135,9 @@ def pesquisar_jogos(
     titulo,
     ano_lancamento=None,
     genero_id=None,
+    plataforma_id=None,
 ):
-    """Pesquisa videojogos por título, ano e género."""
+    """Pesquisa videojogos por título, ano, género e plataforma."""
 
     conexao = obter_conexao()
 
@@ -166,6 +186,17 @@ def pesquisar_jogos(
                 )
             """
             parametros.append(genero_id)
+
+        if plataforma_id is not None:
+            consulta += """
+                AND EXISTS (
+                    SELECT 1
+                    FROM JOGO_PLATAFORMA
+                    WHERE JOGO_PLATAFORMA.id_jogo = JOGO.id_jogo
+                    AND JOGO_PLATAFORMA.id_plataforma = ?
+                )
+            """
+            parametros.append(plataforma_id)
 
         consulta += " ORDER BY JOGO.titulo ASC"
 

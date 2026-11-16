@@ -19,6 +19,7 @@ from app.services.jogos import (
     remover_jogo,
     obter_estatisticas,
     obter_lista_generos,
+    obter_lista_plataformas,
     adicionar_favorito,
     remover_favorito,
     obter_favoritos,
@@ -263,11 +264,13 @@ def pagina_filtrar(
     q: str = "",
     ano: str = "",
     genero_id: str = "",
+    plataforma_id: str = "",
 ):
-    """Pesquisa videojogos por título, ano e género."""
+    """Pesquisa videojogos por título, ano, género e plataforma."""
 
     ano_filtro = None
     genero_filtro = None
+    plataforma_filtro = None
 
     if ano.strip():
         try:
@@ -284,10 +287,17 @@ def pagina_filtrar(
         except ValueError:
             genero_filtro = None
 
+    if plataforma_id.strip():
+        try:
+            plataforma_filtro = int(plataforma_id)
+        except ValueError:
+            plataforma_filtro = None
+
     jogos = pesquisar_jogos(
         q,
         ano_filtro,
         genero_filtro,
+        plataforma_filtro,
     )
 
     return templates.TemplateResponse(
@@ -299,6 +309,8 @@ def pagina_filtrar(
             "ano_filtro": ano,
             "generos": obter_lista_generos(),
             "genero_filtro": genero_id,
+            "plataformas": obter_lista_plataformas(),
+            "plataforma_filtro": plataforma_id,
         },
     )
 

@@ -179,3 +179,21 @@ Nesta sessão foi iniciado o desenvolvimento do sistema de favoritos e foram imp
 **Resultado:**
 
 O catálogo de videojogos passou a disponibilizar novas funcionalidades que permitem organizar melhor a coleção, consultar informação detalhada sobre cada jogo e gerir uma lista de videojogos favoritos.
+
+
+16/11/2026 – Expansão do catálogo e filtros por plataforma
+
+- Aumentei o catálogo de 100 para 150 videojogos.
+- Importeis os 50 novos videojogos para a base de dados SQLite.
+- Verifiquei que não existiam títulos repetidos.
+- Associei capas a 45 dos novos videojogos, ficando 5 capas por adicionar manualmente.
+- Confirmei que o catálogo contém 150 jogos, dos quais 145 têm capas corretamente associadas.
+- Atualizei o ficheiro `init_db.py` para incluir 34 plataformas.
+- Criei o script `associar_generos_plataformas.py` para associar géneros e plataformas aos 150 videojogos.
+- Executei o script e confirmei que todos os jogos têm pelo menos um género e uma plataforma associados.
+- Iniciei a implementação do filtro por plataforma na aplicação.
+- Atualizei os ficheiros `repositorio.py`, `services/jogos.py` e `main.py` para permitir pesquisar videojogos por plataforma.
+- Atualizei o template `filtrar.html` para incluir o campo de seleção de plataformas.
+- Comecei a elaborar o relatório técnico final do projeto, organizando a informação sobre os requisitos, a base de dados, a arquitetura, as tecnologias utilizadas e as funcionalidades desenvolvidas.
+
+**Resultado:** O catálogo passou a conter 150 videojogos, com géneros e plataformas associados. O filtro por plataforma encontra-se em fase de teste e o relatório técnico final começou a ser elaborado.
