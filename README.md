@@ -2,19 +2,20 @@
 
 ## 📌 Sobre o projeto
 
-O **Game Catalog — Catálogo de Videojogos** é uma aplicação web desenvolvida no âmbito de um projeto de formação, com o objetivo de gerir, organizar e consultar informações sobre videojogos num único local.
+O **Game Catalog — Catálogo de Videojogos** é uma aplicação web desenvolvida no âmbito da formação, com o objetivo de gerir, organizar e consultar informações sobre videojogos num único local.
 
-A aplicação permite criar e gerir uma coleção de videojogos, consultar os seus detalhes, organizar os jogos por género e acompanhar os títulos favoritos.
+O catálogo contém 150 videojogos e permite consultar os seus dados, capas, géneros, plataformas e anos de lançamento.
 
 ## 🎯 Objetivos
 
 - Organizar informações sobre videojogos.
 - Permitir adicionar, consultar, editar e eliminar videojogos.
-- Associar vários géneros a um videojogo.
+- Associar vários géneros e plataformas a cada jogo.
 - Pesquisar e filtrar jogos.
 - Consultar estatísticas do catálogo.
 - Gerir uma lista de videojogos favoritos.
 - Utilizar uma base de dados relacional para guardar a informação.
+- Aplicar boas práticas de organização e separação do código.
 
 ## 🛠️ Tecnologias utilizadas
 
@@ -24,7 +25,7 @@ A aplicação permite criar e gerir uma coleção de videojogos, consultar os se
 - **HTML** — estrutura das páginas web.
 - **CSS** — apresentação visual das páginas.
 - **Jinja2** — integração de dados nas páginas HTML.
-- **Pytest** — realização de testes.
+- **Pytest** — realização de testes automatizados.
 - **Git e GitHub** — controlo de versões e alojamento do código-fonte.
 
 ## ⚙️ Funcionalidades implementadas
@@ -32,28 +33,36 @@ A aplicação permite criar e gerir uma coleção de videojogos, consultar os se
 1. **Página inicial** — apresentação e acesso às principais áreas da aplicação.
 2. **Gestão de videojogos** — adicionar, consultar, editar e eliminar jogos.
 3. **Capas dos videojogos** — carregamento e apresentação de imagens.
-4. **Pesquisa e filtros** — pesquisa por título e filtragem por ano e género.
-5. **Gestão de géneros** — associação de géneros aos videojogos.
-6. **Estatísticas** — consulta do número total de jogos e distribuição por décadas.
-7. **Sistema de favoritos** — adicionar e retirar jogos dos favoritos.
-8. **Página de favoritos** — consulta dos videojogos favoritos.
-9. **Página de detalhes** — apresentação individual da informação de cada videojogo.
-10. **Ordenação** — organização por título (A-Z e Z-A) e por ano de lançamento.
+4. **Pesquisa** — pesquisa de videojogos pelo título.
+5. **Filtros** — filtragem por ano de lançamento, género e plataforma.
+6. **Géneros** — associação de vários géneros a cada videojogo.
+7. **Plataformas** — associação de várias plataformas a cada videojogo.
+8. **Estatísticas** — consulta do número total de jogos e distribuição por décadas.
+9. **Sistema de favoritos** — adicionar e retirar jogos dos favoritos.
+10. **Página de favoritos** — consulta dos videojogos favoritos.
+11. **Página de detalhes** — apresentação individual da informação de cada videojogo.
+12. **Ordenação** — organização por título (A-Z e Z-A) e por ano de lançamento.
 
 ## 🗄️ Base de dados
 
-É utilizada a base de dados **SQLite** para guardar as informações do catálogo.
+A aplicação utiliza **SQLite** para guardar as informações do catálogo.
 
-O modelo de dados inclui as seguintes entidades e tabelas:
+O modelo de dados é composto por seis tabelas:
 
-- **JOGO** — informações dos videojogos.
-- **GENERO** — géneros dos videojogos.
-- **PLATAFORMA** — plataformas associadas aos videojogos.
-- **JOGO_GENERO** — associação entre videojogos e géneros.
-- **JOGO_PLATAFORMA** — associação entre videojogos e plataformas.
-- **JOGO_FAVORITO** — registo dos videojogos favoritos.
+| Tabela | Descrição |
+|---|---|
+| `JOGO` | Informações dos videojogos |
+| `GENERO` | Géneros dos videojogos |
+| `PLATAFORMA` | Plataformas disponíveis |
+| `JOGO_GENERO` | Associação entre jogos e géneros |
+| `JOGO_PLATAFORMA` | Associação entre jogos e plataformas |
+| `JOGO_FAVORITO` | Registo dos videojogos favoritos |
 
-Um videojogo pode estar associado a vários géneros e plataformas.
+As tabelas de associação permitem que um videojogo tenha vários géneros e várias plataformas.
+
+O projeto inclui um script SQL para criar a estrutura da base de dados:
+
+`app/database/criar_base_dados.sql`
 
 ## 🏗️ Organização do projeto
 
@@ -64,69 +73,91 @@ Principais elementos:
 - `app/main.py` — rotas e funcionamento principal da aplicação.
 - `app/repositorio.py` — operações de acesso à base de dados.
 - `app/services/jogos.py` — lógica de negócio e validações.
-- `app/database/` — configuração e inicialização da base de dados.
+- `app/database/` — configuração, inicialização e script SQL da base de dados.
 - `app/templates/` — páginas HTML da aplicação.
 - `app/static/` — ficheiros CSS e capas dos videojogos.
+- `dados/jogos.csv` — ficheiro com os dados dos videojogos.
+- `tests/` — testes automatizados.
 - `registo_desenvolvimento.md` — histórico do desenvolvimento do projeto.
+- `requirements.txt` — dependências necessárias para executar a aplicação.
 
-## 🚀 Instalação e execução
+ Testes automatizados
 
-### 1. Clonar o repositório
+O projeto utiliza Pytest para verificar algumas das principais operações do catálogo.
 
-```bash
+Foram realizados seis testes automatizados, que passaram com sucesso:
+
+- Registo de um videojogo.
+- Listagem dos videojogos.
+- Pesquisa por título.
+- Filtragem por ano.
+- Edição de um videojogo.
+- Eliminação de um videojogo.
+
+Para executar os testes:
+
+
+python -m pytest -v
+
+
+ Instalação e execução
+
+ 1. Clonar o repositório
+
+
 git clone https://github.com/eduardomoreira47/catalogo-videojogos.git
-```
 
-### 2. Entrar na pasta do projeto
 
-```bash
+ 2. Entrar na pasta do projeto
+
+
 cd catalogo-videojogos
-```
 
-### 3. Criar um ambiente virtual
 
-```bash
-python -m venv .venv
-```
+ 3. Criar um ambiente virtual
 
-### 4. Ativar o ambiente virtual
+
+python -m venv .venv313
+
+
+ 4. Ativar o ambiente virtual
 
 No Windows, utilizando Git Bash:
 
-```bash
-source .venv/Scripts/activate
-```
 
-### 5. Instalar as dependências
+source .venv313/Scripts/activate
 
-```bash
+
+ 5. Instalar as dependências
+
+
 pip install -r requirements.txt
-```
 
-### 6. Iniciar a aplicação
 
-```bash
+ 6. Iniciar a aplicação
+
+
 python -m uvicorn app.main:app --reload
-```
 
-### 7. Abrir no navegador
 
-Aceder ao endereço:
+ 7. Abrir no navegador
+
+Aceder ao seguinte endereço:
 
 http://127.0.0.1:8000
 
-## 🚧 Estado do projeto
+ 📋 Estado do projeto
 
-**Em desenvolvimento.**
+O projeto encontra-se numa fase avançada de desenvolvimento, disponibilizando funcionalidades de gestão, pesquisa, filtragem, organização e consulta de videojogos.
 
-A aplicação já disponibiliza várias funcionalidades de gestão e consulta de videojogos. Continuam previstas melhorias e novas funcionalidades.
+Foram também implementados testes automatizados e documentação técnica.
 
-## 🎓 Contexto de desenvolvimento
+ 🎓 Contexto de desenvolvimento
 
-Projeto desenvolvido no âmbito das **UFCD 5425 e 10790**, com o objetivo de aplicar conhecimentos de programação, bases de dados, desenvolvimento web, testes e controlo de versões.
+Projeto desenvolvido no âmbito da **UFCD 5425 — Projeto de Tecnologias e Programação de Sistemas de Informação**, com o objetivo de aplicar conhecimentos de programação, bases de dados, desenvolvimento web, testes e controlo de versões.
 
-## 👨‍💻 Repositório
+ 👨‍💻 Repositório
 
 O código-fonte está disponível no GitHub:
 
-[Catálogo de Videojogos — Repositório GitHub](https://github.com/eduardomoreira47/catalogo-videojogos)
+https://github.com/eduardomoreira47/catalogo-videojogos
