@@ -67,6 +67,55 @@
                         {{ jogo.generos or "Sem género associado" }}
                     </p>
 
+                    <div class="classificacao-jogo">
+                        <h4>Classificação</h4>
+
+                        {% if jogo.classificacao %}
+                            <p>
+                                {% for estrela in range(1, 6) %}
+                                    {% if estrela <= jogo.classificacao %}
+                                        ⭐
+                                    {% else %}
+                                        ☆
+                                    {% endif %}
+                                {% endfor %}
+                                ({{ jogo.classificacao }}/5)
+                            </p>
+                        {% else %}
+                            <p>Este videojogo ainda não foi classificado.</p>
+                        {% endif %}
+
+                        <form
+                            action="/jogos/{{ jogo.id_jogo }}/classificar"
+                            method="post"
+                        >
+                            <label for="classificacao">
+                                Escolhe uma classificação:
+                            </label>
+
+                            <select
+                                id="classificacao"
+                                name="classificacao"
+                                required
+                            >
+                                <option value="">Seleciona as estrelas</option>
+
+                                {% for valor in range(1, 6) %}
+                                    <option
+                                        value="{{ valor }}"
+                                        {% if jogo.classificacao == valor %}selected{% endif %}
+                                    >
+                                        {{ valor }} estrela{% if valor > 1 %}s{% endif %}
+                                    </option>
+                                {% endfor %}
+                            </select>
+
+                            <button type="submit" class="botao">
+                                Guardar classificação
+                            </button>
+                        </form>
+                    </div>
+
                     <div class="acoes-jogo">
                         <a
                             href="/jogos/{{ jogo.id_jogo }}/editar"

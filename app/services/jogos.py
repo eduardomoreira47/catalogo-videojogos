@@ -9,6 +9,7 @@ from app.repositorio import (
     obter_plataformas,
     pesquisar_jogos as pesquisar_jogos_repositorio,
     obter_estatisticas_jogos as obter_estatisticas_repositorio,
+    atualizar_classificacao as atualizar_classificacao_repositorio,
     adicionar_favorito as adicionar_favorito_repositorio,
     remover_favorito as remover_favorito_repositorio,
     verificar_favorito as verificar_favorito_repositorio,
@@ -148,6 +149,28 @@ def editar_jogo(
         ano_lancamento,
         capa,
         genero_id,
+    )
+
+
+def classificar_jogo(id_jogo, classificacao):
+    """Valida e guarda a classificação de um videojogo."""
+
+    jogo = obter_jogo_por_id(id_jogo)
+
+    if jogo is None:
+        raise ValueError("O videojogo não existe.")
+
+    try:
+        classificacao = int(classificacao)
+    except (ValueError, TypeError):
+        raise ValueError("A classificação tem de ser um número inteiro.")
+
+    if classificacao < 1 or classificacao > 5:
+        raise ValueError("A classificação deve estar entre 1 e 5 estrelas.")
+
+    return atualizar_classificacao_repositorio(
+        id_jogo,
+        classificacao,
     )
 
 

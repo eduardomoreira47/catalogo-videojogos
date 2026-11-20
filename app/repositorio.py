@@ -81,7 +81,7 @@ def guardar_jogo(
 
 
 def listar_jogos(ordenar_por="titulo_az"):
-    """Devolve os videojogos ordenados, com géneros e estado de favorito."""
+    """Devolve os videojogos ordenados, com géneros, classificação e favoritos."""
 
     conexao = obter_conexao()
 
@@ -102,6 +102,7 @@ def listar_jogos(ordenar_por="titulo_az"):
                 JOGO.descricao,
                 JOGO.ano_lancamento,
                 JOGO.capa,
+                JOGO.classificacao,
                 (
                     SELECT GROUP_CONCAT(GENERO.nome, ', ')
                     FROM JOGO_GENERO
@@ -149,6 +150,7 @@ def pesquisar_jogos(
                 JOGO.descricao,
                 JOGO.ano_lancamento,
                 JOGO.capa,
+                JOGO.classificacao,
                 (
                     SELECT GROUP_CONCAT(GENERO.nome, ', ')
                     FROM JOGO_GENERO
@@ -209,7 +211,7 @@ def pesquisar_jogos(
 
 
 def obter_jogo_por_id(id_jogo):
-    """Devolve um videojogo específico e o seu género."""
+    """Devolve um videojogo específico e os seus dados."""
 
     conexao = obter_conexao()
 
@@ -222,6 +224,7 @@ def obter_jogo_por_id(id_jogo):
                 JOGO.descricao,
                 JOGO.ano_lancamento,
                 JOGO.capa,
+                JOGO.classificacao,
                 (
                     SELECT GROUP_CONCAT(GENERO.nome, ', ')
                     FROM JOGO_GENERO
@@ -248,6 +251,29 @@ def obter_jogo_por_id(id_jogo):
         linha = cursor.fetchone()
 
         return dict(linha) if linha else None
+
+    finally:
+        conexao.close()
+
+
+def atualizar_classificacao(id_jogo, classificacao):
+    """Guarda ou atualiza a classificação de um videojogo."""
+
+    conexao = obter_conexao()
+
+    try:
+        cursor = conexao.execute(
+            """
+            UPDATE JOGO
+            SET classificacao = ?
+            WHERE id_jogo = ?
+            """,
+            (classificacao, id_jogo)
+        )
+
+        conexao.commit()
+
+        return cursor.rowcount > 0
 
     finally:
         conexao.close()
@@ -401,6 +427,7 @@ def listar_favoritos():
                 JOGO.descricao,
                 JOGO.ano_lancamento,
                 JOGO.capa,
+                JOGO.classificacao,
                 (
                     SELECT GROUP_CONCAT(GENERO.nome, ', ')
                     FROM JOGO_GENERO

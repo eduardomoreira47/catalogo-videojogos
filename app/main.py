@@ -17,6 +17,7 @@ from app.services.jogos import (
     obter_jogo,
     editar_jogo,
     remover_jogo,
+    classificar_jogo,
     obter_estatisticas,
     obter_lista_generos,
     obter_lista_plataformas,
@@ -186,6 +187,32 @@ def pagina_detalhes_jogo(request: Request, id_jogo: int):
         context={
             "jogo": jogo,
         },
+    )
+
+
+# ==========================================
+# CLASSIFICAR UM VIDEOJOGO
+# ==========================================
+
+@app.post("/jogos/{id_jogo}/classificar")
+def rota_classificar_jogo(
+    id_jogo: int,
+    classificacao: str = Form(""),
+):
+    """Valida e guarda a classificação de um videojogo."""
+
+    try:
+        classificar_jogo(id_jogo, classificacao)
+
+    except ValueError as erro:
+        return HTMLResponse(
+            str(erro),
+            status_code=400,
+        )
+
+    return RedirectResponse(
+        url=f"/jogos/{id_jogo}",
+        status_code=303,
     )
 
 

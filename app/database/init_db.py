@@ -11,7 +11,10 @@ def criar_tabelas():
                 id_jogo INTEGER PRIMARY KEY,
                 titulo TEXT NOT NULL,
                 descricao TEXT,
-                ano_lancamento INTEGER
+                ano_lancamento INTEGER,
+                capa TEXT,
+                classificacao INTEGER
+                    CHECK (classificacao BETWEEN 1 AND 5)
             );
 
             CREATE TABLE IF NOT EXISTS GENERO (
@@ -63,6 +66,14 @@ def criar_tabelas():
             conexao.execute(
                 "ALTER TABLE JOGO ADD COLUMN capa TEXT"
             )
+
+        # Acrescenta a classificação apenas se ainda não existir.
+        if "classificacao" not in nomes_colunas:
+            conexao.execute("""
+                ALTER TABLE JOGO
+                ADD COLUMN classificacao INTEGER
+                CHECK (classificacao BETWEEN 1 AND 5)
+            """)
 
         # Lista de géneros.
         generos = [
