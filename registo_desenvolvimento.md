@@ -196,4 +196,15 @@ O catálogo de videojogos passou a disponibilizar novas funcionalidades que perm
 - Atualizei o template `filtrar.html` para incluir o campo de seleção de plataformas.
 - Comecei a elaborar o relatório técnico final do projeto, organizando a informação sobre os requisitos, a base de dados, a arquitetura, as tecnologias utilizadas e as funcionalidades desenvolvidas.
 
-**Resultado:** O catálogo passou a conter 150 videojogos, com géneros e plataformas associados. O filtro por plataforma encontra-se em fase de teste e o relatório técnico final começou a ser elaborado.
+Resultado: O catálogo passou a conter 150 videojogos, com géneros e plataformas associados. O filtro por plataforma encontra-se em fase de teste e o relatório técnico final começou a ser elaborado.
+
+20/11/2026 — Sistema de classificação por estrelas
+
+- Adicionei o campo `classificacao` à tabela `JOGO`, permitindo classificar videojogos de 1 a 5 estrelas.
+- Atualizei os ficheiros `init_db.py`, `repositorio.py`, `jogos.py` e `main.py` para guardar e validar as classificações.
+- Atualizei a página de detalhes para permitir atribuir e visualizar estrelas.
+- Atualizei os testes automatizados e confirmei que os seis testes passaram.
+- Testei manualmente a nova funcionalidade.
+- Registei as alterações no Git através do commit `e4dd35f`.
+
+Resultado: O catálogo passou a permitir classificar videojogos de 1 a 5 estrelas, guardando a classificação na base de dados.
