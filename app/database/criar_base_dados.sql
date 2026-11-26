@@ -1,4 +1,3 @@
-
 -- =====================================================
 -- CATÁLOGO DE VIDEOJOGOS
 -- Script SQL para criação da base de dados
@@ -10,7 +9,8 @@ CREATE TABLE IF NOT EXISTS JOGO (
     titulo TEXT NOT NULL,
     descricao TEXT,
     ano_lancamento INTEGER,
-    capa TEXT
+    capa TEXT,
+    classificacao INTEGER CHECK (classificacao BETWEEN 1 AND 5)
 );
 
 CREATE TABLE IF NOT EXISTS GENERO (
